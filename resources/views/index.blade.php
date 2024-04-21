@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="icon" href="images/favicon.png">
-    <title>Bleak - Personal Portfolio Template</title>
+    <title>Adel - Personal Portfolio Template</title>
 
     <!-- font -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700,900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700,900&amp;display=swap"
+        rel="stylesheet">
     <!-- end font -->
 
     <link rel="stylesheet" href="css/bootstrap.css">
@@ -37,11 +38,12 @@
 
                 <!-- navbar brand or logo -->
                 <a href="#" class="navbar-brand">
-                    <h2>BLEAK</h2>
+                    <h2>MOHAMED ADEL</h2>
                 </a>
                 <!-- end navbar brand or logo -->
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo" aria-controls="navbarTogglerDemo" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo"
+                    aria-controls="navbarTogglerDemo" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -78,14 +80,14 @@
                     <div class="row justify-content-center">
                         <div class="col-md-8 col-sm-12 col-xs-12">
                             <div class="intro-caption">
-                                <span>I am Bleak Peaker</span>
-                                <h2>Graphic Designer</h2>
+                                <span>I am Mohamed Adel</span>
+                                <h2>Full-Stack Developer</h2>
                                 <button class="button">Contact Me</button>
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-12 col-xs-12">
                             <div class="intro-image">
-                                <img src="images/intro-image.jpg" alt="">
+                                <img src="images/profile.png" alt="Profile Image" style="clip-path:none;" />
                             </div>
                         </div>
                     </div>
@@ -108,9 +110,17 @@
                                 <h3>About Me</h3>
                             </div>
                             <div class="content">
-                                <h2>I am a Graphic Designer</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut doloremque ratione perferendis possimus voluptatibus distinctio
-                                autem expedita qui unde modi impedit officia illum praesentium amet, vero quos natus veritatis totam!</p>
+                                <h2>I am a Full-Stack Developer</h2>
+                                <p>Hello! My name is Mohamed Adel, I am a Full Stack Developer with almost a decade of
+                                    experience, specializing in NodeJS and LARAVEL PHP. I have extensive experience in
+                                    developing and deploying websites utilizing various open-source packages . I am
+                                    proficient in HTML5, CSS3, JavaScript, PostgreSQL, Bootstrap, Node JS, ReactJS,
+                                    MongoDB, ReactNative, Testing Driven Development with Jasmine and Deploy with AWS,
+                                    CI CD and free Hosting. I enjoy working on challenging projects that require
+                                    creativity and problem-solving skills. I am always eager to learn new technologies
+                                    and tools that can enhance my skills and improve my productivity. I am passionate
+                                    about creating user-friendly and responsive web applications that meet the needs of
+                                    clients and users.</p>
                             </div>
                         </div>
                     </div>
@@ -207,7 +217,8 @@
                                     <div class="content-left">
                                         <div class="title-resume">
                                             <h3>Skill</h3>
-                                            <h2>With good <span>Personal</span> and <span>Professional Skills</span></h2>
+                                            <h2>With good <span>Personal</span> and <span>Professional Skills</span>
+                                            </h2>
                                         </div>
                                     </div>
                                 </div>
@@ -217,13 +228,16 @@
                                             <div class="card">
                                                 <div id="personalSkill" class="card-header">
                                                     <h2>
-                                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                                        <button class="btn btn-link" type="button"
+                                                            data-toggle="collapse" data-target="#collapse1"
+                                                            aria-expanded="true" aria-controls="collapse1">
                                                             <i class="fas fa-circle"></i>Personal Skill
                                                         </button>
                                                     </h2>
                                                 </div>
 
-                                                <div id="collapse1" class="collapse collapse-show" aria-labelledby="personalSkill" data-parent="#accordionSkill">
+                                                <div id="collapse1" class="collapse collapse-show"
+                                                    aria-labelledby="personalSkill" data-parent="#accordionSkill">
                                                     <div class="card-body">
                                                         <ul class="personalSkill">
                                                             <li>
@@ -231,7 +245,9 @@
                                                                     <span>Creativity</span>
                                                                 </div>
                                                                 <div class="progress">
-                                                                    <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%"></div>
+                                                                    <div class="progress-bar" role="progressbar"
+                                                                        aria-valuenow="85" aria-valuemin="0"
+                                                                        aria-valuemax="100" style="width: 85%"></div>
                                                                 </div>
                                                             </li>
                                                             <li>
@@ -239,7 +255,9 @@
                                                                     <span>Innovation</span>
                                                                 </div>
                                                                 <div class="progress">
-                                                                    <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%"></div>
+                                                                    <div class="progress-bar" role="progressbar"
+                                                                        aria-valuenow="80" aria-valuemin="0"
+                                                                        aria-valuemax="100" style="width: 80%"></div>
                                                                 </div>
                                                             </li>
                                                             <li>
@@ -247,7 +265,9 @@
                                                                     <span>Communication</span>
                                                                 </div>
                                                                 <div class="progress">
-                                                                    <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%"></div>
+                                                                    <div class="progress-bar" role="progressbar"
+                                                                        aria-valuenow="90" aria-valuemin="0"
+                                                                        aria-valuemax="100" style="width: 90%"></div>
                                                                 </div>
                                                             </li>
                                                             <li>
@@ -255,7 +275,9 @@
                                                                     <span>Teamwork</span>
                                                                 </div>
                                                                 <div class="progress">
-                                                                    <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%"></div>
+                                                                    <div class="progress-bar" role="progressbar"
+                                                                        aria-valuenow="95" aria-valuemin="0"
+                                                                        aria-valuemax="100" style="width: 95%"></div>
                                                                 </div>
                                                             </li>
                                                         </ul>
@@ -266,13 +288,16 @@
                                             <div class="card">
                                                 <div id="proSkill" class="card-header">
                                                     <h2>
-                                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                            data-toggle="collapse" data-target="#collapse2"
+                                                            aria-expanded="false" aria-controls="collapse2">
                                                             <i class="fas fa-circle"></i>Professional Skill
                                                         </button>
                                                     </h2>
                                                 </div>
 
-                                                <div id="collapse2" class="collapse" aria-labelledby="proSkill" data-parent="#accordionSkill">
+                                                <div id="collapse2" class="collapse" aria-labelledby="proSkill"
+                                                    data-parent="#accordionSkill">
                                                     <div class="card-body">
                                                         <ul class="pro-skill">
                                                             <li>
@@ -280,7 +305,9 @@
                                                                     <span>Graphic Design</span>
                                                                 </div>
                                                                 <div class="progress">
-                                                                    <div class="progress-bar" role="progressbar" aria-valuenow="98" aria-valuemin="0" aria-valuemax="100" style="width: 98%"></div>
+                                                                    <div class="progress-bar" role="progressbar"
+                                                                        aria-valuenow="98" aria-valuemin="0"
+                                                                        aria-valuemax="100" style="width: 98%"></div>
                                                                 </div>
                                                             </li>
                                                             <li>
@@ -288,7 +315,9 @@
                                                                     <span>HTML & CSS</span>
                                                                 </div>
                                                                 <div class="progress">
-                                                                    <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%"></div>
+                                                                    <div class="progress-bar" role="progressbar"
+                                                                        aria-valuenow="90" aria-valuemin="0"
+                                                                        aria-valuemax="100" style="width: 90%"></div>
                                                                 </div>
                                                             </li>
                                                             <li>
@@ -296,7 +325,9 @@
                                                                     <span>JavaScript</span>
                                                                 </div>
                                                                 <div class="progress">
-                                                                    <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%"></div>
+                                                                    <div class="progress-bar" role="progressbar"
+                                                                        aria-valuenow="80" aria-valuemin="0"
+                                                                        aria-valuemax="100" style="width: 80%"></div>
                                                                 </div>
                                                             </li>
                                                             <li>
@@ -304,7 +335,9 @@
                                                                     <span>PHP</span>
                                                                 </div>
                                                                 <div class="progress">
-                                                                    <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                                                                    <div class="progress-bar" role="progressbar"
+                                                                        aria-valuenow="75" aria-valuemin="0"
+                                                                        aria-valuemax="100" style="width: 75%"></div>
                                                                 </div>
                                                             </li>
                                                             <li>
@@ -312,7 +345,9 @@
                                                                     <span>Photography</span>
                                                                 </div>
                                                                 <div class="progress">
-                                                                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%"></div>
+                                                                    <div class="progress-bar" role="progressbar"
+                                                                        aria-valuenow="70" aria-valuemin="0"
+                                                                        aria-valuemax="100" style="width: 70%"></div>
                                                                 </div>
                                                             </li>
                                                         </ul>
@@ -326,7 +361,7 @@
                         </div>
                         <!-- end my skill -->
                     </div>
-                </div>                
+                </div>
             </div>
         </div>
     </div>
@@ -474,7 +509,8 @@
                         <div class="blog-title">
                             <h4><a href="#">Graphic Design and Photography Workshop This Year</a></h4>
                             <div class="date">
-                                August 23, 2019 <i class="fas fa-circle"></i> <a href="#"><span>GRAPHIC</span></a>
+                                August 23, 2019 <i class="fas fa-circle"></i> <a
+                                    href="#"><span>GRAPHIC</span></a>
                             </div>
                         </div>
                     </div>
@@ -487,7 +523,8 @@
                         <div class="blog-title">
                             <h4><a href="#">Creeping Plants for Minimalist Home Decorations</a></h4>
                             <div class="date">
-                                August 23, 2019 <i class="fas fa-circle"></i> <a href="#"><span>NATURE</span></a>
+                                August 23, 2019 <i class="fas fa-circle"></i> <a
+                                    href="#"><span>NATURE</span></a>
                             </div>
                         </div>
                     </div>
@@ -530,35 +567,41 @@
                                 <div class="row">
                                     <div class="col">
                                         <div id="first-name-field">
-                                            <input type="text" placeholder="First Name" class="form-control" name="form-name">
+                                            <input type="text" placeholder="First Name" class="form-control"
+                                                name="form-name">
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div id="last-name-field">
-                                            <input type="text" placeholder="Last Name" class="form-control" name="form-name">
+                                            <input type="text" placeholder="Last Name" class="form-control"
+                                                name="form-name">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
                                         <div id="email-field">
-                                            <input type="email" placeholder="Email Address" class="form-control" name="form-email">
+                                            <input type="email" placeholder="Email Address" class="form-control"
+                                                name="form-email">
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div id="subject-field">
-                                            <input type="text" placeholder="Subject" class="form-control" name="form-subject">
+                                            <input type="text" placeholder="Subject" class="form-control"
+                                                name="form-subject">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
                                         <div id="message-field">
-                                            <textarea cols="30" rows="5" class="form-control" id="form-message" name="form-message" placeholder="Message"></textarea>
+                                            <textarea cols="30" rows="5" class="form-control" id="form-message" name="form-message"
+                                                placeholder="Message"></textarea>
                                         </div>
                                     </div>
                                 </div>
-                                <button class="button" type="submit" id="submit" name="submit">Send Message</button>
+                                <button class="button" type="submit" id="submit" name="submit">Send
+                                    Message</button>
                             </form>
                         </div>
                     </div>
