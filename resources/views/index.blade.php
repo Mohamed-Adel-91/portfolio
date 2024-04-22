@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -115,7 +115,7 @@
                                     experience, specializing in NodeJS and LARAVEL PHP. I have extensive experience in
                                     developing and deploying websites utilizing various open-source packages . I am
                                     proficient in HTML5, CSS3, JavaScript, PostgreSQL, Bootstrap, Node JS, ReactJS,
-                                    MongoDB, ReactNative, Testing Driven Development with Jasmine and Deploy with AWS,
+                                    MongoDB, Testing Driven Development with Jest or Jasmine and Deploy with AWS,
                                     CI CD and free Hosting. I enjoy working on challenging projects that require
                                     creativity and problem-solving skills. I am always eager to learn new technologies
                                     and tools that can enhance my skills and improve my productivity. I am passionate
@@ -148,7 +148,8 @@
                                 <div class="content-left">
                                     <div class="title-resume">
                                         <h3>Experience</h3>
-                                        <h2>More than 6 years experience as a <span>Designer</span></h2>
+                                        <h2>Over 12 years of professional experience - More than 2 years experience as
+                                            a <span>Developer</span></h2>
                                     </div>
                                 </div>
                             </div>
@@ -156,20 +157,62 @@
                                 <div class="content-right">
                                     <ul class="timeline">
                                         <li>
-                                            <h4>Pentagon Design</h4>
-                                            <span>Graphic Designer (2017 - 2019)</span>
+                                            <h4>Icon Creations <small style="font-size: 12px;">Part-time</small></h4>
+                                            <span>Full-stack Web Developer (2023 - Now)</span>
                                         </li>
                                         <li>
-                                            <h4>Animate Studio</h4>
-                                            <span>Graphic Designer (2015 - 2017)</span>
+                                            <h4>Upwork <small style="font-size: 12px;">Freelancer</small></h4>
+                                            <span>Full-Stack Web Developer (2023 - Now)</span>
                                         </li>
                                         <li>
-                                            <h4>Cute Studio</h4>
-                                            <span>Graphic Designer (2014 - 2015)</span>
+                                            <h4>Amazon <small style="font-size: 12px;">Self-Employed</small></h4>
+                                            <span>Online Seller (2021 - 2023)</span>
                                         </li>
                                         <li>
-                                            <h4>City Printing</h4>
-                                            <span>Graphic Designer (2013 - 2014)</span>
+                                            <h4>Jumia <small style="font-size: 12px;">Self-Employed</small></h4>
+                                            <span>Online Seller (2019 - 2023)</span>
+                                        </li>
+                                        <li>
+                                            <h4>Souq.com <small style="font-size: 12px;">Self-Employed</small></h4>
+                                            <span>Online Seller (2019 - 2021)</span>
+                                        </li>
+                                        <li>
+                                            <h4>Public Prosecution Service of Egypt - Agouza Traffic Department <small
+                                                    style="font-size: 12px;">Full-Time</small></h4>
+                                            <span>Head of the Criminal Registry (2019 - Now)</span>
+                                        </li>
+                                        <li>
+                                            <h4>Public Prosecution Service of Egypt - Giza Traffic Department <small
+                                                    style="font-size: 12px;">Full-Time</small></h4>
+                                            <span>IT & Data Entry Supervisor(2018 - 2019)</span>
+                                        </li>
+                                        <li>
+                                            <h4>Public Prosecution Service of Egypt - Giza Traffic Department <small
+                                                    style="font-size: 12px;">Full-Time</small></h4>
+                                            <span>Data Entry Spicialist (2017 - 2018)</span>
+                                        </li>
+                                        <li>
+                                            <h4>Public Prosecution Service of Egypt - Cairo Traffic Department <small
+                                                    style="font-size: 12px;">Full-Time</small>
+                                            </h4>
+                                            <span>Prosecutor's secretary (2015 - 2017)</span>
+                                        </li>
+                                        <li>
+                                            <h4>CIB Bank <small style="font-size: 12px;">Full-Time</small></h4>
+                                            <span>Sales Executive (2015 - 2015)</span>
+                                        </li>
+                                        <li>
+                                            <h4>Citi Bank <small style="font-size: 12px;">Full-Time</small></h4>
+                                            <span>Sales Executive (2014 - 2015)</span>
+                                        </li>
+                                        <li>
+                                            <h4>Wadi Degla Club <small style="font-size: 12px;">Full-Time</small></h4>
+                                            <span>Sales Representative (2013 - 2014)</span>
+                                        </li>
+                                        <li>
+                                            <h4>Intarnational Trade and Investment <small
+                                                    style="font-size: 12px;">Full-Time</small></h4>
+                                            <span>Senior Teller (2012 - 2013)</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -192,16 +235,21 @@
                                 <div class="content-right">
                                     <ul class="timeline">
                                         <li>
-                                            <h4>National University</h4>
-                                            <span>Graphic Design Faculty (2016 - 2019</span>
+                                            <h4>Harvard University <small style="font-size: 12px;">online</small></h4>
+                                            <span>CS50’s Introduction to Computer Science (2022 - 2023)</span>
                                         </li>
                                         <li>
-                                            <h4>City University</h4>
-                                            <span>Science Faculty (2012 - 2015)</span>
+                                            <h4>Helberton School <small style="font-size: 12px;">online</small></h4>
+                                            <span>Software Development (2023 - 2024)</span>
                                         </li>
                                         <li>
-                                            <h4>International University</h4>
-                                            <span>Technical Information (2010 - 2012)</span>
+                                            <h4>Lane Community College <small style="font-size: 12px;">online</small>
+                                            </h4>
+                                            <span>Computerized Accounting & Fentech (2012)</span>
+                                        </li>
+                                        <li>
+                                            <h4>Ain Shams University</h4>
+                                            <span>Accounting and Business Adminstration Faculty (2008 - 2012)</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -226,6 +274,78 @@
                                     <div class="content-right">
                                         <div id="accordionSkill" class="accordion">
                                             <div class="card">
+                                                <div id="proSkill" class="card-header">
+                                                    <h2>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                            data-toggle="collapse" data-target="#collapse2"
+                                                            aria-expanded="false" aria-controls="collapse2">
+                                                            <i class="fas fa-circle"></i>Professional Skill
+                                                        </button>
+                                                    </h2>
+                                                </div>
+
+
+                                                <div id="collapse1" class="collapse collapse-show"
+                                                    aria-labelledby="personalSkill" data-parent="#accordionSkill">
+                                                    <div class="card-body">
+                                                        <ul class="pro-skill">
+                                                            <li>
+                                                                <div class="skill-title">
+                                                                    <span>HTML & CSS</span>
+                                                                </div>
+                                                                <div class="progress">
+                                                                    <div class="progress-bar" role="progressbar"
+                                                                        aria-valuenow="98" aria-valuemin="0"
+                                                                        aria-valuemax="100" style="width: 98%"></div>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="skill-title">
+                                                                    <span>JavaScript</span>
+                                                                </div>
+                                                                <div class="progress">
+                                                                    <div class="progress-bar" role="progressbar"
+                                                                        aria-valuenow="90" aria-valuemin="0"
+                                                                        aria-valuemax="100" style="width: 90%"></div>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="skill-title">
+                                                                    <span>JavaScript</span>
+                                                                </div>
+                                                                <div class="progress">
+                                                                    <div class="progress-bar" role="progressbar"
+                                                                        aria-valuenow="80" aria-valuemin="0"
+                                                                        aria-valuemax="100" style="width: 80%"></div>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="skill-title">
+                                                                    <span>PHP</span>
+                                                                </div>
+                                                                <div class="progress">
+                                                                    <div class="progress-bar" role="progressbar"
+                                                                        aria-valuenow="75" aria-valuemin="0"
+                                                                        aria-valuemax="100" style="width: 75%"></div>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="skill-title">
+                                                                    <span>Graphic Design</span>
+                                                                </div>
+                                                                <div class="progress">
+                                                                    <div class="progress-bar" role="progressbar"
+                                                                        aria-valuenow="70" aria-valuemin="0"
+                                                                        aria-valuemax="100" style="width: 70%"></div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="card">
                                                 <div id="personalSkill" class="card-header">
                                                     <h2>
                                                         <button class="btn btn-link" type="button"
@@ -236,8 +356,8 @@
                                                     </h2>
                                                 </div>
 
-                                                <div id="collapse1" class="collapse collapse-show"
-                                                    aria-labelledby="personalSkill" data-parent="#accordionSkill">
+                                                <div id="collapse2" class="collapse" aria-labelledby="proSkill"
+                                                    data-parent="#accordionSkill">
                                                     <div class="card-body">
                                                         <ul class="personalSkill">
                                                             <li>
@@ -278,76 +398,6 @@
                                                                     <div class="progress-bar" role="progressbar"
                                                                         aria-valuenow="95" aria-valuemin="0"
                                                                         aria-valuemax="100" style="width: 95%"></div>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="card">
-                                                <div id="proSkill" class="card-header">
-                                                    <h2>
-                                                        <button class="btn btn-link collapsed" type="button"
-                                                            data-toggle="collapse" data-target="#collapse2"
-                                                            aria-expanded="false" aria-controls="collapse2">
-                                                            <i class="fas fa-circle"></i>Professional Skill
-                                                        </button>
-                                                    </h2>
-                                                </div>
-
-                                                <div id="collapse2" class="collapse" aria-labelledby="proSkill"
-                                                    data-parent="#accordionSkill">
-                                                    <div class="card-body">
-                                                        <ul class="pro-skill">
-                                                            <li>
-                                                                <div class="skill-title">
-                                                                    <span>Graphic Design</span>
-                                                                </div>
-                                                                <div class="progress">
-                                                                    <div class="progress-bar" role="progressbar"
-                                                                        aria-valuenow="98" aria-valuemin="0"
-                                                                        aria-valuemax="100" style="width: 98%"></div>
-                                                                </div>
-                                                            </li>
-                                                            <li>
-                                                                <div class="skill-title">
-                                                                    <span>HTML & CSS</span>
-                                                                </div>
-                                                                <div class="progress">
-                                                                    <div class="progress-bar" role="progressbar"
-                                                                        aria-valuenow="90" aria-valuemin="0"
-                                                                        aria-valuemax="100" style="width: 90%"></div>
-                                                                </div>
-                                                            </li>
-                                                            <li>
-                                                                <div class="skill-title">
-                                                                    <span>JavaScript</span>
-                                                                </div>
-                                                                <div class="progress">
-                                                                    <div class="progress-bar" role="progressbar"
-                                                                        aria-valuenow="80" aria-valuemin="0"
-                                                                        aria-valuemax="100" style="width: 80%"></div>
-                                                                </div>
-                                                            </li>
-                                                            <li>
-                                                                <div class="skill-title">
-                                                                    <span>PHP</span>
-                                                                </div>
-                                                                <div class="progress">
-                                                                    <div class="progress-bar" role="progressbar"
-                                                                        aria-valuenow="75" aria-valuemin="0"
-                                                                        aria-valuemax="100" style="width: 75%"></div>
-                                                                </div>
-                                                            </li>
-                                                            <li>
-                                                                <div class="skill-title">
-                                                                    <span>Photography</span>
-                                                                </div>
-                                                                <div class="progress">
-                                                                    <div class="progress-bar" role="progressbar"
-                                                                        aria-valuenow="70" aria-valuemin="0"
-                                                                        aria-valuemax="100" style="width: 70%"></div>
                                                                 </div>
                                                             </li>
                                                         </ul>
