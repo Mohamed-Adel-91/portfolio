@@ -166,41 +166,29 @@
                                         </li>
                                         <li>
                                             <h4>Amazon <small style="font-size: 12px;">Self-Employed</small></h4>
-                                            <span>Online Seller (2021 - 2023)</span>
-                                        </li>
-                                        <li>
                                             <h4>Jumia <small style="font-size: 12px;">Self-Employed</small></h4>
+                                            <h4>Souq.com <small style="font-size: 12px;">Self-Employed</small></h4>
+                                            <span>Online Seller (2019 - 2023)</span>
+                                        </li>
+                                        {{-- <li>
                                             <span>Online Seller (2019 - 2023)</span>
                                         </li>
                                         <li>
-                                            <h4>Souq.com <small style="font-size: 12px;">Self-Employed</small></h4>
                                             <span>Online Seller (2019 - 2021)</span>
-                                        </li>
+                                        </li> --}}
                                         <li>
-                                            <h4>Public Prosecution Service of Egypt - Agouza Traffic Department <small
+                                            <h4>Public Prosecution Service of Egypt - Giza Traffic Department <small
                                                     style="font-size: 12px;">Full-Time</small></h4>
                                             <span>Head of the Criminal Registry (2019 - Now)</span>
+                                            </br><span>IT & Data Entry Supervisor(2018 - 2019)</span>
+                                            </br><span>Data Entry Spicialist (2017 - 2018)</span>
+                                            </br><span>Prosecutor's secretary (2015 - 2017)</span>
                                         </li>
-                                        <li>
-                                            <h4>Public Prosecution Service of Egypt - Giza Traffic Department <small
-                                                    style="font-size: 12px;">Full-Time</small></h4>
-                                            <span>IT & Data Entry Supervisor(2018 - 2019)</span>
-                                        </li>
-                                        <li>
-                                            <h4>Public Prosecution Service of Egypt - Giza Traffic Department <small
-                                                    style="font-size: 12px;">Full-Time</small></h4>
-                                            <span>Data Entry Spicialist (2017 - 2018)</span>
-                                        </li>
-                                        <li>
-                                            <h4>Public Prosecution Service of Egypt - Cairo Traffic Department <small
-                                                    style="font-size: 12px;">Full-Time</small>
-                                            </h4>
-                                            <span>Prosecutor's secretary (2015 - 2017)</span>
-                                        </li>
-                                        <li>
+
+                                        {{-- <li>
                                             <h4>CIB Bank <small style="font-size: 12px;">Full-Time</small></h4>
                                             <span>Sales Executive (2015 - 2015)</span>
-                                        </li>
+                                        </li> --}}
                                         <li>
                                             <h4>Citi Bank <small style="font-size: 12px;">Full-Time</small></h4>
                                             <span>Sales Executive (2014 - 2015)</span>
@@ -213,6 +201,7 @@
                                             <h4>Intarnational Trade and Investment <small
                                                     style="font-size: 12px;">Full-Time</small></h4>
                                             <span>Senior Teller (2012 - 2013)</span>
+                                            </br><span>Teller (2012 - 2013)</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -261,6 +250,7 @@
                         <!-- my skill -->
                         <div class="my-skill">
                             <div class="row ">
+
                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                     <div class="content-left">
                                         <div class="title-resume">
@@ -284,9 +274,8 @@
                                                     </h2>
                                                 </div>
 
-
-                                                <div id="collapse1" class="collapse collapse-show"
-                                                    aria-labelledby="personalSkill" data-parent="#accordionSkill">
+                                                <div id="collapse2" class="collapse collapse-show"
+                                                    aria-labelledby="proSkill" data-parent="#accordionSkill">
                                                     <div class="card-body">
                                                         <ul class="pro-skill">
                                                             <li>
@@ -311,7 +300,27 @@
                                                             </li>
                                                             <li>
                                                                 <div class="skill-title">
-                                                                    <span>JavaScript</span>
+                                                                    <span>TypeScript</span>
+                                                                </div>
+                                                                <div class="progress">
+                                                                    <div class="progress-bar" role="progressbar"
+                                                                        aria-valuenow="80" aria-valuemin="0"
+                                                                        aria-valuemax="100" style="width: 80%"></div>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="skill-title">
+                                                                    <span>React.js</span>
+                                                                </div>
+                                                                <div class="progress">
+                                                                    <div class="progress-bar" role="progressbar"
+                                                                        aria-valuenow="80" aria-valuemin="0"
+                                                                        aria-valuemax="100" style="width: 80%"></div>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="skill-title">
+                                                                    <span>Next.js</span>
                                                                 </div>
                                                                 <div class="progress">
                                                                     <div class="progress-bar" role="progressbar"
@@ -331,7 +340,87 @@
                                                             </li>
                                                             <li>
                                                                 <div class="skill-title">
-                                                                    <span>Graphic Design</span>
+                                                                    <span>Laravel</span>
+                                                                </div>
+                                                                <div class="progress">
+                                                                    <div class="progress-bar" role="progressbar"
+                                                                        aria-valuenow="70" aria-valuemin="0"
+                                                                        aria-valuemax="100" style="width: 70%"></div>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="skill-title">
+                                                                    <span>Node.js</span>
+                                                                </div>
+                                                                <div class="progress">
+                                                                    <div class="progress-bar" role="progressbar"
+                                                                        aria-valuenow="70" aria-valuemin="0"
+                                                                        aria-valuemax="100" style="width: 70%"></div>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="skill-title">
+                                                                    <span>Express</span>
+                                                                </div>
+                                                                <div class="progress">
+                                                                    <div class="progress-bar" role="progressbar"
+                                                                        aria-valuenow="70" aria-valuemin="0"
+                                                                        aria-valuemax="100" style="width: 70%"></div>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="skill-title">
+                                                                    <span>Nest.js</span>
+                                                                </div>
+                                                                <div class="progress">
+                                                                    <div class="progress-bar" role="progressbar"
+                                                                        aria-valuenow="70" aria-valuemin="0"
+                                                                        aria-valuemax="100" style="width: 70%"></div>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="skill-title">
+                                                                    <span>NoSql - MongoDB</span>
+                                                                </div>
+                                                                <div class="progress">
+                                                                    <div class="progress-bar" role="progressbar"
+                                                                        aria-valuenow="70" aria-valuemin="0"
+                                                                        aria-valuemax="100" style="width: 70%"></div>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="skill-title">
+                                                                    <span>SQL - MySQL</span>
+                                                                </div>
+                                                                <div class="progress">
+                                                                    <div class="progress-bar" role="progressbar"
+                                                                        aria-valuenow="70" aria-valuemin="0"
+                                                                        aria-valuemax="100" style="width: 70%"></div>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="skill-title">
+                                                                    <span>SQL - Postgres</span>
+                                                                </div>
+                                                                <div class="progress">
+                                                                    <div class="progress-bar" role="progressbar"
+                                                                        aria-valuenow="70" aria-valuemin="0"
+                                                                        aria-valuemax="100" style="width: 70%"></div>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="skill-title">
+                                                                    <span>Testing - Jest & Jesmine</span>
+                                                                </div>
+                                                                <div class="progress">
+                                                                    <div class="progress-bar" role="progressbar"
+                                                                        aria-valuenow="70" aria-valuemin="0"
+                                                                        aria-valuemax="100" style="width: 70%"></div>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="skill-title">
+                                                                    <span>Docker</span>
                                                                 </div>
                                                                 <div class="progress">
                                                                     <div class="progress-bar" role="progressbar"
@@ -340,11 +429,9 @@
                                                                 </div>
                                                             </li>
                                                         </ul>
-
                                                     </div>
                                                 </div>
                                             </div>
-
                                             <div class="card">
                                                 <div id="personalSkill" class="card-header">
                                                     <h2>
@@ -356,8 +443,8 @@
                                                     </h2>
                                                 </div>
 
-                                                <div id="collapse2" class="collapse" aria-labelledby="proSkill"
-                                                    data-parent="#accordionSkill">
+                                                <div id="collapse1" class="collapse collapse-show"
+                                                    aria-labelledby="personalSkill" data-parent="#accordionSkill">
                                                     <div class="card-body">
                                                         <ul class="personalSkill">
                                                             <li>
@@ -400,10 +487,22 @@
                                                                         aria-valuemax="100" style="width: 95%"></div>
                                                                 </div>
                                                             </li>
+                                                            <li>
+                                                                <div class="skill-title">
+                                                                    <span>Work Agile</span>
+                                                                </div>
+                                                                <div class="progress">
+                                                                    <div class="progress-bar" role="progressbar"
+                                                                        aria-valuenow="95" aria-valuemin="0"
+                                                                        aria-valuemax="100" style="width: 95%"></div>
+                                                                </div>
+                                                            </li>
                                                         </ul>
                                                     </div>
                                                 </div>
                                             </div>
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -660,6 +759,77 @@
         </div>
     </div>
     <!-- end contact -->
+    <!-- payment -->
+    <div class="footer segments">
+        <div class="container">
+            <div class="box-content">
+                <section class="mh-pricing" id="mh-pricing">
+                    <div class="">
+                        <div class="container">
+                            <div class="row section-separator">
+                                <div class="col-sm-12 section-title" data-wow-duration="0.8s" data-wow-delay="0.2s">
+                                    <h3>Pricing Table</h3>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <div class="mh-pricing dark-bg shadow-2 wow fadeInUp" data-wow-duration="0.8s"
+                                        data-wow-delay="0.3s">
+                                        <i class="fa fa-calendar"></i>
+                                        <h3>Full-time work</h3>
+                                        <p>I am available for full time</p>
+                                        <h1><span>$1500</span></h1>
+                                        <ul>
+                                            <li>Web Development</li>
+                                            {{-- <li>Android App Development</li> --}}
+                                            <li>Data Analysis & Visualization</li>
+                                            <li>3 Month Mentinance</li>
+                                        </ul>
+                                        <button class="button" type="submit" id="submit" name="submit">Hire
+                                            Me
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <div class="mh-pricing dark-bg shadow-2 wow fadeInUp" data-wow-duration="0.8s"
+                                        data-wow-delay="0.5s">
+                                        <i class="fa fa-file"></i>
+                                        <h4>Fixed Price Project</h4>
+                                        <p>I am available for fixed roles</p>
+                                        <h5>$500</h5>
+                                        <ul>
+                                            <li>Web Development</li>
+                                            {{-- <li>Android App Development</li> --}}
+                                            <li>Data Analysis & Visualization</li>
+                                            <li>3 Month Mentinance</li>
+                                        </ul>
+                                        <button class="button" type="submit" id="submit" name="submit">Hire Me
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <div class="mh-pricing dark-bg shadow-2 wow fadeInUp" data-wow-duration="0.8s"
+                                        data-wow-delay="0.7s">
+                                        <i class="fa fa-hourglass"></i>
+                                        <h4>Hourley work</h4>
+                                        <p>I am available for Hourley projets</p>
+                                        <h5>$25</h5>
+                                        <ul>
+                                            <li>Web Development</li>
+                                            {{-- <li>Android App Development</li> --}}
+                                            <li>Data Analysis & Visualization</li>
+                                            {{-- <li>3 Month Mentinance</li> --}}
+                                        </ul>
+                                        <button class="button" type="submit" id="submit" name="submit">Hire Me
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <!-- end payment -->
 
     <!-- footer -->
     <div class="footer segments">
@@ -671,6 +841,7 @@
     </div>
     <!-- end footer -->
 
+    <!-- JS -->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/fakeLoader.min.js"></script>
@@ -680,7 +851,10 @@
     <script src="js/jquery.magnific-popup.min.js"></script>
     <script src="js/contact-form.js"></script>
     <script src="js/main.js"></script>
-
+    <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.js"></script>
+    <script type="text/javascript" src="js/smoothscroll.js"></script>
+    <script type="text/javascript" src="js/jquery.nicescroll.min.js"></script>
 
 </body>
 
