@@ -13,7 +13,7 @@
             <ul class="timeline">
                 <li>
                     <h4>Icon Creations <small style="font-size: 12px;">Part-time</small></h4>
-                    <span>Full-stack Web Developer (2023 - Now)</span>
+                    <span>Back-End Web Developer (2023 - Now)</span>
                 </li>
                 <li>
                     <h4>Upwork <small style="font-size: 12px;">Freelancer</small></h4>

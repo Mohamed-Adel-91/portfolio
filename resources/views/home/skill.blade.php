@@ -31,37 +31,37 @@
                                         <div class="skill-title">
                                             <span>HTML & CSS</span>
                                         </div>
-                                        <div class="progress">
+                                        {{-- <div class="progress">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="98"
                                                 aria-valuemin="0" aria-valuemax="100" style="width: 98%"></div>
-                                        </div>
+                                        </div> --}}
                                     </li>
                                     <li>
                                         <div class="skill-title">
                                             <span>JavaScript</span>
                                         </div>
-                                        <div class="progress">
+                                        {{-- <div class="progress">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="90"
                                                 aria-valuemin="0" aria-valuemax="100" style="width: 90%"></div>
-                                        </div>
+                                        </div> --}}
                                     </li>
                                     <li>
                                         <div class="skill-title">
                                             <span>TypeScript</span>
                                         </div>
-                                        <div class="progress">
+                                        {{-- <div class="progress">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="80"
                                                 aria-valuemin="0" aria-valuemax="100" style="width: 80%"></div>
-                                        </div>
+                                        </div> --}}
                                     </li>
                                     <li>
                                         <div class="skill-title">
                                             <span>React.js</span>
                                         </div>
-                                        <div class="progress">
+                                        {{-- <div class="progress">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="80"
                                                 aria-valuemin="0" aria-valuemax="100" style="width: 80%"></div>
-                                        </div>
+                                        </div> --}}
                                     </li>
                                     {{-- <li>
                                         <div class="skill-title">
@@ -76,37 +76,37 @@
                                         <div class="skill-title">
                                             <span>PHP</span>
                                         </div>
-                                        <div class="progress">
+                                        {{-- <div class="progress">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="75"
                                                 aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-                                        </div>
+                                        </div> --}}
                                     </li>
                                     <li>
                                         <div class="skill-title">
                                             <span>Laravel</span>
                                         </div>
-                                        <div class="progress">
+                                        {{-- <div class="progress">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="70"
                                                 aria-valuemin="0" aria-valuemax="100" style="width: 70%"></div>
-                                        </div>
+                                        </div> --}}
                                     </li>
                                     <li>
                                         <div class="skill-title">
                                             <span>Node.js</span>
                                         </div>
-                                        <div class="progress">
+                                        {{-- <div class="progress">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="70"
                                                 aria-valuemin="0" aria-valuemax="100" style="width: 70%"></div>
-                                        </div>
+                                        </div> --}}
                                     </li>
                                     <li>
                                         <div class="skill-title">
                                             <span>Express</span>
                                         </div>
-                                        <div class="progress">
+                                        {{-- <div class="progress">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="70"
                                                 aria-valuemin="0" aria-valuemax="100" style="width: 70%"></div>
-                                        </div>
+                                        </div> --}}
                                     </li>
                                     {{-- <li>
                                         <div class="skill-title">
@@ -121,37 +121,37 @@
                                         <div class="skill-title">
                                             <span>NoSql - MongoDB</span>
                                         </div>
-                                        <div class="progress">
+                                        {{-- <div class="progress">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="70"
                                                 aria-valuemin="0" aria-valuemax="100" style="width: 70%"></div>
-                                        </div>
+                                        </div> --}}
                                     </li>
                                     <li>
                                         <div class="skill-title">
                                             <span>SQL - MySQL</span>
                                         </div>
-                                        <div class="progress">
+                                        {{-- <div class="progress">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="70"
                                                 aria-valuemin="0" aria-valuemax="100" style="width: 70%"></div>
-                                        </div>
+                                        </div> --}}
                                     </li>
                                     <li>
                                         <div class="skill-title">
                                             <span>SQL - Postgres</span>
                                         </div>
-                                        <div class="progress">
+                                        {{-- <div class="progress">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="70"
                                                 aria-valuemin="0" aria-valuemax="100" style="width: 70%"></div>
-                                        </div>
+                                        </div> --}}
                                     </li>
                                     <li>
                                         <div class="skill-title">
                                             <span>Testing - Jest & Jesmine</span>
                                         </div>
-                                        <div class="progress">
+                                        {{-- <div class="progress">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="70"
                                                 aria-valuemin="0" aria-valuemax="100" style="width: 70%"></div>
-                                        </div>
+                                        </div> --}}
                                     </li>
                                     {{-- <li>
                                         <div class="skill-title">
@@ -184,46 +184,46 @@
                                         <div class="skill-title">
                                             <span>Creativity</span>
                                         </div>
-                                        <div class="progress">
+                                        {{-- <div class="progress">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="85"
                                                 aria-valuemin="0" aria-valuemax="100" style="width: 85%"></div>
-                                        </div>
+                                        </div> --}}
                                     </li>
                                     <li>
                                         <div class="skill-title">
                                             <span>Innovation</span>
                                         </div>
-                                        <div class="progress">
+                                        {{-- <div class="progress">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="80"
                                                 aria-valuemin="0" aria-valuemax="100" style="width: 80%"></div>
-                                        </div>
+                                        </div> --}}
                                     </li>
                                     <li>
                                         <div class="skill-title">
                                             <span>Communication</span>
                                         </div>
-                                        <div class="progress">
+                                        {{-- <div class="progress">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="90"
                                                 aria-valuemin="0" aria-valuemax="100" style="width: 90%"></div>
-                                        </div>
+                                        </div> --}}
                                     </li>
                                     <li>
                                         <div class="skill-title">
                                             <span>Teamwork</span>
                                         </div>
-                                        <div class="progress">
+                                        {{-- <div class="progress">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="95"
                                                 aria-valuemin="0" aria-valuemax="100" style="width: 95%"></div>
-                                        </div>
+                                        </div> --}}
                                     </li>
                                     <li>
                                         <div class="skill-title">
                                             <span>Work Agile</span>
                                         </div>
-                                        <div class="progress">
+                                        {{-- <div class="progress">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="95"
                                                 aria-valuemin="0" aria-valuemax="100" style="width: 95%"></div>
-                                        </div>
+                                        </div> --}}
                                     </li>
                                 </ul>
                             </div>
