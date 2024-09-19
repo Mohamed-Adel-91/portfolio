@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Admin Control Panel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/logo.ico') }}" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/1.ico') }}" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @include('admin.layouts.scripts.css')
     @stack('custom-css-scripts')

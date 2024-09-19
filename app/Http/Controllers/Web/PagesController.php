@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Web\Front;
+namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\ContactRequest;
@@ -14,8 +14,8 @@ class PagesController extends Controller
     {
 
 
-        return view('web.index')->with([
-            'pageName' => 'Air Master | Home',
+        return view('web.layouts.master')->with([
+            'pageName' => 'Portfolio | Mohamed Adel',
         ]);
     }
 

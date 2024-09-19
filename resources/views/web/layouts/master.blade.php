@@ -8,7 +8,7 @@
     <link rel="icon" href="images/favicon.png">
     <title>Mohamed Adel - Personal Portfolio Website</title>
 
-    @include('home.css')
+    @include('web.layouts.css')
     <!-- ========================= CSS ============================ -->
 
 </head>
@@ -16,43 +16,43 @@
 <body>
 
     <!-- loader -->
-    @include('home.loader')
+    @include('web.loader')
     <!-- loader -->
 
     <!-- header -->
-    @include('home.header')
+    @include('web.header')
     <!-- end header -->
 
     <!-- about -->
-    @include('home.about')
+    @include('web.about')
     <!-- end about -->
 
     <!-- resume -->
-    @include('home.resume')
+    @include('web.resume')
     <!-- end resume -->
 
     <!-- portfolio -->
-    {{-- @include('home.portfolio') --}}
+    {{-- @include('web.portfolio') --}}
     <!-- end portfolio -->
 
     <!-- projects -->
-    @include('home.projects')
+    @include('web.projects')
     <!-- end projects -->
 
     <!-- contact -->
-    @include('home.contact')
+    @include('web.contact')
     <!-- end contact -->
 
     <!-- payment -->
-    @include('home.payment')
+    @include('web.payment')
     <!-- end payment -->
 
     <!-- footer -->
-    @include('home.footer')
+    @include('web.footer')
     <!-- end footer -->
 
     <!-- JS -->
-    @include('home.scripts')
+    @include('web.layouts.js')
 
 </body>
 

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Web\Admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -13,7 +14,8 @@ class AuthController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index()
+
+    public function index() 
     {
         if (auth()->guard('admin')->check()) {
             return redirect()->route('admin.index');
@@ -30,34 +32,26 @@ class AuthController extends Controller
      */
     public function login(AuthRequest $request)
     {
-        try {
-            // Attempt to log the user in as admin
-            if (auth()->guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
-                return redirect()->route('admin.index');
-            } else {
-                // Handle invalid login attempt
-                return back()->withInput()->withErrors(['email' => 'These credentials do not match our records.']);
-            }
-        } catch (\Exception $e) {
-            // Handle general errors
-            session()->flash('error', 'An unexpected error occurred. Please try again later.');
-            return back()->withInput();
+
+        if (auth()->guard('admin')->attempt(['email' => $request['email'], 'password' => $request['password']])) {
+            return redirect()->route('admin.index');
+        } else {
+            session()->flash('error', 'Credentials are incorrect.');
+            return back();
         }
     }
+
 
     /**
      * Log the admin user out.
      *
      * @return \Illuminate\Http\RedirectResponse
-     */
-    public function logout()
+     */    public function logout()
     {
         if (!auth()->guard('admin')->check()) {
             return redirect()->to('/login');
         }
-
         Auth::guard('admin')->logout();
-
         return redirect()->to('/login');
     }
 }

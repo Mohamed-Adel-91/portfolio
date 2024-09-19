@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Web\Admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\ContactRequest;
@@ -8,6 +8,10 @@ use App\Models\ContactRequest;
 
 class DashboardController extends Controller
 {
+    public function index()
+    {
+        return view('admin.layouts.master');
+    }
     public function contactRequests() {
 
         $data = ContactRequest::latest()->paginate(10);

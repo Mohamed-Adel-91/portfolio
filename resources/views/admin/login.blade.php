@@ -11,12 +11,10 @@
                     <div class="col-xl-4 col-lg-5 col-md-6 col-sm-12">
                         <div class="login-screen">
                             <div class="login-box" style="background-color: black;  border-radius: 10px;">
-                                <div class="login-box-header"
-                                    style="display: block; width: 100%; text-align: center; padding: 1px;
-                                    margin-bottom: 15px;">
+                                <div class="login-box-header">
                                     <a href="#" class="login-logo"
-                                        style="display: block; width: 100%; text-align: center;">
-                                        <img src="{{ asset('assets/img/logo.png') }}" alt="Admin Dashboard" />
+                                        style="display: block; width: 100%; text-align: center; margin: 0;">
+                                        <img src="{{ asset('assets/img/2.png') }}" alt="Mohamed Adel Admin Dashboard" />
                                     </a>
                                 </div>
                                 <h5>Welcome back,<br />Please Login to your Account.</h5>
