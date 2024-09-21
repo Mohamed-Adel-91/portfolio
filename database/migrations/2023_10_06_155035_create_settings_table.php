@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateSettingsTable extends Migration
@@ -12,6 +11,7 @@ class CreateSettingsTable extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
             $table->string('email')->nullable();
+            $table->string('slogan')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->string('facebook')->nullable();
@@ -30,12 +30,13 @@ class CreateSettingsTable extends Migration
 
         DB::table('settings')->insert([
             'email' => 'dummy@example.com',
-            'address' => '123 Main St',
+            'slogan' => 'Shaping the future of Payments',
+            'address' => 'Plot 67- Road 90, 5th Settlement, New Cairo, Egypt.',
             'phone' => '555-1234',
             'facebook' => 'https://facebook.com',
             'twitter' => 'https://twitter.com',
             'instagram' => 'https://instagram.com',
-            'linkedin' => 'https://linkedin.com',
+            'linkedin' => 'https://www.linkedin.com/company/mdp-eg/',
             'meta_title' => 'My Website',
             'meta_description' => 'Welcome to my website.',
             'meta_tags' => 'laravel, web development',

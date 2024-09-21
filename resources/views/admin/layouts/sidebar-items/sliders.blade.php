@@ -3,7 +3,7 @@
         <i class="bi bi-house-fill"></i>
         <span class="menu-text">Component</span>
     </a>
-    <div class="sidebar-submenu">
+    {{-- <div class="sidebar-submenu">
         <ul>
             <li class="{{ Request::segment(2) == 'sliders' ? 'active' : '' }}">
                 <a href="{{ route('admin.sliders.index') }}"
@@ -12,5 +12,5 @@
                 </a>
             </li>
         </ul>
-    </div>
+    </div> --}}
 </li>

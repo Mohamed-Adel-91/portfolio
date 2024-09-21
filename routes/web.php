@@ -28,7 +28,7 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('/logout', [AuthController::class, 'logout']);
 });
 
-Route::group(['as' => 'admin.', 'prefix' => 'dashboard', 'middleware' => 'AuthPersonMiddleware:admin'], function () {
+Route::group(['as' => 'admin.', 'prefix' => 'dashboard', 'middleware' => 'AuthPerson:admin'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('index');
     Route::get('/settings/edit', [SettingsController::class, 'edit'])->name('settings.edit');
     Route::put('/settings/update', [SettingsController::class, 'update'])->name('settings.update');

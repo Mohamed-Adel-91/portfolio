@@ -7,22 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Setting extends Model
 {
-    public $timestamps = false;
+    use HasFactory;
+
     protected $fillable = [
-        'email',
-        'address',
-        'phone',
-        'facebook',
-        'twitter',
-        'instagram',
-        'linkedin',
-        'meta_title',
-        'meta_description',
-        'meta_tags',
-        'cards',
-        'transactions',
-        'countries',
-        'decades',
-        'customers',
+        'email', 'slogan', 'address', 'phone', 'facebook', 'twitter', 'instagram', 'linkedin', 
+        'meta_title', 'meta_description', 'meta_tags', 'cards', 'transactions', 'countries', 'decades', 'customers'
     ];
 }

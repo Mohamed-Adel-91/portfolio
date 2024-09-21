@@ -19,7 +19,7 @@
                     </span>
 
                     <span class="avatar">
-                        <img src="{{ asset('assets/img/default-avatar.jpg') }}" alt="avatar">
+                        <img src="{{ asset('images/profile.png') }}" alt="avatar">
                         <span class="status busy"></span>
                     </span>
                 </a>
@@ -27,7 +27,7 @@
                     <div class="header-profile-actions">
                         <div class="header-user-profile">
                             <div class="header-user">
-                                <img src="{{ asset('assets/img/default-avatar.jpg') }}" alt="Admin Template">
+                                <img src="{{ asset('images/profile.png') }}" alt="Admin Template">
                             </div>
                             <h5>
                                 {{ Auth::guard('admin')->user()->first_name }}

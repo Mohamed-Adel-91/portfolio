@@ -3,8 +3,13 @@
 
     <!-- Sidebar brand start  -->
     <div class="sidebar-brand">
-        <a href="{{ url('/') }}" class="logo">
-            <img src="{{ asset('/assets/img/logo.png') }}" alt="Admin Dashboard" />
+        <a href="{{ url('/') }}" class="logo"
+            style="text-decoration: none;
+                font-size: medium;
+                color: #fff;
+                font-weight: bold;">
+            Mohamed Adel Dashboard
+            {{-- <img src="{{ asset('/assets/img/2.png') }}" alt="Admin Dashboard" /> --}}
         </a>
     </div>
     <!-- Sidebar brand end  -->

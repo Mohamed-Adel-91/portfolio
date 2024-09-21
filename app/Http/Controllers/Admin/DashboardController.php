@@ -10,10 +10,6 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('admin.layouts.master');
-    }
-    public function contactRequests() {
-
         $data = ContactRequest::latest()->paginate(10);
 
         return view('admin.contact-requests')->with([

@@ -14,7 +14,7 @@ trait ApiResponseTrait
      * @param  string  $message
      * @return JsonResponse
      */
-    public function successResponse(mixed $data = [], string $message = null , mixed $helpers = []): JsonResponse
+    public function successResponse(mixed $data = [], string $message = null): JsonResponse
     {
         if (!$message) {
             $message = trans('api.response.success');
@@ -25,7 +25,6 @@ trait ApiResponseTrait
             'meta' => [
                 'message' => $message,
                 'errors' => [],
-                'helpers' => $helpers,
             ],
             'data' => $data,
         ];
