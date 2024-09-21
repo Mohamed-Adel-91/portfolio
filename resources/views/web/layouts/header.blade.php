@@ -25,18 +25,18 @@
                     <li class="nav-item">
                         <a href="#resume" class="nav-link">Resume</a>
                     </li>
-                    {{-- <li class="nav-item">
+                    <li class="nav-item">
                         <a href="#portfolio" class="nav-link">Portfolio</a>
-                    </li> --}}
+                    </li>
                     <li class="nav-item">
                         <a href="#blog" class="nav-link">Projects</a>
                     </li>
                     <li class="nav-item">
                         <a href="#contact" class="nav-link">Contact</a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a href="#pricing" class="nav-link">Pricing</a>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </nav>

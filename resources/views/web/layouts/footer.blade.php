@@ -25,26 +25,3 @@
         </div>
     </div>
 </div>
-
-<style>
-    .normal-image {
-        width: 100px;
-        height: 100px;
-        object-fit: contain;
-        margin: 20px;
-    }
-
-    .circular-image {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        object-fit: contain;
-        margin: 20px;
-    }
-
-    .image-row {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 20px;
-    }
-</style>
