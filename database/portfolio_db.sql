@@ -44,7 +44,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `first_name`, `last_name`, `email`, `password`, `mobile`, `profile_picture`, `created_at`, `updated_at`) VALUES
-(1, 'Mohamed', 'Admin', 'mohamed-adel-db@gmail.com', '$2y$12$D3K2mWhyd7ybb6oAqdrcduzRNDbqbLjeJ6p0a9Ms0/6.bxgnTZrhG', '01067000662', NULL, NULL, '2024-09-19 17:32:37');
+(1, 'Mohamed', 'Admin', 'mohamed-adel-db@gmail.com', '$2y$10$yJiGG.CgUH7UgDq7BcIJ6.5a4OgTFewS/KcmLOgtQWt0Wazx0IlNW', '01067000662', NULL, NULL, '2024-09-19 17:32:37');
 
 -- --------------------------------------------------------
 

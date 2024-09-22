@@ -44,7 +44,7 @@
     <!-- end navbar -->
 
     <!-- home intro -->
-    <div class="home-intro segments">
+    {{-- <div class="home-intro segments">
         <div class="container">
             <div class="intro-content box-content">
                 <div class="row justify-content-center">
@@ -64,6 +64,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- end home intro -->
 </header>
