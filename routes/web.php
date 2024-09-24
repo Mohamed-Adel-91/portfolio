@@ -6,7 +6,9 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Web\FormsController;
 use App\Http\Controllers\Web\PagesController;
+use App\Jobs\SendMailJob;
 use App\Mail\TestMailable;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -70,6 +72,9 @@ Route::get('event/test', function () {
 });
 
 Route::get('send/message', function(){
-    Mail::to('testphp@example.com')->send(new TestMailable('Custom Message'));
-    return 'test message';
+
+    // SendMailJob::dispatch();  // with QUEUE_CONNECTION=sync
+    $job = (new SendMailJob)->delay(Carbon::now()->addSeconds(5));
+    dispatch($job);
+    return 'test Jobs message';
 });
