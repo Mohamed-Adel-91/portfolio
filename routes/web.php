@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\EventTest;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SettingsController;
@@ -62,3 +63,7 @@ Route::get('run-migrate/day{day_number}', function ($day_number) {
         abort(404);
     }
 })->where('day_number', '[0-9]{2}');
+
+Route::get('event/test', function () {
+     event(new EventTest('Test 2 txt from event'));
+});

@@ -13,15 +13,15 @@ use Illuminate\Queue\SerializesModels;
 class EventTest
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-
+    public $new_data;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data)
     {
-        //
+        $this->new_data = $data;
     }
 
     /**

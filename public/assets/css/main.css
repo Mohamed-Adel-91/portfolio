@@ -663,7 +663,7 @@ ul.header-tasks:last-child {
     transition: left .3s ease, width .3s ease; }
     .page-wrapper .sidebar-wrapper .sidebar-brand {
       margin: 0 0 1rem 0;
-      background: #ff8c05;
+      background: #0e0e0e;
       overflow: hidden; }
       .page-wrapper .sidebar-wrapper .sidebar-brand .logo {
         padding: 20px 13px 20px 13px;

@@ -5,7 +5,7 @@ namespace App\Listeners;
 use App\Events\EventTest;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
-
+use Storage;
 class EventListenerTest
 {
     /**
@@ -26,6 +26,6 @@ class EventListenerTest
      */
     public function handle(EventTest $event)
     {
-        //
+        Storage::put('test_new_data.text',$event->new_data);
     }
 }
