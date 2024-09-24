@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Web\FormsController;
 use App\Http\Controllers\Web\PagesController;
+use App\Mail\TestMailable;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -65,5 +66,10 @@ Route::get('run-migrate/day{day_number}', function ($day_number) {
 })->where('day_number', '[0-9]{2}');
 
 Route::get('event/test', function () {
-     event(new EventTest('Test 2 txt from event'));
+    event(new EventTest('Test txt from event'));
+});
+
+Route::get('send/message', function(){
+    Mail::to('testphp@example.com')->send(new TestMailable('Custom Message'));
+    return 'test message';
 });
