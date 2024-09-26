@@ -84,8 +84,6 @@ Route::group(['middleware' => 'api' ], function (){
 //     Route::get('/registration-dropdowns',  [RegistrationDropdownController::class, 'getRegistrationDropdowns']);
 
 //     Route::middleware('verified')->group(function () {
-//         Route::post('/register-business-info',  [RegisterController::class, 'registerComapny']);
-//         Route::post('/compelete-business-info',  [RegisterController::class, 'completeBusinessInfo']);
 //         Route::post('/submit-user-systems',  [RegisterController::class, 'registerUserSystems']);
 
 //         Route::get('/registration-systems',  [RegistrationSystemsController::class, 'getRegistrationSystem']);
