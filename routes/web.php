@@ -4,6 +4,7 @@ use App\Events\EventTest;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Web\FormsController;
 use App\Http\Controllers\Web\PagesController;
 use App\Jobs\SendMailJob;
@@ -77,4 +78,8 @@ Route::get('send/message', function(){
     $job = (new SendMailJob)->delay(Carbon::now()->addSeconds(5));
     dispatch($job);
     return 'test Jobs message';
+});
+
+Route::group(['middleware' => 'api' ], function (){
+    Route::post('/get-main-categories', [CategoriesController::class, 'index']);
 });
