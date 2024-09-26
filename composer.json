@@ -15,7 +15,8 @@
         "laravel/tinker": "^2.7",
         "maatwebsite/excel": "3.1.x-dev",
         "spatie/laravel-translatable": "dev-main",
-        "tecnickcom/tcpdf": "^6.4"
+        "tecnickcom/tcpdf": "^6.4",
+        "tymon/jwt-auth": "2.x-dev"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.12",
