@@ -14,10 +14,14 @@ class CreateSettingsTable extends Migration
             $table->string('slogan')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
+            $table->string('whats_up')->nullable();
             $table->string('facebook')->nullable();
+            $table->string('messenger')->nullable();
             $table->string('twitter')->nullable();
             $table->string('instagram')->nullable();
+            $table->string('youtube')->nullable();
             $table->string('linkedin')->nullable();
+            $table->string('github')->nullable();
             $table->longText('meta_title')->nullable();
             $table->longText('meta_description')->nullable();
             $table->longText('meta_tags')->nullable();
@@ -27,25 +31,6 @@ class CreateSettingsTable extends Migration
             $table->integer('decades')->nullable();
             $table->integer('customers')->nullable();
         });
-
-        DB::table('settings')->insert([
-            'email' => 'dummy@example.com',
-            'slogan' => 'Shaping the future of Payments',
-            'address' => 'Plot 67- Road 90, 5th Settlement, New Cairo, Egypt.',
-            'phone' => '555-1234',
-            'facebook' => 'https://facebook.com',
-            'twitter' => 'https://twitter.com',
-            'instagram' => 'https://instagram.com',
-            'linkedin' => 'https://www.linkedin.com/company/mdp-eg/',
-            'meta_title' => 'My Website',
-            'meta_description' => 'Welcome to my website.',
-            'meta_tags' => 'laravel, web development',
-            'cards' => 100,
-            'transactions' => 500,
-            'countries' => 10,
-            'decades' => 5,
-            'customers' => 1000,
-        ]);
     }
 
     public function down()

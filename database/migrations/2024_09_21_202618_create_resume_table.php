@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('resume', function (Blueprint $table) {
             $table->id();
+            $table->string('head_title')->nullable();
+            $table->string('title')->nullable();
+            $table->string('sub_title')->nullable();
             $table->timestamps();
         });
     }
