@@ -12,7 +12,7 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;display=swap");
 /************************************************
 	************************************************
-											Body Css							
+											Body Css
 	************************************************
 ************************************************/
 html {
@@ -54,7 +54,7 @@ body {
 
 /************************************************
 	************************************************
-										Re Usable Css							
+										Re Usable Css
 	************************************************
 ************************************************/
 a {
@@ -214,12 +214,12 @@ h3.styled {
     background-color: #fd7e14 !important; }
 
 .btn-primary, a.btn-primary {
-  background-color: #ff8c05 !important; 
-  border-color: #ff8c05 !important; 
+  background-color: #ff8c05 !important;
+  border-color: #ff8c05 !important;
 }
   .btn-primary:hover, .btn-primary:focus, a.btn-primary:hover, a.btn-primary:focus {
     background-color: #ff7301 !important;
-    border-color: #ff7301 !important; 
+    border-color: #ff7301 !important;
 }
 
 
@@ -301,7 +301,7 @@ h3.styled {
 
 /************************************************
 	************************************************
-									Animations Css							
+									Animations Css
 	************************************************
 ************************************************/
 @-webkit-keyframes slideInUp {
@@ -326,7 +326,7 @@ h3.styled {
     opacity: 1; } }
 /************************************************
 	************************************************
-										Layout Css							
+										Layout Css
 	************************************************
 ************************************************/
 .header {
@@ -614,7 +614,7 @@ ul.header-tasks:last-child {
 
 /************************************************
 	************************************************
-									Layout CSS							
+									Layout CSS
 	************************************************
 ************************************************/
 @-webkit-keyframes swing {
@@ -773,8 +773,8 @@ ul.header-tasks:last-child {
         content: "\e90f";
         display: inline-block;
         position: absolute;
-        right: 15px;
-        top: 15px;
+        right: 25px;
+        top: 12px;
         -webkit-transition: -webkit-transform .3s ease;
         transition: -webkit-transform .3s ease;
         transition: transform .3s ease;
@@ -908,7 +908,7 @@ ul.header-tasks:last-child {
     display: none; } }
 /************************************************
 	************************************************
-										Components							
+										Components
 	************************************************
 ************************************************/
 .chart-height {
@@ -2903,7 +2903,7 @@ figure.user-card {
 
 /************************************************
 	************************************************
-										Widgets CSS							
+										Widgets CSS
 	************************************************
 ************************************************/
 .vs {
@@ -4283,7 +4283,7 @@ ul.user-messages li {
 
 /************************************************
 	************************************************
-										Vendor Css							
+										Vendor Css
 	************************************************
 ************************************************/
 .btn-bs-select {
@@ -4472,7 +4472,7 @@ ul.user-messages li {
 
 /************************************************
 	************************************************
-							Bootstrap Overwrite Css							
+							Bootstrap Overwrite Css
 	************************************************
 ************************************************/
 .accordion .accordion-container {

@@ -19,7 +19,7 @@
 
         <!-- sidebar menu start -->
         <div class="sidebar-menu">
-            <ul>
+            <ul class="pl-0">
                 <li class="header-menu">General</li>
 
                 <li class="{{ Request::segment(1) == 'dashboard' && is_null(Request::segment(2)) ? 'active' : '' }}">
@@ -29,9 +29,9 @@
                     </a>
                 </li>
 
-                <!-- sidebar sliders start -->
-                @include('admin.layouts.sidebar-items.sliders')
-                <!-- sidebar sliders end -->
+                <!-- sidebar sections start -->
+                @include('admin.layouts.sidebar-items.sections')
+                <!-- sidebar sections end -->
 
                 <li class="{{ Request::segment(2) == 'settings' ? 'active' : '' }}">
                     <a href="{{ route('admin.settings.edit') }}"
