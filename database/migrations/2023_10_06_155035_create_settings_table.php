@@ -13,7 +13,8 @@ class CreateSettingsTable extends Migration
             $table->string('email')->nullable();
             $table->string('slogan')->nullable();
             $table->string('address')->nullable();
-            $table->string('phone')->nullable();
+            $table->string('phone1')->nullable();
+            $table->string('phone2')->nullable();
             $table->string('whats_up')->nullable();
             $table->string('facebook')->nullable();
             $table->string('messenger')->nullable();
@@ -25,10 +26,6 @@ class CreateSettingsTable extends Migration
             $table->longText('meta_title')->nullable();
             $table->longText('meta_description')->nullable();
             $table->longText('meta_tags')->nullable();
-            $table->integer('cards')->nullable();
-            $table->integer('transactions')->nullable();
-            $table->integer('countries')->nullable();
-            $table->integer('decades')->nullable();
             $table->integer('customers')->nullable();
         });
     }

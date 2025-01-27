@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 23, 2024 at 01:04 PM
--- Server version: 8.3.0
--- PHP Version: 8.2.12
+-- Generation Time: Jan 27, 2025 at 06:25 AM
+-- Server version: 8.0.30
+-- PHP Version: 8.3.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -59,7 +59,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `first_name`, `last_name`, `email`, `password`, `mobile`, `profile_picture`, `created_at`, `updated_at`) VALUES
-(1, 'Mohamed', 'Adel', 'mohamed-adel-db@gmail.com', '$2y$12$jT7uSs04WzTgAaUJAAwFIOZo2/7sM5ljPCMW49/RT5V2S4wf7VxxK', '01067000662', NULL, '2024-10-23 10:32:05', '2024-10-23 10:32:05');
+(1, 'Mohamed', 'Adel', 'mohamed-admin-panel@portfolio.com', '$2y$12$cmsBQsg0ubkPzzGcG9KaGuw3MebTLw498gIFonPmm3lcn5C1hBp9C', '01067000662', 'images/profile.png', '2025-01-27 06:24:08', '2025-01-27 06:24:08');
 
 -- --------------------------------------------------------
 
@@ -98,18 +98,8 @@ CREATE TABLE `contact_requests` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `subject` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `message` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `co_icons`
---
-
-CREATE TABLE `co_icons` (
-  `id` bigint UNSIGNED NOT NULL,
+  `reply_message` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `reply_status` enum('0','1') COLLATE utf8mb4_unicode_ci DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -122,13 +112,15 @@ CREATE TABLE `co_icons` (
 
 CREATE TABLE `education` (
   `id` bigint UNSIGNED NOT NULL,
-  `uni_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `university_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sub_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` longtext COLLATE utf8mb4_unicode_ci,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `start` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `end` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `icon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `start_at` date DEFAULT NULL,
+  `end_at` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -144,10 +136,12 @@ CREATE TABLE `experience` (
   `co_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `work_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sub_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` longtext COLLATE utf8mb4_unicode_ci,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `start` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `end` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `icon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `start_at` date DEFAULT NULL,
+  `end_at` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -166,6 +160,22 @@ CREATE TABLE `failed_jobs` (
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gallery`
+--
+
+CREATE TABLE `gallery` (
+  `id` bigint UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sub_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `iframe` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -226,7 +236,7 @@ CREATE TABLE `job_batches` (
 
 CREATE TABLE `migrations` (
   `id` int UNSIGNED NOT NULL,
-  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -235,23 +245,22 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(72, '0001_01_01_000000_create_users_table', 1),
-(73, '0001_01_01_000001_create_cache_table', 1),
-(74, '0001_01_01_000002_create_jobs_table', 1),
-(75, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(76, '2023_10_06_155035_create_settings_table', 1),
-(77, '2024_03_23_162327_create_contact_requests_table', 1),
-(78, '2024_04_29_172920_create_admins_table', 1),
-(79, '2024_09_21_202011_create_about_table', 1),
-(80, '2024_09_21_202011_create_intro_table', 1),
-(81, '2024_09_21_202059_create_education_table', 1),
-(82, '2024_09_21_202143_create_experience_table', 1),
-(83, '2024_09_21_202202_create_co_icons_table', 1),
-(84, '2024_09_21_202202_create_project_co_icons_table', 1),
-(85, '2024_09_21_202229_create_portfolio_table', 1),
-(86, '2024_09_21_202552_create_projects_table', 1),
-(87, '2024_09_21_202618_create_resume_table', 1),
-(88, '2024_09_21_202640_create_skills_table', 1);
+(49, '0001_01_01_000000_create_users_table', 1),
+(50, '0001_01_01_000001_create_cache_table', 1),
+(51, '0001_01_01_000002_create_jobs_table', 1),
+(52, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(53, '2023_10_06_155035_create_settings_table', 1),
+(54, '2024_03_23_162327_create_contact_requests_table', 1),
+(55, '2024_04_29_172920_create_admins_table', 1),
+(56, '2024_09_21_202011_create_about_table', 1),
+(57, '2024_09_21_202011_create_intro_table', 1),
+(58, '2024_09_21_202059_create_education_table', 1),
+(59, '2024_09_21_202143_create_experience_table', 1),
+(60, '2024_09_21_202222_create_projects_table', 1),
+(61, '2024_09_21_202229_create_portfolio_table', 1),
+(62, '2024_09_21_202239_create_gallery_table', 1),
+(63, '2024_09_21_202618_create_resume_table', 1),
+(64, '2024_09_21_202640_create_skills_table', 1);
 
 -- --------------------------------------------------------
 
@@ -292,9 +301,9 @@ CREATE TABLE `personal_access_tokens` (
 
 CREATE TABLE `portfolio` (
   `id` bigint UNSIGNED NOT NULL,
+  `project_id` bigint UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sub_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `project_id` bigint UNSIGNED NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -313,18 +322,6 @@ CREATE TABLE `projects` (
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `lunched_at` date DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `project_co_icons`
---
-
-CREATE TABLE `project_co_icons` (
-  `id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -364,7 +361,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('LvlBHDUW7VhEgWhZAyy5bcQO9m70Xqk82RcPLXfZ', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRUdHekdpcnc1Q25PWkxSUXpocXY2ZFEzeUI3bER4ZEE5bW1FTTU3ZyI7czo2OiJsb2NhbGUiO3M6MjoiZW4iO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMxOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvZGFzaGJvYXJkIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1729679674);
+('rYxXhMs0qjUS79gqysyDiqGkjgnjREzfFmOaKWTG', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiSmJsV3hpYmJ2MmE1RXh6NFZ4aWdZaDlvdHA5c1ZuYVdpOWVBcE00SiI7czo2OiJsb2NhbGUiO3M6MjoiZW4iO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjU0OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXNzZXRzL2Nzcy9ib290c3RyYXAubWluLmNzcy5tYXAiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUyOiJsb2dpbl9hZG1pbl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1737959074);
 
 -- --------------------------------------------------------
 
@@ -377,7 +374,8 @@ CREATE TABLE `settings` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `slogan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `whats_up` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `facebook` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `messenger` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -389,10 +387,6 @@ CREATE TABLE `settings` (
   `meta_title` longtext COLLATE utf8mb4_unicode_ci,
   `meta_description` longtext COLLATE utf8mb4_unicode_ci,
   `meta_tags` longtext COLLATE utf8mb4_unicode_ci,
-  `cards` int DEFAULT NULL,
-  `transactions` int DEFAULT NULL,
-  `countries` int DEFAULT NULL,
-  `decades` int DEFAULT NULL,
   `customers` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -464,12 +458,6 @@ ALTER TABLE `contact_requests`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `co_icons`
---
-ALTER TABLE `co_icons`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `education`
 --
 ALTER TABLE `education`
@@ -487,6 +475,12 @@ ALTER TABLE `experience`
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `gallery`
+--
+ALTER TABLE `gallery`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `intro`
@@ -531,18 +525,13 @@ ALTER TABLE `personal_access_tokens`
 -- Indexes for table `portfolio`
 --
 ALTER TABLE `portfolio`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `portfolio_project_id_foreign` (`project_id`);
 
 --
 -- Indexes for table `projects`
 --
 ALTER TABLE `projects`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `project_co_icons`
---
-ALTER TABLE `project_co_icons`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -601,12 +590,6 @@ ALTER TABLE `contact_requests`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `co_icons`
---
-ALTER TABLE `co_icons`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `education`
 --
 ALTER TABLE `education`
@@ -625,6 +608,12 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `gallery`
+--
+ALTER TABLE `gallery`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `intro`
 --
 ALTER TABLE `intro`
@@ -640,7 +629,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -658,12 +647,6 @@ ALTER TABLE `portfolio`
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `project_co_icons`
---
-ALTER TABLE `project_co_icons`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
@@ -689,6 +672,16 @@ ALTER TABLE `skills`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `portfolio`
+--
+ALTER TABLE `portfolio`
+  ADD CONSTRAINT `portfolio_project_id_foreign` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

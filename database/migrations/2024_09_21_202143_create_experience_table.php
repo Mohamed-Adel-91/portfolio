@@ -18,10 +18,12 @@ return new class extends Migration
             $table->string('co_name')->nullable();
             $table->string('work_type')->nullable();
             $table->string('title')->nullable();
+            $table->string('sub_title')->nullable();
             $table->longText('description')->nullable();
             $table->string('image')->nullable();
-            $table->string('start')->nullable();
-            $table->string('end')->nullable();
+            $table->string('icon')->nullable();
+            $table->date('start_at')->nullable();
+            $table->date('end_at')->nullable();
             $table->timestamps();
         });
     }

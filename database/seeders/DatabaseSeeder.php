@@ -17,10 +17,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Admin::create([
-            'first_name' => 'Mdp',
-            'last_name' => 'Admin',
-            'email' => 'mdp-admin@gmail.com',
+            'first_name' => 'Mohamed',
+            'last_name' => 'Adel',
+            'email' => 'mohamed-admin-panel@portfolio.com',
             'password' => '0000',
+            'mobile' => '01067000662',
+            'profile_picture' => 'images/profile.png',
         ]);
     }
 }

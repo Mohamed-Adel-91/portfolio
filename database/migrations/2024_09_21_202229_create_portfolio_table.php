@@ -13,18 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('portfolio')) {
-            Schema::create('portfolio', function (Blueprint $table) {
-                $table->bigIncrements('id');
-                $table->unsignedBigInteger('project_id');
-                $table->string('title')->nullable();
-                $table->string('sub_title')->nullable();
-                $table->string('image')->nullable();
-                $table->timestamps();
+        Schema::create('portfolio', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('project_id');
+            $table->string('title')->nullable();
+            $table->string('sub_title')->nullable();
+            $table->string('image')->nullable();
+            $table->timestamps();
 
-                $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
-            });
-        }
+            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
+        });
     }
 
     /**
