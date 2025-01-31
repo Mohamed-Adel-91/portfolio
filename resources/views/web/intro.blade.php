@@ -12,7 +12,11 @@
                 <div class="col-md-4 col-sm-12 col-xs-12">
                     <div class="intro-image">
                         <img src="images/profile.png" alt="Profile Image"
-                            style="clip-path:none; border-radius: 50%; opacity: 0;" />
+                            style="
+                            clip-path:none;
+                            border-radius: 50%;
+                            /* opacity: 0; */
+                            " />
                     </div>
                 </div>
             </div>
