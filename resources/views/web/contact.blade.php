@@ -68,18 +68,20 @@
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12">
                     <div class="content-right">
-                        <form action="#" class="contact-form" id="contact-form" method="post">
+                        <form action="{{ route('front.contact-us.submit') }}" class="contact-form" id="contact-form"
+                            method="post">
+                            @csrf
                             <div class="row">
                                 <div class="col">
                                     <div id="first-name-field">
                                         <input type="text" placeholder="First Name" class="form-control"
-                                            name="form-name">
+                                            name="first_name" required>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div id="last-name-field">
                                         <input type="text" placeholder="Last Name" class="form-control"
-                                            name="form-name">
+                                            name="last_name" required>
                                     </div>
                                 </div>
                             </div>
@@ -87,26 +89,24 @@
                                 <div class="col">
                                     <div id="email-field">
                                         <input type="email" placeholder="Email Address" class="form-control"
-                                            name="form-email">
+                                            name="email" required>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div id="subject-field">
-                                        <input type="text" placeholder="Subject" class="form-control"
-                                            name="form-subject">
+                                        <input type="text" placeholder="Subject" class="form-control" name="subject"
+                                            required>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <div id="message-field">
-                                        <textarea cols="30" rows="5" class="form-control" id="form-message" name="form-message"
-                                            placeholder="Message"></textarea>
+                                        <textarea cols="30" rows="5" class="form-control" name="message" placeholder="Message" required></textarea>
                                     </div>
                                 </div>
                             </div>
-                            <button class="button" type="submit" id="submit" name="submit">Send
-                                Message</button>
+                            <button class="button" type="submit" id="submit" name="submit">Send Message</button>
                         </form>
                     </div>
                 </div>
@@ -114,3 +114,55 @@
         </div>
     </div>
 </div>
+
+
+@push('custom-web-js-scripts')
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#contact-form').submit(function(e) {
+                e.preventDefault();
+                let formData = $(this).serialize();
+
+                $.ajax({
+                    url: "{{ route('front.contact-us.submit') }}",
+                    method: "POST",
+                    data: formData,
+                    success: function(response) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Message Sent!',
+                            text: response.message,
+                            confirmButtonColor: '#ff8c05',
+                            confirmButtonText: 'OK',
+                            background: '#212121',
+                            color: '#ffffff',
+                            customClass: {
+                                popup: 'custom-alert-popup',
+                                confirmButton: 'custom-confirm-button',
+                            }
+                        }).then(() => {
+                            $('#contact-form')[0].reset();
+                        });
+                    },
+                    error: function(xhr) {
+                        let errorMessage = "An error occurred.";
+                        if (xhr.responseJSON && xhr.responseJSON.errors) {
+                            errorMessage = xhr.responseJSON.errors.join("\n");
+                        }
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: errorMessage,
+                            confirmButtonColor: '#ff8c05',
+                            background: '#212121',
+                            color: '#ffffff'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+@endpush

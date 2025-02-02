@@ -2,6 +2,7 @@
 
 use App\Events\EventTest;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\ContactUsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Api\CategoriesController;
@@ -34,7 +35,8 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 Route::group(['as' => 'admin.', 'prefix' => 'dashboard', 'middleware' => 'AuthPerson:admin'], function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('index');
+    Route::get('/', [ContactUsController::class, 'index'])->name('index');
+    Route::post('/contact/reply', [ContactUsController::class, 'replyToContactRequest'])->name('contact.reply');
     Route::get('/settings/edit', [SettingsController::class, 'edit'])->name('settings.edit');
     Route::put('/settings/update', [SettingsController::class, 'update'])->name('settings.update');
 
@@ -73,7 +75,6 @@ Route::get('event/test', function () {
 });
 
 Route::get('send/message', function(){
-
     // SendMailJob::dispatch();  // with QUEUE_CONNECTION=sync
     $job = (new SendMailJob)->delay(Carbon::now()->addSeconds(5));
     dispatch($job);

@@ -11,3 +11,4 @@
 <script type="text/javascript" src="js/jquery.easing.js"></script>
 {{-- <script type="text/javascript" src="js/smoothscroll.js"></script> --}}
 <script type="text/javascript" src="js/jquery.nicescroll.min.js"></script>
+@stack('custom-web-js-scripts')

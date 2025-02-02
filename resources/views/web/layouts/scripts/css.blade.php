@@ -9,3 +9,4 @@
 <link rel="stylesheet" href="css/owl.theme.default.css">
 <link rel="stylesheet" href="css/magnific-popup.css">
 <link rel="stylesheet" href="css/style.css">
+@stack('custom-web-js-css')

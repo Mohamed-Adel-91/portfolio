@@ -13,15 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('contact_requests', function (Blueprint $table) {
+        Schema::create('contact_requests_replay', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('email');
-            $table->string('subject');
-            $table->longText('message');
-            $table->enum('reply_status', [0, 1])->default(0)->nullable();
+            $table->unsignedBigInteger('contact_request_id');
+            $table->string('reply_message')->nullable();
             $table->timestamps();
+
+            $table->foreign('contact_request_id')->references('id')->on('contact_requests')->onDelete('cascade');
         });
     }
 
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contact_requests');
+        Schema::dropIfExists('contact_requests_replay');
     }
 };
