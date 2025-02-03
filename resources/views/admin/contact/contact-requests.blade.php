@@ -25,6 +25,7 @@
                                             <th>Subject</th>
                                             <th>Message</th>
                                             <th>Replies</th>
+                                            <th>No.Replies</th>
                                             <th>Submitted At</th>
                                             <th>Actions</th>
                                         </tr>
@@ -39,22 +40,29 @@
                                                 <td>{{ $item->subject }}</td>
                                                 <td>{{ Str::limit($item->message, 50) }}</td>
                                                 <td>
-                                                    <div class="td-actions">
-                                                        @if ($item->reply_status == 1)
-                                                            <span class="badge bg-success">Replied</span>
-                                                        @else
-                                                            <span class="badge bg-danger">No Reply</span>
-                                                        @endif
-                                                    </div>
+                                                    @if ($item->reply_status == 1)
+                                                        <span class="badge bg-success">Replied</span>
+                                                    @else
+                                                        <span class="badge bg-danger">No Reply</span>
+                                                    @endif
+                                                </td>
+                                                <td class="text-center">
+                                                    @if ($item->replays->count() == 0)
+                                                        <span class="badge bg-danger">{{ $item->replays->count() }}</span>
+                                                    @else
+                                                        <span class="badge bg-secondary">{{ $item->replays->count() }}</span>
+                                                    @endif
                                                 </td>
                                                 <td>{{ date('d-m-Y h:i A', strtotime($item->created_at)) }}</td>
                                                 <td>
                                                     <div class="td-actions">
-                                                        <a href="mailto:{{ $item->email }}" class="icon bg-info text-decoration-none"
-                                                            data-toggle="tooltip" title="Send Email">
+                                                        <a href="mailto:{{ $item->email }}"
+                                                            class="icon bg-info text-decoration-none" data-toggle="tooltip"
+                                                            title="Send Email">
                                                             <i class="icon-email"></i>
                                                         </a>
-                                                        <a href="#" class="icon bg-success reply-btn text-decoration-none"
+                                                        <a href="#"
+                                                            class="icon bg-success reply-btn text-decoration-none"
                                                             data-toggle="modal" data-target="#replyModal"
                                                             data-id="{{ $item->id }}" data-email="{{ $item->email }}"
                                                             data-subject="{{ $item->subject }}">
@@ -65,7 +73,7 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="9" class="text-center">No Data Found</td>
+                                                <td colspan="10" class="text-center">No Data Found</td>
                                             </tr>
                                         @endforelse
                                     </tbody>
@@ -119,63 +127,62 @@
 
     <!-- JavaScript to handle modal & AJAX request -->
     @push('custom-js-scripts')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script>
-        $(document).ready(function() {
-            $('.reply-btn').click(function() {
-                let contactId = $(this).data('id');
-                let contactEmail = $(this).data('email');
-                let contactSubject = $(this).data('subject');
+        <script>
+            $(document).ready(function() {
+                $('.reply-btn').click(function() {
+                    let contactId = $(this).data('id');
+                    let contactEmail = $(this).data('email');
+                    let contactSubject = $(this).data('subject');
 
-                $('#contact_id').val(contactId);
-                $('#contact_email').val(contactEmail);
-                $('#contact_subject').val(contactSubject);
-            });
+                    $('#contact_id').val(contactId);
+                    $('#contact_email').val(contactEmail);
+                    $('#contact_subject').val(contactSubject);
+                });
 
-            $('#replyForm').submit(function(e) {
-                e.preventDefault();
-                let formData = $(this).serialize();
+                $('#replyForm').submit(function(e) {
+                    e.preventDefault();
+                    let formData = $(this).serialize();
 
-                $.ajax({
-                    url: "{{ route('admin.contact.reply') }}",
-                    method: "POST",
-                    data: formData,
-                    success: function(response) {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Reply Sent!',
-                            text: response.message,
-                            confirmButtonText: 'OK',
-                            confirmButtonColor: '#ff8c05',
-                            customClass: {
-                                confirmButton: 'custom-confirm-button'
+                    $.ajax({
+                        url: "{{ route('admin.contact.reply') }}",
+                        method: "POST",
+                        data: formData,
+                        success: function(response) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Reply Sent!',
+                                text: response.message,
+                                confirmButtonText: 'OK',
+                                confirmButtonColor: '#ff8c05',
+                                customClass: {
+                                    confirmButton: 'custom-confirm-button'
+                                }
+                            }).then(() => {
+                                $('#replyModal').modal('hide');
+                                location.reload();
+                            });
+                        },
+                        error: function(xhr) {
+                            let errorMessage = "An error occurred.";
+                            if (xhr.responseJSON && xhr.responseJSON.errors) {
+                                errorMessage = xhr.responseJSON.errors.join("\n");
                             }
-                        }).then(() => {
-                            $('#replyModal').modal('hide');
-                            location.reload();
-                        });
-                    },
-                    error: function(xhr) {
-                        let errorMessage = "An error occurred.";
-                        if (xhr.responseJSON && xhr.responseJSON.errors) {
-                            errorMessage = xhr.responseJSON.errors.join("\n");
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: errorMessage,
+                                confirmButtonText: 'Try Again',
+                                confirmButtonColor: '#ff8c05',
+                                customClass: {
+                                    confirmButton: 'custom-confirm-button'
+                                }
+                            });
                         }
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: errorMessage,
-                            confirmButtonText: 'Try Again',
-                            confirmButtonColor: '#ff8c05',
-                            customClass: {
-                                confirmButton: 'custom-confirm-button'
-                            }
-                        });
-                    }
+                    });
                 });
             });
-        });
-    </script>
-
+        </script>
     @endpush
 @endsection

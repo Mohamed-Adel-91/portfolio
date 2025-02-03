@@ -10,7 +10,7 @@ class SettingsController extends Controller
 {
     public function edit()
     {
-        $data = Setting::firstOrFail();
+        $data = Setting::first() ?? new Setting();
         return view('admin.settings.edit')->with([
             'pageName' => 'Edit Settings',
             'data' => $data,
@@ -19,8 +19,9 @@ class SettingsController extends Controller
 
     public function update(SettingsRequest $request)
     {
-        $setting = Setting::firstOrFail();
-        $setting->update($request->validated());
+        $setting = Setting::first() ?? new Setting();
+        $setting->fill($request->validated());
+        $setting->save();
         session()->flash('success', 'Settings updated successfully');
         return back();
     }

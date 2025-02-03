@@ -8,9 +8,9 @@
                             <h3>About Me</h3>
                         </div>
                         <div class="content">
-                            <h2>I am a Full-Stack Developer</h2>
-                            <p>Hello! My name is Mohamed Adel, I am a Full Stack Developer with almost a decade of
-                                experience, specializing in NodeJS and LARAVEL PHP. I have extensive experience in
+                            <h2>I am a Backend Developer</h2>
+                            <p>Hello! My name is Mohamed Adel, I am a Backend  Developer with almost a decade of
+                                experience, specializing in NodeJS and Laravel PHP. I have extensive experience in
                                 developing and deploying websites utilizing various open-source packages . I am
                                 proficient in HTML5, CSS3, JavaScript, PostgreSQL, Bootstrap, Node JS, ReactJS,
                                 MongoDB, Testing Driven Development with Jest or Jasmine and Deploy with AWS,

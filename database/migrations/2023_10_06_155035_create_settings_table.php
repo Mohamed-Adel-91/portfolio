@@ -27,6 +27,7 @@ class CreateSettingsTable extends Migration
             $table->longText('meta_description')->nullable();
             $table->longText('meta_tags')->nullable();
             $table->integer('customers')->nullable();
+            $table->timestamps();
         });
     }
 

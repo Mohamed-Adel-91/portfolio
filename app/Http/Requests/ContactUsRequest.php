@@ -25,7 +25,7 @@ class ContactUsRequest extends FormRequest
             'email'      => 'required|email|max:255',
             'subject'    => 'required|string|max:255',
             'message'    => 'required|string',
-            'reply_status'    => 'nullable',
+            'reply_status'    => 'nullable|in:0,1',
         ];
     }
 

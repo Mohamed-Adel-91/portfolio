@@ -28,14 +28,15 @@ class ContactUsController extends Controller
                 'reply_message' => $request->reply_message,
             ]);
 
-            if ($contactRequest->reply_status == 0) {
-                $contactRequest->update(['reply_status' => 1]);
+            if ($contactRequest->reply_status == '0') {
+                $contactRequest->update(['reply_status' => '1']);
             }
 
             return response()->json([
                 'status' => true,
                 'message' => 'Reply sent successfully!',
             ]);
+            
         } catch (\Exception $e) {
             Log::error('Reply submission error: ' . $e->getMessage());
 
