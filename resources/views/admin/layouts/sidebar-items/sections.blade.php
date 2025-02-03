@@ -1,17 +1,17 @@
-<li class="sidebar-dropdown {{ Request::is('dashboard/sections') ? 'active' : '' }}">
+<li class="sidebar-dropdown {{ Request::is('dashboard/sections/*') ? 'active' : '' }}">
     <a href="#" data-bs-toggle="collapse" data-bs-target="#websiteSections" aria-expanded="false">
         <i class="bi bi-grid"></i> <!-- General sections icon -->
         <span class="menu-text">Website Sections</span>
     </a>
     <div id="websiteSections" class="sidebar-submenu collapse">
         <ul class="pl-0">
-            <li class="{{ Request::is('dashboard/intro') ? 'active' : '' }}">
-                <a href="#" class="{{ Request::is('dashboard/intro') ? 'current-page' : '' }}">
+            <li class="{{ Request::is('dashboard/sections/intro/edit') ? 'active' : '' }}">
+                <a href="{{ route('admin.intro.edit') }}" class="{{ Request::is('dashboard/sections/intro/edit') ? 'current-page' : '' }}">
                     <i class="bi bi-card-heading"></i> Intro
                 </a>
             </li>
-            <li class="{{ Request::is('dashboard/about') ? 'active' : '' }}">
-                <a href="#" class="{{ Request::is('dashboard/about') ? 'current-page' : '' }}">
+            <li class="{{ Request::is('dashboard/sections/about/edit') ? 'active' : '' }}">
+                <a href="{{ route('admin.about.edit') }}" class="{{ Request::is('dashboard/sections/about/edit') ? 'current-page' : '' }}">
                     <i class="bi bi-person-fill"></i> About
                 </a>
             </li>

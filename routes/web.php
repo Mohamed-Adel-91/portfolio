@@ -1,9 +1,11 @@
 <?php
 
 use App\Events\EventTest;
+use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\ContactUsController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\IntroController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Web\FormsController;
@@ -39,6 +41,10 @@ Route::group(['as' => 'admin.', 'prefix' => 'dashboard', 'middleware' => 'AuthPe
     Route::post('/contact/reply', [ContactUsController::class, 'replyToContactRequest'])->name('contact.reply');
     Route::get('/settings/edit', [SettingsController::class, 'edit'])->name('settings.edit');
     Route::put('/settings/update', [SettingsController::class, 'update'])->name('settings.update');
+    Route::get('/sections/intro/edit', [IntroController::class, 'edit'])->name('intro.edit');
+    Route::put('/sections/intro/update', [IntroController::class, 'update'])->name('intro.update');
+    Route::get('/sections/about/edit', [AboutController::class, 'edit'])->name('about.edit');
+    Route::put('/sections/about/update', [AboutController::class, 'update'])->name('about.update');
 
 });
 

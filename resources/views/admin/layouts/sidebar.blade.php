@@ -29,16 +29,16 @@
                     </a>
                 </li>
 
-                <!-- sidebar sections start -->
-                @include('admin.layouts.sidebar-items.sections')
-                <!-- sidebar sections end -->
-
                 <li class="{{ Request::segment(2) == 'settings' ? 'active' : '' }}">
                     <a href="{{ route('admin.settings.edit') }}"
                         class="{{ Request::segment(2) == 'settings' ? 'current-page' : '' }}">
                         <i class="icon-settings"></i>Settings
                     </a>
                 </li>
+
+                <!-- sidebar sections start -->
+                @include('admin.layouts.sidebar-items.sections')
+                <!-- sidebar sections end -->
 
             </ul>
         </div>
