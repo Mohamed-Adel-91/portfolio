@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\About;
 use App\Models\ContactRequest;
+use App\Models\Intro;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -12,10 +14,13 @@ class PagesController extends Controller
 
     public function index()
     {
-
+        $intro = Intro::first();
+        $about =  About::first();
 
         return view('web.layouts.master')->with([
             'pageName' => 'Portfolio | Mohamed Adel',
+            'intro' => $intro,
+            'about' => $about,
         ]);
     }
 
