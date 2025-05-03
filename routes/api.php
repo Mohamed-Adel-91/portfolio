@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\CategoriesController;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\SettingsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,9 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::group(['middleware' => 'auth:api'], function (){
-    Route::get('/get-main-categories', [CategoriesController::class, 'index']);
+Route::group(['middleware' => 'auth:sanctum'], function (){
+    Route::get('/categories', [CategoriesController::class, 'index']);
 });
+Route::get('/settings', SettingsController::class)->name('settings');
 
 
 

@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-
 use App\Models\Admin;
 use Illuminate\Database\Seeder;
 
@@ -19,10 +17,12 @@ class DatabaseSeeder extends Seeder
         Admin::create([
             'first_name' => 'Mohamed',
             'last_name' => 'Adel',
-            'email' => 'mohamed-admin-panel@portfolio.com',
-            'password' => '0000',
+            'email' => env('ADMIN_EMAIL'),
+            'password' => bcrypt(env('ADMIN_PASSWORD')),
             'mobile' => '01067000662',
             'profile_picture' => 'images/profile.png',
         ]);
+
+        $this->call(SettingsTableSeeder::class);
     }
 }
