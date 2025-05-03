@@ -6,29 +6,29 @@ use App\Http\Controllers\Controller;
 use App\Models\About;
 use App\Models\ContactRequest;
 use App\Models\Intro;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class PagesController extends Controller
 {
-
     public function index()
     {
         $intro = Intro::first();
-        $about =  About::first();
-
+        $about = About::first();
+        $settings = Setting::first();
         return view('web.layouts.master')->with([
-            'pageName' => 'Portfolio | Mohamed Adel',
+            'pageName' => 'Mohamed Adel - Personal Portfolio Website',
             'intro' => $intro,
             'about' => $about,
+            'settings' => $settings,
         ]);
     }
 
     public function contactUs()
     {
-
         return view('web.contact-us')->with([
-            'pageName' => 'Air Master | Contact Us',
+            'pageName' => 'Contact Me',
         ]);
     }
 
@@ -57,5 +57,4 @@ class PagesController extends Controller
             'contactRequest' => $contactRequest,
         ]);
     }
-
 }

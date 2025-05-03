@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             'first_name' => 'Mohamed',
             'last_name' => 'Adel',
             'email' => env('ADMIN_EMAIL'),
-            'password' => bcrypt(env('ADMIN_PASSWORD')),
+            'password' => env('ADMIN_PASSWORD'),
             'mobile' => '01067000662',
             'profile_picture' => 'images/profile.png',
         ]);
