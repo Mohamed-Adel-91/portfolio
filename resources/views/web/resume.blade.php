@@ -7,17 +7,17 @@
             <div class="owl-carousel owl-theme">
                 <div id="experience" class="content">
                     <!-- my experience -->
-                    @include('web.experience')
+                    @include('web.resume.experience')
                     <!-- end my experience -->
                 </div>
                 <div id="education" class="content">
                     <!-- my education -->
-                    @include('web.education')
+                    @include('web.resume.education')
                     <!-- end my education -->
                 </div>
                 <div id="skill" class="content">
                     <!-- my skill -->
-                    @include('web.skill')
+                    @include('web.resume.skill')
                     <!-- end my skill -->
                 </div>
             </div>
