@@ -5,7 +5,7 @@
 
             <!-- navbar brand or logo -->
             <a href="#" class="navbar-brand">
-                <h2>{{ strtoupper($intro->name) }}</h2>
+                <h2>{{ $intro ? strtoupper($intro->name) : 'Mohamed Adel' }}</h2>
             </a>
             <!-- end navbar brand or logo -->
 

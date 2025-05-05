@@ -8,16 +8,16 @@
                             <h3>About Me</h3>
                         </div>
                         <div class="content">
-                            <h2>{{ $about->title }}</h2>
+                            <h2>{{ $about ? $about->title : 'About Me' }}</h2>
                             <p>
-                                {!! $about->description !!}
+                                {!! $about ? $about->description : '######'!!}
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12">
                     <div class="content-right"
-                        style="background: url('{{ asset($about->image_path) }}');
+                        style="background: url('{{ $about ? asset($about->image_path) : asset('2.jpg') }}');
                         background-size: cover;
                         background-position: 100% 100%;
                         height: 100%;

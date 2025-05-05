@@ -14,9 +14,9 @@ class PagesController extends Controller
 {
     public function index()
     {
-        $intro = Intro::first();
-        $about = About::first();
-        $settings = Setting::first();
+        $intro = Intro::first() ;
+        $about = About::first() ;
+        $settings = Setting::first() ;
         return view('web.layouts.master')->with([
             'pageName' => 'Mohamed Adel - Personal Portfolio Website',
             'intro' => $intro,
