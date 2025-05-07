@@ -23,6 +23,10 @@ class DatabaseSeeder extends Seeder
         //     'profile_picture' => 'images/profile.png',
         // ]);
 
-        $this->call(SettingsTableSeeder::class);
+        $this->call([
+            SettingsTableSeeder::class,
+            CitySeeder::class,
+            DistrictSeeder::class
+        ]);
     }
 }

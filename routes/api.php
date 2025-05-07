@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CitiesController;
+use App\Http\Controllers\Api\DistrictsController;
 use App\Http\Controllers\Api\SettingsController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,10 +19,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::group(['middleware' => 'auth:sanctum'], function (){
+Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/categories', [CategoriesController::class, 'index']);
 });
-Route::get('/settings', SettingsController::class)->name('settings');
+
+## ------------------------- Settings Module ------------------------- ##
+Route::get('/cities', SettingsController::class)->name('settings');
+
+## ------------------------- Cities Module ------------------------- ##
+Route::get('/cities', CitiesController::class)->name('cities');
+
+## ------------------------- Districts Module ------------------------- ##
+Route::get('/districts', DistrictsController::class)->name('districts');
+
+
 
 
 
@@ -124,4 +136,3 @@ Route::get('/settings', SettingsController::class)->name('settings');
 //     Route::get('/profile',  [ProfileController::class, 'profile']);
 //     Route::post('/update-profile',  [ProfileController::class, 'updateProfile']);
 // });
-
