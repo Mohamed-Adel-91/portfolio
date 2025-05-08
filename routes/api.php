@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CitiesController;
 use App\Http\Controllers\Api\DistrictsController;
+use App\Http\Controllers\Api\MessageController;
 use App\Http\Controllers\Api\SettingsController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,7 +25,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 });
 
 ## ------------------------- Settings Module ------------------------- ##
-Route::get('/cities', SettingsController::class)->name('settings');
+Route::get('/settings', SettingsController::class)->name('settings');
 
 ## ------------------------- Cities Module ------------------------- ##
 Route::get('/cities', CitiesController::class)->name('cities');
@@ -32,6 +33,8 @@ Route::get('/cities', CitiesController::class)->name('cities');
 ## ------------------------- Districts Module ------------------------- ##
 Route::get('/districts', DistrictsController::class)->name('districts');
 
+## ------------------------- Messages Module ------------------------- ##
+Route::post('/message', MessageController::class)->name('message');
 
 
 
