@@ -2,21 +2,43 @@
 
 namespace App\Models;
 
+use App\Enums\AdStatus;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class District extends Model
+class Ad extends Model
 {
-    use HasFactory;
+    use HasFactory, HasSlug;
 
-    protected $fillable = ['city_id', 'name'];
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug');
+    }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'districts';
+    protected $table = 'ads';
 
     /**
      * The primary key associated with the table.
@@ -59,13 +81,13 @@ class District extends Model
      * @var array
      */
     protected $casts = [
-        // 'status' => Status::class,
+        'status' => AdStatus::class,
     ];
 
     /**
      * fields ordering in filteration
      */
-    const ORDER = ['name'];
+    const ORDER = [''];
 
     /**
      * Upload Path
@@ -78,10 +100,16 @@ class District extends Model
     const UPLOADFIELDS = [];
 
     ##--------------------------------- RELATIONSHIPS
-    public function city()
+    public function user()
     {
-        return $this->belongsTo(City::class);
+        return $this->belongsTo(User::class);
     }
+
+    public function domain()
+    {
+        return $this->belongsTo(Domain::class);
+    }
+
 
     ##--------------------------------- ATTRIBUTES
 
@@ -90,10 +118,15 @@ class District extends Model
 
 
     ##--------------------------------- SCOPES
-    // public function scopeActive($query)
-    // {
-    //     $query->where('status', Status::ACTIVE);
-    // }
+    public function scopeApproved($query)
+    {
+        $query->where('status', AdStatus::APPROVED);
+    }
+
+    public function scopeUserAds($query)
+    {
+        $query->where('user_id', Auth::user()->id);
+    }
 
 
     ##--------------------------------- ACCESSORS & MUTATORS

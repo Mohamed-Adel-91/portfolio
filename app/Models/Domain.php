@@ -2,21 +2,22 @@
 
 namespace App\Models;
 
+use App\Enums\AdStatus;
+use App\Enums\ActivityStatus;
+use App\Enums\DomainStatuses;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class District extends Model
+class Domain extends Model
 {
     use HasFactory;
-
-    protected $fillable = ['city_id', 'name'];
 
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'districts';
+    protected $table = 'domains';
 
     /**
      * The primary key associated with the table.
@@ -59,7 +60,7 @@ class District extends Model
      * @var array
      */
     protected $casts = [
-        // 'status' => Status::class,
+        'status' => DomainStatuses::class,
     ];
 
     /**
@@ -70,7 +71,7 @@ class District extends Model
     /**
      * Upload Path
      */
-    const UPLOADPATH = '';
+    const UPLOADPATH = 'images/contracts/';
 
     /**
      * fields that will handle upload document
@@ -78,10 +79,25 @@ class District extends Model
     const UPLOADFIELDS = [];
 
     ##--------------------------------- RELATIONSHIPS
-    public function city()
+    public function ads()
     {
-        return $this->belongsTo(City::class);
+        return $this->hasMany(Ad::class);
     }
+
+    public function approvedAds()
+    {
+        return $this->hasMany(Ad::class)->where('status', AdStatus::APPROVED);
+    }
+
+    // public function activities()
+    // {
+    //     return $this->hasMany(Activity::class);
+    // }
+
+    // public function approvedActivities()
+    // {
+    //     return $this->hasMany(Activity::class)->where('status', ActivityStatus::APPROVED);
+    // }
 
     ##--------------------------------- ATTRIBUTES
 
@@ -90,10 +106,10 @@ class District extends Model
 
 
     ##--------------------------------- SCOPES
-    // public function scopeActive($query)
-    // {
-    //     $query->where('status', Status::ACTIVE);
-    // }
+    public function scopePopular($query)
+    {
+        $query->where('status', '1');
+    }
 
 
     ##--------------------------------- ACCESSORS & MUTATORS

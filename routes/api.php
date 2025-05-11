@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CitiesController;
 use App\Http\Controllers\Api\DistrictsController;
+use App\Http\Controllers\Api\DomainController;
 use App\Http\Controllers\Api\MessageController;
 use App\Http\Controllers\Api\SettingsController;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,8 @@ Route::get('/districts', DistrictsController::class)->name('districts');
 ## ------------------------- Messages Module ------------------------- ##
 Route::post('/message', MessageController::class)->name('message');
 
+## ------------------------- Domains Module ------------------------- ##
+Route::get('/domains', DomainController::class)->name('domains');
 
 
 
