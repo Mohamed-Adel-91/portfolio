@@ -25,6 +25,11 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/categories', [CategoriesController::class, 'index']);
 });
 
+## ------------------------- Auth Module ------------------------- ##
+Route::controller(AuthController::class)->group(function(){
+    Route::post('register', 'register');
+});
+
 ## ------------------------- Settings Module ------------------------- ##
 Route::get('/settings', SettingsController::class)->name('settings');
 

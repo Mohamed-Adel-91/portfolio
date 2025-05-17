@@ -12,7 +12,7 @@ class DomainSeeder extends Seeder
     {
         $domains = [
             ['name' => 'example.com', 'status' => DomainStatuses::ACTIVE->value],
-            ['name' => 'testsite.org', 'status' => DomainStatuses::INACTIVE->value],
+            ['name' => 'test_site.org', 'status' => DomainStatuses::INACTIVE->value],
             ['name' => 'demo.net', 'status' => DomainStatuses::ACTIVE->value],
         ];
 
