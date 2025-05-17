@@ -7,12 +7,7 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
-    public function run()
+    public function run(): void
     {
         Admin::create([
             'first_name' => 'Mohamed',
@@ -24,9 +19,13 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
+            UserSeeder::class,
             SettingsTableSeeder::class,
             CitySeeder::class,
-            DistrictSeeder::class
+            DistrictSeeder::class,
+            DomainSeeder::class,
+            AdSeeder::class,
+            MediaSeeder::class,
         ]);
     }
 }
