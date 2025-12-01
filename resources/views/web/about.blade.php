@@ -1,6 +1,6 @@
 <div id="about" class="about segments">
     <div class="container">
-        <div class="box-content">
+        <div class="box-content section-card">
             <div class="row">
                 <div class="col-md-6 col-sm-12 col-xs-12">
                     <div class="content-left">
@@ -8,7 +8,7 @@
                             <h3>About Me</h3>
                         </div>
                         <div class="content">
-                            <h2>{{ $about ? $about->title : 'About Me' }}</h2>
+                            <h2 class="section-heading">{{ $about ? $about->title : 'About Me' }}</h2>
                             <p>
                                 {!! $about ? $about->description : '######'!!}
                             </p>
@@ -17,11 +17,7 @@
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12">
                     <div class="content-right"
-                        style="background: url('{{ $about ? asset($about->image_path) : asset('2.jpg') }}');
-                        background-size: cover;
-                        background-position: 100% 100%;
-                        height: 100%;
-                        border-radius: 0 3px 3px 0;">
+                        style="background-image: url('{{ $about ? asset($about->image_path) : asset('2.jpg') }}');">
                     </div>
                 </div>
             </div>

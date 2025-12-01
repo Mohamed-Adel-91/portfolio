@@ -1,9 +1,10 @@
 <div id="resume" class="resume segments">
     <div class="container">
-        <div class="box-content">
+        <div class="box-content section-card">
             <div class="section-title">
                 <h3>My Resume</h3>
             </div>
+            <h2 class="section-heading text-center">Experience, Education & Skills</h2>
             <div class="owl-carousel owl-theme">
                 <div id="experience" class="content">
                     <!-- my experience -->

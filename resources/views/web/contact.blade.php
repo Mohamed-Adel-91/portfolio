@@ -1,13 +1,13 @@
 <div id="contact" class="contact segments">
     <div class="container">
-        <div class="box-content">
+        <div class="box-content section-card">
             <div class="row">
                 <div class="col-md-6 col-sm-12 col-xs-12">
                     <div class="content-left">
                         <div class="section-title section-title-left">
                             <h3>Contact Me</h3>
                         </div>
-                        <h2>Realize your dream with us</h2>
+                        <h2 class="section-heading">Realize your dream with us</h2>
 
                         <ul>
                             <li>
@@ -63,7 +63,8 @@
                                 </a>
                             </li>
                         </ul>
-                        <h5 style="margin-top: 70px;">Phone no.: 0201067000662</h5>
+                        <h5 style="margin-top: 20px;">Phone : +201067000662</h5>
+                        <h5 style="margin-top: 5px;">Email : mohamed101291@gmail.com</h5>
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12">
@@ -106,7 +107,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="button" type="submit" id="submit" name="submit">Send Message</button>
+                            <button class="btn-gradient" type="submit" id="submit" name="submit">Send Message</button>
                         </form>
                     </div>
                 </div>

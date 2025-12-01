@@ -34,9 +34,9 @@
                     <li class="nav-item">
                         <a href="#contact" class="nav-link">Contact</a>
                     </li>
-                    {{-- <li class="nav-item">
-                        <a href="#pricing" class="nav-link">Pricing</a>
-                    </li> --}}
+                    <li class="nav-item">
+                        {{-- <a href="#pricing" class="nav-link">Pricing</a> --}}
+                    </li>
                 </ul>
             </div>
         </nav>

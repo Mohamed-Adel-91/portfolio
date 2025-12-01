@@ -1,9 +1,10 @@
 <div id="portfolio" class="portfolio segments">
     <div class="container">
-        <div class="box-content">
+        <div class="box-content section-card">
             <div class="section-title">
                 <h3>My Portfolio</h3>
             </div>
+            <h2 class="section-heading text-center">Selected Work</h2>
             <div class="portfolio-filter-menu">
                 <ul>
                     <li data-filter="all" class="active">

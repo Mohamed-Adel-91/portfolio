@@ -47,7 +47,7 @@
     <!-- end payment -->
 
     <!-- footer -->
-    @include('web.layouts.footer')
+    {{-- @include('web.layouts.footer') --}}
     <!-- end footer -->
 
     <!-- JS -->

@@ -1,6 +1,6 @@
 <div class="footer segments">
     <div class="container">
-        <div class="box-content">
+        <div class="box-content section-card">
             <div class="col-sm-12 section-title" data-wow-duration="0.8s" data-wow-delay="0.2s">
                 <h3>I was Honored to work with them</h3>
             </div>

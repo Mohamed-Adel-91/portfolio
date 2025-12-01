@@ -1,12 +1,15 @@
 <div id="pricing" class="footer segments">
     <div class="container">
-        <div class="box-content">
+        <div class="box-content section-card">
             <section class="mh-pricing" id="mh-pricing">
                 <div class="">
                     <div class="container">
                         <div class="row section-separator">
                             <div class="col-sm-12 section-title" data-wow-duration="0.8s" data-wow-delay="0.2s">
                                 <h3>Pricing Table</h3>
+                            </div>
+                            <div class="col-sm-12 text-center">
+                                <h2 class="section-heading">Engagement Options</h2>
                             </div>
                             <div class="col-sm-12 col-md-4">
                                 <div class="mh-pricing dark-bg shadow-2 wow fadeInUp" data-wow-duration="0.8s"
@@ -30,7 +33,7 @@
                                         <li>Data Analysis & Visualization</li>
                                         <li>3 Month Mentinance</li>
                                     </ul>
-                                    <button class="button" type="submit" id="submit" name="submit">Hire
+                                    <button class="btn-gradient" type="submit" id="submit" name="submit">Hire
                                         Me
                                     </button>
                                 </div>
@@ -57,7 +60,7 @@
                                         <li>Data Analysis & Visualization</li>
                                         <li>3 Month Mentinance</li>
                                     </ul>
-                                    <button class="button" type="submit" id="submit" name="submit">Hire Me
+                                    <button class="btn-gradient" type="submit" id="submit" name="submit">Hire Me
                                     </button>
                                 </div>
                             </div>
@@ -84,7 +87,7 @@
                                         {{-- <li>3 Month Mentinance</li> --}}
                                         <br />
                                     </ul>
-                                    <button class="button" type="submit" id="submit" name="submit">Hire Me
+                                    <button class="btn-gradient" type="submit" id="submit" name="submit">Hire Me
                                     </button>
                                 </div>
                             </div>
