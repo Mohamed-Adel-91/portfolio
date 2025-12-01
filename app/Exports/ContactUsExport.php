@@ -1,7 +1,7 @@
 <?php
 namespace App\Exports;
 
-use App\Models\ContactUs;
+use App\Models\ContactRequest;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromQuery;
@@ -12,7 +12,7 @@ class ContactUsExport implements FromQuery, WithHeadings, WithMapping
 
     public function query()
     {
-        return ContactUs::query();
+        return ContactRequest::query();
     }
 
     public function headings(): array

@@ -33,19 +33,9 @@ Route::controller(AuthController::class)->group(function(){
 ## ------------------------- Settings Module ------------------------- ##
 Route::get('/settings', SettingsController::class)->name('settings');
 
-## ------------------------- Cities Module ------------------------- ##
-Route::get('/cities', CitiesController::class)->name('cities');
-
-## ------------------------- Districts Module ------------------------- ##
-Route::get('/districts', DistrictsController::class)->name('districts');
 
 ## ------------------------- Messages Module ------------------------- ##
 Route::post('/message', MessageController::class)->name('message');
-
-## ------------------------- Domains Module ------------------------- ##
-Route::get('/domains', DomainController::class)->name('domains');
-
-
 
 
 

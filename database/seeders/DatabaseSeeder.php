@@ -19,13 +19,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
-            UserSeeder::class,
             SettingsTableSeeder::class,
-            CitySeeder::class,
-            DistrictSeeder::class,
-            DomainSeeder::class,
-            AdSeeder::class,
-            MediaSeeder::class,
         ]);
     }
 }

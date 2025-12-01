@@ -12,10 +12,10 @@ class AuthController extends Controller
     /**
      * Show the login form.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
 
-    public function index() 
+    public function index()
     {
         if (auth()->guard('admin')->check()) {
             return redirect()->route('admin.index');
