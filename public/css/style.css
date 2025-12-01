@@ -73,7 +73,7 @@ ul {
 }
 
 .segments {
-    padding: 50px 0;
+    padding: 10px 0;
 }
 
 .section-card,
@@ -287,6 +287,35 @@ ul {
     z-index: 0;
     pointer-events: none;
 }
+
+.hero-right::after {
+    content: '0101 { } < /> Laravel::artisan() { } 1010 <dev/> return true; \A 0101 { } < /> const code = []; \A 0101 0110 1010 <tag> 0101 { } < /> Laravel::artisan() { } 1010 <dev/> return true; \A 0101 { } < /> const code = []; \A 0101 0110 1010 <tag>0101 { } < /> Laravel::artisan() { } 1010 <dev/> return true; \A 0101 { } < /> const code = []; \A 0101 0110 1010 <tag>0101 { } < /> Laravel::artisan() { } 1010 <dev/> return true; \A 0101 { } < /> const code = []; \A 0101 0110 1010 <tag>0101 { } < /> Laravel::artisan() { } 1010 <dev/> return true; \A 0101 { } < /> const code = []; \A 0101 0110 1010 <tag>0101 { } < /> Laravel::artisan() { } 1010 <dev/> return true; \A 0101 { } < /> const code = []; \A 0101 0110 1010 <tag>0101 { } < /> Laravel::artisan() { } 1010 <dev/> return true; \A 0101 { } < /> const code = []; \A 0101 0110 1010 <tag>0101 { } < /> Laravel::artisan() { } 1010 <dev/> return true; \A 0101 { } < /> const code = []; \A 0101 0110 1010 <tag>';
+    position: absolute;
+    top: 50%;
+    left: -50%;
+    transform: translate(-50%, -50%);
+    width: min(340px, 90vw);
+    height: min(340px, 90vw);
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 13px;
+    letter-spacing: 1.6px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.06);
+    opacity: 0.8;
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
+    filter: blur(0.6px);
+    z-index: 0;
+    pointer-events: none;
+    text-align: center;
+    white-space: pre;
+}
+@media (max-width: 1366px) {
+    .hero-right::after {
+        display: none !important;
+    }
+}
+
 
 .profile-wrapper {
     position: relative;
@@ -834,6 +863,7 @@ ul {
 
 /*responsive*/
 @media (max-width: 768px) {
+
     .section-card,
     .box-content {
         padding: 28px;
@@ -884,6 +914,15 @@ ul {
     .hero-left,
     .hero-right {
         max-width: 100%;
+    }
+
+    .hero-right::after {
+        width: min(260px, 80vw);
+        height: min(260px, 80vw);
+        font-size: 12px;
+        letter-spacing: 1.4px;
+        opacity: 0.7;
+        filter: blur(0.5px);
     }
 
     .hero-actions {
