@@ -362,6 +362,42 @@ ul {
     color: var(--text-main);
 }
 
+.about-description {
+    font-family: var(--font-sans, "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #e5e7eb;
+}
+
+.about-description * {
+    font-family: inherit !important;
+    font-size: inherit !important;
+    line-height: inherit !important;
+    color: inherit !important;
+    background: transparent !important;
+}
+
+.about-description span,
+.about-description p,
+.about-description li,
+.about-description strong,
+.about-description em {
+    font-weight: 400;
+}
+
+.about-description strong {
+    font-weight: 600;
+}
+
+.about-description br {
+    line-height: 1.2;
+}
+
+.about-description p,
+.about-description li {
+    margin-bottom: 0.5rem;
+}
+
 .about .content-right {
     background: url(../images/about.jpg);
     background-size: cover;
