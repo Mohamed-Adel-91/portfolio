@@ -29,7 +29,12 @@
                                     </div>
                                     <div class="form-group col-12">
                                         <label for="description">Description</label>
-                                        <textarea class="form-control" id="description" name="description" rows="5">{{ $data->description }}</textarea>
+                                        <textarea
+                                            name="description"
+                                            id="about-description"
+                                            class="form-control summernote"
+                                            rows="10"
+                                        >{{ old('description', $data->description) }}</textarea>
                                         @error('description') <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                     <div class="form-group col-3">
@@ -55,3 +60,27 @@
 </div>
 
 @endsection
+
+@push('custom-css-scripts')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" rel="stylesheet" />
+@endpush
+
+@push('custom-js-scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            $('.summernote').summernote({
+                placeholder: 'Write the About section description here...',
+                tabsize: 2,
+                height: 250,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'italic', 'underline', 'clear']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['insert', ['link']],
+                    ['view', ['fullscreen', 'codeview']]
+                ]
+            });
+        });
+    </script>
+@endpush
