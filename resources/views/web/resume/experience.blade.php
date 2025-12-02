@@ -4,7 +4,7 @@
             <div class="title-resume">
                 <h3>Experience</h3>
                 <h2>Over {{ date('Y') - 2012 }} years of professional experience - More than {{ date('Y') - 2022 }} years experience as
-                    a <span>Developer</span></h2>
+                    a <span>Software Developer</span></h2>
             </div>
         </div>
     </div>
