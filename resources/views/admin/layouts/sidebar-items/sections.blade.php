@@ -30,11 +30,6 @@
                     <i class="bi bi-briefcase-fill"></i> Experience
                 </a>
             </li>
-            <li class="{{ Request::is('dashboard/skills') ? 'active' : '' }}">
-                <a href="#" class="{{ Request::is('dashboard/skills') ? 'current-page' : '' }}">
-                    <i class="bi bi-stars"></i> Skills
-                </a>
-            </li>
             <li class="{{ Request::is('dashboard/projects*') ? 'active' : '' }}">
                 <a href="{{ route('admin.projects.index') }}" class="{{ Request::is('dashboard/projects*') ? 'current-page' : '' }}">
                     <i class="bi bi-kanban"></i> Projects
@@ -48,6 +43,11 @@
             <li class="{{ Request::is('dashboard/gallery*') ? 'active' : '' }}">
                 <a href="{{ route('admin.gallery.index') }}" class="{{ Request::is('dashboard/gallery*') ? 'current-page' : '' }}">
                     <i class="bi bi-images"></i> Gallery
+                </a>
+            </li>
+            <li class="{{ Request::is('dashboard/skills*') ? 'active' : '' }}">
+                <a href="{{ route('admin.skills.index') }}" class="{{ Request::is('dashboard/skills*') ? 'current-page' : '' }}">
+                    <i class="bi bi-stars"></i> Skills
                 </a>
             </li>
         </ul>
