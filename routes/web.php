@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\IntroController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\ResumeController;
 use App\Http\Controllers\Admin\PortfolioController;
+use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Web\FormsController;
@@ -53,6 +54,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'dashboard', 'middleware' => 'AuthPe
     Route::resource('resume', ResumeController::class)->except(['show']);
     Route::resource('projects', ProjectController::class)->except(['show']);
     Route::resource('portfolio', PortfolioController::class)->except(['show']);
+    Route::resource('gallery', GalleryController::class)->except(['show']);
 
 });
 
