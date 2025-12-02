@@ -3,115 +3,122 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreExperienceRequest;
+use App\Http\Requests\Admin\UpdateExperienceRequest;
 use App\Models\Experience;
 use App\Traits\DeleteFileTrait;
 use App\Traits\FileUploadTrait;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class ExperienceController extends Controller
 {
     use FileUploadTrait, DeleteFileTrait;
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $experiences = Experience::latest()->get();
-        return view('experiences.index', compact('experiences'));
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('experiences.create');
-    }
+    private const IMAGE_UPLOAD_PATH = 'upload/experience';
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function index(): View
     {
-        $validated = $request->validate([
-            'co_name' => 'required|string|max:255',
-            'work_type' => 'nullable|string|max:255',
-            'title' => 'required|string|max:255',
-            'sub_title' => 'nullable|string|max:255',
-            'description' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'icon' => 'nullable|string|max:255',
-            'start_at' => 'required|date',
-            'end_at' => 'nullable|date|after_or_equal:start_at'
+        $experiences = Experience::orderByDesc('start_at')->paginate(10);
+
+        return view('admin.experience.index', [
+            'pageName' => 'Experience',
+            'experiences' => $experiences,
         ]);
+    }
+
+    public function create(): View
+    {
+        return view('admin.experience.create', [
+            'pageName' => 'Add Experience',
+            'experience' => new Experience(),
+        ]);
+    }
+
+    public function store(StoreExperienceRequest $request): RedirectResponse
+    {
+        $data = $request->validated();
 
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('experience_images', 'public');
-        }
+            $this->ensureUploadDirectoryExists();
 
-        Experience::create($validated);
+            $uploadedImage = $this->uploadFile(
+                [$request->file('image')],
+                [self::IMAGE_UPLOAD_PATH],
+                ['image']
+            );
 
-        return redirect()->route('experiences.index')->with('success', 'Experience added successfully!');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Experience $experience)
-    {
-        return view('experiences.show', compact('experience'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Experience $experience)
-    {
-        return view('experiences.edit', compact('experience'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Experience $experience)
-    {
-        $validated = $request->validate([
-            'co_name' => 'required|string|max:255',
-            'work_type' => 'nullable|string|max:255',
-            'title' => 'required|string|max:255',
-            'sub_title' => 'nullable|string|max:255',
-            'description' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'icon' => 'nullable|string|max:255',
-            'start_at' => 'required|date',
-            'end_at' => 'nullable|date|after_or_equal:start_at'
-        ]);
-
-        if ($request->hasFile('image')) {
-            // Delete old image if exists
-            if ($experience->image) {
-                Storage::disk('public')->delete($experience->image);
+            if (!empty($uploadedImage[0])) {
+                $data['image'] = 'experience/' . $uploadedImage[0];
             }
-            $validated['image'] = $request->file('image')->store('experience_images', 'public');
+        } else {
+            unset($data['image']);
         }
 
-        $experience->update($validated);
+        Experience::create($data);
 
-        return redirect()->route('experiences.index')->with('success', 'Experience updated successfully!');
+        return redirect()
+            ->route('admin.experience.index')
+            ->with('success', 'Experience created successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Experience $experience)
+    public function edit(Experience $experience): View
+    {
+        return view('admin.experience.edit', [
+            'pageName' => 'Edit Experience',
+            'experience' => $experience,
+        ]);
+    }
+
+    public function update(UpdateExperienceRequest $request, Experience $experience): RedirectResponse
+    {
+        $data = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $this->ensureUploadDirectoryExists();
+
+            $uploadedImage = $this->uploadFile(
+                [$request->file('image')],
+                [self::IMAGE_UPLOAD_PATH],
+                ['image']
+            );
+
+            if (!empty($uploadedImage[0])) {
+                if ($experience->image) {
+                    $this->deleteFile($experience->image, 'upload');
+                }
+                $data['image'] = 'experience/' . $uploadedImage[0];
+            }
+        } else {
+            unset($data['image']);
+        }
+
+        $experience->update($data);
+
+        return redirect()
+            ->route('admin.experience.index')
+            ->with('success', 'Experience updated successfully.');
+    }
+
+    public function destroy(Experience $experience): RedirectResponse
     {
         if ($experience->image) {
-            Storage::disk('public')->delete($experience->image);
+            $this->deleteFile($experience->image, 'upload');
         }
 
         $experience->delete();
 
-        return redirect()->route('experiences.index')->with('success', 'Experience deleted successfully!');
+        return redirect()
+            ->route('admin.experience.index')
+            ->with('success', 'Experience deleted successfully.');
+    }
+
+    private function ensureUploadDirectoryExists(): void
+    {
+        $directory = public_path(self::IMAGE_UPLOAD_PATH);
+
+        if (! is_dir($directory)) {
+            mkdir($directory, 0755, true);
+        }
     }
 }

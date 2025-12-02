@@ -20,8 +20,8 @@
                     <i class="bi bi-mortarboard-fill"></i> Education
                 </a>
             </li>
-            <li class="{{ Request::is('dashboard/experience') ? 'active' : '' }}">
-                <a href="#" class="{{ Request::is('dashboard/experience') ? 'current-page' : '' }}">
+            <li class="{{ Request::is('dashboard/experience*') ? 'active' : '' }}">
+                <a href="{{ route('admin.experience.index') }}" class="{{ Request::is('dashboard/experience*') ? 'current-page' : '' }}">
                     <i class="bi bi-briefcase-fill"></i> Experience
                 </a>
             </li>
