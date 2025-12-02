@@ -20,6 +20,11 @@
                     <i class="bi bi-mortarboard-fill"></i> Education
                 </a>
             </li>
+            <li class="{{ Request::is('dashboard/resume*') ? 'active' : '' }}">
+                <a href="{{ route('admin.resume.index') }}" class="{{ Request::is('dashboard/resume*') ? 'current-page' : '' }}">
+                    <i class="bi bi-file-earmark-text-fill"></i> Resume
+                </a>
+            </li>
             <li class="{{ Request::is('dashboard/experience*') ? 'active' : '' }}">
                 <a href="{{ route('admin.experience.index') }}" class="{{ Request::is('dashboard/experience*') ? 'current-page' : '' }}">
                     <i class="bi bi-briefcase-fill"></i> Experience
