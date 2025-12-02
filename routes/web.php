@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ContactUsController;
 use App\Http\Controllers\Admin\EducationController;
 use App\Http\Controllers\Admin\ExperienceController;
 use App\Http\Controllers\Admin\IntroController;
+use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\ResumeController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Api\CategoriesController;
@@ -49,6 +50,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'dashboard', 'middleware' => 'AuthPe
     Route::resource('experience', ExperienceController::class)->except(['show']);
     Route::resource('education', EducationController::class)->except(['show']);
     Route::resource('resume', ResumeController::class)->except(['show']);
+    Route::resource('projects', ProjectController::class)->except(['show']);
 
 });
 

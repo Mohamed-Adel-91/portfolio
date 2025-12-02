@@ -45,8 +45,8 @@
                     <i class="bi bi-images"></i> Gallery
                 </a>
             </li>
-            <li class="{{ Request::is('dashboard/projects') ? 'active' : '' }}">
-                <a href="#" class="{{ Request::is('dashboard/projects') ? 'current-page' : '' }}">
+            <li class="{{ Request::is('dashboard/projects*') ? 'active' : '' }}">
+                <a href="{{ route('admin.projects.index') }}" class="{{ Request::is('dashboard/projects*') ? 'current-page' : '' }}">
                     <i class="bi bi-kanban"></i> Projects
                 </a>
             </li>
