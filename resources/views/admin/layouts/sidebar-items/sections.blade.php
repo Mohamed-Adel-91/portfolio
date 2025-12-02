@@ -20,7 +20,7 @@
                     <i class="bi bi-mortarboard-fill"></i> Education
                 </a>
             </li>
-            <li class="{{ Request::is('dashboard/resume*') ? 'active' : '' }}">
+            <li class="{{ Request::is('dashboard/resume') ? 'active' : '' }}">
                 <a href="{{ route('admin.resume.index') }}" class="{{ Request::is('dashboard/resume*') ? 'current-page' : '' }}">
                     <i class="bi bi-file-earmark-text-fill"></i> Resume
                 </a>
@@ -28,11 +28,6 @@
             <li class="{{ Request::is('dashboard/experience*') ? 'active' : '' }}">
                 <a href="{{ route('admin.experience.index') }}" class="{{ Request::is('dashboard/experience*') ? 'current-page' : '' }}">
                     <i class="bi bi-briefcase-fill"></i> Experience
-                </a>
-            </li>
-            <li class="{{ Request::is('dashboard/resume') ? 'active' : '' }}">
-                <a href="#" class="{{ Request::is('dashboard/resume') ? 'current-page' : '' }}">
-                    <i class="bi bi-file-earmark-text-fill"></i> Resume
                 </a>
             </li>
             <li class="{{ Request::is('dashboard/skills') ? 'active' : '' }}">
@@ -50,9 +45,9 @@
                     <i class="bi bi-kanban"></i> Projects
                 </a>
             </li>
-            <li class="{{ Request::is('dashboard/portfolio') ? 'active' : '' }}">
-                <a href="#" class="{{ Request::is('dashboard/portfolio') ? 'current-page' : '' }}">
-                    <i class="bi bi-folder-fill"></i> Portfolio
+            <li class="{{ Request::is('dashboard/portfolio*') ? 'active' : '' }}">
+                <a href="{{ route('admin.portfolio.index') }}" class="{{ Request::is('dashboard/portfolio*') ? 'current-page' : '' }}">
+                    <i class="bi bi-grid-1x2-fill"></i> Portfolio
                 </a>
             </li>
         </ul>
