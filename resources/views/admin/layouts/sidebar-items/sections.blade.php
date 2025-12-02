@@ -15,8 +15,8 @@
                     <i class="bi bi-person-fill"></i> About
                 </a>
             </li>
-            <li class="{{ Request::is('dashboard/education') ? 'active' : '' }}">
-                <a href="#" class="{{ Request::is('dashboard/education') ? 'current-page' : '' }}">
+            <li class="{{ Request::is('dashboard/education*') ? 'active' : '' }}">
+                <a href="{{ route('admin.education.index') }}" class="{{ Request::is('dashboard/education*') ? 'current-page' : '' }}">
                     <i class="bi bi-mortarboard-fill"></i> Education
                 </a>
             </li>

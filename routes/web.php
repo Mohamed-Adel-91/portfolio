@@ -4,6 +4,7 @@ use App\Events\EventTest;
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\ContactUsController;
+use App\Http\Controllers\Admin\EducationController;
 use App\Http\Controllers\Admin\ExperienceController;
 use App\Http\Controllers\Admin\IntroController;
 use App\Http\Controllers\Admin\SettingsController;
@@ -45,6 +46,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'dashboard', 'middleware' => 'AuthPe
     Route::get('/sections/about/edit', [AboutController::class, 'edit'])->name('about.edit');
     Route::put('/sections/about/update', [AboutController::class, 'update'])->name('about.update');
     Route::resource('experience', ExperienceController::class)->except(['show']);
+    Route::resource('education', EducationController::class)->except(['show']);
 
 });
 
