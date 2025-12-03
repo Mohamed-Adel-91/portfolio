@@ -9,7 +9,7 @@
 
     <div class="form-group col-md-6">
         <label for="title">Title</label>
-        <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $experience->title) }}" required>
+        <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $experience->title) }}" placeholder="Back-End Web Developer (2023 - Now)" required>
         @error('title')
             <span class="text-danger small">{{ $message }}</span>
         @enderror
@@ -24,8 +24,8 @@
     </div>
 
     <div class="form-group col-md-6">
-        <label for="sub_title">Sub Title</label>
-        <input type="text" class="form-control" id="sub_title" name="sub_title" value="{{ old('sub_title', $experience->sub_title) }}" placeholder="Back-End Web Developer (2023 - Now)">
+        <label for="sub_title">Location type</label>
+        <input type="text" class="form-control" id="sub_title" name="sub_title" value="{{ old('sub_title', $experience->sub_title) }}" >
         @error('sub_title')
             <span class="text-danger small">{{ $message }}</span>
         @enderror

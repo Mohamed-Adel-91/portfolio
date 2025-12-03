@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 02, 2025 at 01:01 PM
+-- Generation Time: Dec 03, 2025 at 01:00 PM
 -- Server version: 8.0.40
 -- PHP Version: 8.3.16
 
@@ -115,7 +115,7 @@ CREATE TABLE `contact_requests` (
 --
 
 INSERT INTO `contact_requests` (`id`, `first_name`, `last_name`, `email`, `subject`, `message`, `reply_status`, `created_at`, `updated_at`) VALUES
-(1, '‪Mohamed', 'Adel‬‏', 'mohamed101291@gmail.com', 'gfdjnsh', 'tdyue', '0', '2025-12-01 19:07:34', '2025-12-01 19:07:34');
+(1, '‪Mohamed', 'Adel‬‏', 'mohamed101291@gmail.com', 'gfdjnsh', 'tdyue', '1', '2025-12-01 19:07:34', '2025-12-03 08:33:44');
 
 -- --------------------------------------------------------
 
@@ -130,6 +130,14 @@ CREATE TABLE `contact_requests_replay` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `contact_requests_replay`
+--
+
+INSERT INTO `contact_requests_replay` (`id`, `contact_request_id`, `reply_message`, `created_at`, `updated_at`) VALUES
+(1, 1, 'thanks', '2025-12-03 08:33:44', '2025-12-03 08:33:44'),
+(2, 1, 'thanks 2', '2025-12-03 08:34:30', '2025-12-03 08:34:30');
 
 -- --------------------------------------------------------
 
@@ -152,6 +160,21 @@ CREATE TABLE `education` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `education`
+--
+
+INSERT INTO `education` (`id`, `university_name`, `type`, `title`, `sub_title`, `description`, `image`, `icon`, `start_at`, `end_at`, `created_at`, `updated_at`) VALUES
+(1, 'Ain Shams University', 'Bachelor\'s', 'Faculty of Commerce', 'Accounting and Business Adminstration', NULL, NULL, NULL, '2008-09-01', '2012-05-01', '2025-12-03 08:38:02', '2025-12-03 08:38:02'),
+(2, 'Lane Community College', 'Online Course', 'Computerized Accounting & Fentech', NULL, NULL, NULL, NULL, '2012-01-01', '2012-03-01', '2025-12-03 08:53:06', '2025-12-03 08:53:06'),
+(3, 'Udacity', 'Nanodgree', 'Advanced full-stack Web Development', 'Web Development', NULL, NULL, NULL, '2022-11-01', '2023-04-01', '2025-12-03 09:33:51', '2025-12-03 09:33:51'),
+(4, 'Udacity', 'Online Course', 'Web Development Challenger', 'Web Development', NULL, NULL, NULL, '2022-07-01', '2022-10-01', '2025-12-03 09:36:43', '2025-12-03 09:36:43'),
+(5, 'Udacity', 'Nanodegree', 'Android Basics Nanodegree by Google', 'Android Basics', NULL, NULL, NULL, '2019-07-01', '2020-02-01', '2025-12-03 09:38:36', '2025-12-03 09:38:36'),
+(6, 'Edx by Harvard University', 'Course', 'CS50’s Introduction to Computer Science', 'Computer Science', 'Skills: Algorithms · C (Programming Language) · JavaScript · GitHub · Git · Python (Programming Language) · Dynamic Random-Access Memory (DRAM) · Databases · HTML5 · emoj · Data Structures · Flask', NULL, NULL, '2022-12-01', '2023-12-01', '2025-12-03 09:48:47', '2025-12-03 11:05:52'),
+(7, 'ALX by Helberton School', 'Nanodegree', 'Software Engineering - BackEnd Development', 'Software Engineering', NULL, NULL, NULL, '2023-06-01', '2024-09-01', '2025-12-03 09:51:43', '2025-12-03 09:52:10'),
+(8, 'AMIT - Licensed by the Ministry of Communications and Information Technology', 'Diploma', 'Data Science and AI Diploma', 'Data Science', 'Machine Learning & Artificial Intelligence Diploma – AMIT Learning (6 Months)\r\n\r\nA comprehensive hands-on program covering the full data science and AI lifecycle. The diploma included intensive training in Python for Data Science, SQL, data analysis, data visualization, and real-world machine learning workflows. I gained practical experience with NumPy, Pandas, Matplotlib, Seaborn, Scikit-learn, TensorFlow, Keras, and PyTorch.\r\n\r\nThe curriculum covered:\r\n\r\nData Science fundamentals and the difference between Data Science & Data Engineering\r\n\r\nPython programming for AI and scientific computing\r\n\r\nDatabases and SQL for data extraction\r\n\r\nData cleaning, preprocessing, and exploratory data analysis (EDA)\r\n\r\nData visualization and dashboarding\r\n\r\nMachine Learning algorithms (regression, classification, clustering)\r\n\r\nModel evaluation, optimization, and deployment concepts\r\n\r\nDeep Learning using Keras, TensorFlow, and PyTorch\r\n\r\nNeural networks, CNNs, RNNs, and advanced DL concepts\r\n\r\nAI project workflows and MLOps fundamentals\r\n\r\nGraduation Projects:\r\n\r\nCOVID-19 predictive analysis\r\n\r\nMedical diagnostics using ML\r\n\r\nFinancial data analysis and forecasting\r\n\r\nThe diploma included continuous mentorship, instructor support, and a ticketing system for troubleshooting and guidance to ensure full mastery of all modules.', NULL, NULL, '2025-12-19', '2026-07-31', '2025-12-03 09:58:48', '2025-12-03 09:58:48'),
+(9, 'Huawei Cloud', 'Course', 'Huawei Cloud Developer – HCCDA Tech Essentials', 'Huawei Cloud Developer', 'Skills: HCCDA · Cloud Computing · Cloud Computing IaaS · Huawei Cloud Services · Cloud Architecture Basics · Virtual Private Cloud (VPC) · Elastic Cloud Server (ECS) · Object Storage Service (OBS) · Identity and Access Management (IAM) · Data Security & Encryption Basics · Networking & Security Groups · Database Services (RDS, TaurusDB) · API & Service Integration · Networking Fundamentals (CIDR, Subnets, Routing, SNAT) · Infrastructure as a Service (IaaS) · Platform as a Service (PAAS) · Software as a Service (SaaS)', 'education/1764760603BhAv4cegubYjMOjrrBLb.jpeg', NULL, '2025-09-01', '2025-10-31', '2025-12-03 11:16:43', '2025-12-03 11:16:43');
+
 -- --------------------------------------------------------
 
 --
@@ -172,6 +195,17 @@ CREATE TABLE `experience` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `experience`
+--
+
+INSERT INTO `experience` (`id`, `co_name`, `work_type`, `title`, `sub_title`, `description`, `image`, `icon`, `start_at`, `end_at`, `created_at`, `updated_at`) VALUES
+(1, 'Icon Creations', 'Part-time', 'Back-end Developer', 'On-Site', 'At Icon Creations, I played a pivotal role in developing robust backend systems and dynamic dashboards for esteemed clients like Orascom and Knowledge Net. My responsibilities included designing RESTful APIs, optimizing databases, and ensuring seamless integration with front-end teams. I focused on enhancing system performance, CMS content management system and managing deployments, which contributed to delivering exceptional client solutions.', 'experience/17647617423gslRGhg9AeNaNScfo8j.png', NULL, '2023-11-01', NULL, '2025-12-03 11:27:13', '2025-12-03 11:35:42'),
+(2, 'Public Prosecution Service of Egypt - Ministry of Justice', 'Full-time', 'ERP Systems Administration & Head of Criminal Registry Operations', 'On-Site', '• Oversaw all reports and violations received by the Public Prosecution, ensuring accurate documentation and timely processing.  \r\n• Managed the ERP systems for the Agouza Traffic Prosecution, enhancing operational efficiency.  \r\n• Issued clearance certificates, contributing to a streamlined workflow and improved public service delivery.', 'experience/17647617260YcVyacrUQspiHNH5tYf.png', NULL, '2019-11-01', NULL, '2025-12-03 11:35:26', '2025-12-03 11:37:50'),
+(3, 'Public Prosecution Service of Egypt - Ministry of Justice', 'Full-time', 'IT & Data Entry Supervisor', 'On-Site', '• Supervised the IT and data entry operations for recording traffic violations at the Public Prosecution Service of Egypt.  \r\n• Enhanced data accuracy and efficiency by implementing streamlined processes and training staff.  \r\n• Collaborated with cross-functional teams to ensure compliance with legal standards and improve reporting systems.', 'experience/1764763785nsPVzJN47dYwmAKOys5R.png', NULL, '2018-03-01', '2019-11-01', '2025-12-03 12:09:45', '2025-12-03 12:14:41'),
+(4, 'Public Prosecution Service of Egypt - Ministry of Justice', 'Full-time', 'Data Entry Specialist', 'On-Site', '• Recorded and processed over 1,000 traffic violation reports daily for the Public Prosecution Service of Egypt.  \r\n• Ensured accuracy and compliance with legal standards, contributing to the efficiency of the Ministry of Justice.  \r\n• Collaborated with law enforcement agencies to streamline data entry processes, enhancing overall workflow.', 'experience/1764764768ejz21BwvFXUzP0w2eOd8.png', NULL, '2017-01-01', '2018-03-01', '2025-12-03 12:26:08', '2025-12-03 12:26:08'),
+(5, 'Public Prosecution Service of Egypt - Ministry of Justice', 'Full-time', 'Prosecutor\'s Secretary - Secretary to the Head of the Giza Traffic Prosecutions', 'On-Site', '• Provided comprehensive administrative support to the Head of the Giza Traffic Prosecution, ensuring efficient office operations.  \r\n• Managed case files and documentation, facilitating timely processing and adherence to legal protocols.  \r\n• Coordinated communication between various departments, enhancing collaboration and information flow within the Public Prosecution Service.', 'experience/1764764892Gq1179IwO26BmSxfaGVL.png', NULL, '2015-09-05', '2017-01-01', '2025-12-03 12:28:12', '2025-12-03 12:28:12');
 
 -- --------------------------------------------------------
 
@@ -381,6 +415,13 @@ CREATE TABLE `projects` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `projects`
+--
+
+INSERT INTO `projects` (`id`, `name`, `description`, `image`, `url`, `lunched_at`, `created_at`, `updated_at`) VALUES
+(1, 'Netflex Clone', 'Single Landing Page HTML & CSS Native', '1764765256ltWDe3LoIoqTcaiYPPbN.png', 'https://mohamed-adel-91.github.io/Netflex_clone/', '2019-08-23', '2025-12-03 12:34:16', '2025-12-03 12:34:16');
+
 -- --------------------------------------------------------
 
 --
@@ -416,7 +457,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('bo26iNZHh2VnxB1IMMH2kmn0DyYrA07kxlL1BQrX', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiZDhtbHBpbG9WYTFMUkpsQlBaS01EVDJYdkNKYXRMVHJsMDU5djI0SCI7czo2OiJsb2NhbGUiO3M6MjoiZW4iO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjQ3OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvZGFzaGJvYXJkL3Byb2plY3RzL2NyZWF0ZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTI6ImxvZ2luX2FkbWluXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1764679072);
+('uSPNDnN048FSZOsZPwr0gkaXY4AQ0zJw17XhCSog', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiWWkzSGs0TnhwTTA2b1BmTFJyUDVuaERwWEZPd0pSaVBlZ1lEWGhYayI7czo2OiJsb2NhbGUiO3M6MjoiZW4iO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjQwOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvZGFzaGJvYXJkL3Byb2plY3RzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1764765259);
 
 -- --------------------------------------------------------
 
@@ -675,19 +716,19 @@ ALTER TABLE `contact_requests`
 -- AUTO_INCREMENT for table `contact_requests_replay`
 --
 ALTER TABLE `contact_requests_replay`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `education`
 --
 ALTER TABLE `education`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `experience`
 --
 ALTER TABLE `experience`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -741,7 +782,7 @@ ALTER TABLE `portfolio`
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `resume`

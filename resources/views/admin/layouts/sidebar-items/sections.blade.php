@@ -35,17 +35,17 @@
                 </a>
             </li>
 
+            <li class="{{ request()->routeIs('admin.resume.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.resume.index') }}"
+                    class="{{ request()->routeIs('admin.resume.*') ? 'current-page' : '' }}">
+                    <i class="bi bi-file-earmark-text-fill"></i> Resume Titles
+                </a>
+            </li>
+
             <li class="{{ request()->routeIs('admin.education.*') ? 'active' : '' }}">
                 <a href="{{ route('admin.education.index') }}"
                     class="{{ request()->routeIs('admin.education.*') ? 'current-page' : '' }}">
                     <i class="bi bi-mortarboard-fill"></i> Education
-                </a>
-            </li>
-
-            <li class="{{ request()->routeIs('admin.resume.*') ? 'active' : '' }}">
-                <a href="{{ route('admin.resume.index') }}"
-                    class="{{ request()->routeIs('admin.resume.*') ? 'current-page' : '' }}">
-                    <i class="bi bi-file-earmark-text-fill"></i> Resume
                 </a>
             </li>
 
