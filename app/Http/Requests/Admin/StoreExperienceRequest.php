@@ -19,7 +19,7 @@ class StoreExperienceRequest extends FormRequest
             'title' => ['required', 'string', 'max:255'],
             'sub_title' => ['nullable', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
-            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
             'icon' => ['nullable', 'string', 'max:255'],
             'start_at' => ['nullable', 'date'],
             'end_at' => ['nullable', 'date', 'after_or_equal:start_at'],

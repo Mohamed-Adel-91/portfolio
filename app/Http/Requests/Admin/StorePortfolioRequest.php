@@ -17,7 +17,7 @@ class StorePortfolioRequest extends FormRequest
             'project_id' => ['required', 'exists:projects,id'],
             'title' => ['required', 'string', 'max:255'],
             'sub_title' => ['nullable', 'string', 'max:255'],
-            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
         ];
     }
 }
