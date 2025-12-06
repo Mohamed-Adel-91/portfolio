@@ -8,6 +8,7 @@ use App\Models\ContactRequest;
 use App\Models\Education;
 use App\Models\Experience;
 use App\Models\Intro;
+use App\Models\Skill;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -20,11 +21,15 @@ class PagesController extends Controller
         $about = About::first();
         $settings = Setting::first();
         $educations = Education::with('university')
-            ->orderBy('start_at', 'desc')
+            ->orderBy('start_at', 'asc')
             ->get();
         $experiences = Experience::with('company')
-            ->orderBy('start_at', 'desc')
+            ->orderBy('start_at', 'asc')
             ->get();
+        $skillsByType = Skill::orderBy('type')
+            ->orderByDesc('progress')
+            ->get()
+            ->groupBy('type');
 
         return view('web.layouts.master')->with([
             'pageName' => 'Mohamed Adel - Personal Portfolio Website',
@@ -33,6 +38,7 @@ class PagesController extends Controller
             'settings' => $settings,
             'educations' => $educations,
             'experiences' => $experiences,
+            'skillsByType' => $skillsByType,
         ]);
     }
 
