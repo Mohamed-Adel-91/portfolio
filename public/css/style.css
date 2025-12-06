@@ -310,6 +310,7 @@ ul {
     text-align: center;
     white-space: pre;
 }
+
 @media (max-width: 1366px) {
     .hero-right::after {
         display: none !important;
