@@ -143,7 +143,7 @@ class PagesController extends Controller
                     'title' => $port->title ?? $project->name ?? 'Project',
                     'subtitle' => $port->sub_title ?? 'Project',
                     'image' => $image,
-                    'link' => $project->url ?: $image,
+                    'link' => $image,
                     'badge' => 'Project',
                 ]);
             }
