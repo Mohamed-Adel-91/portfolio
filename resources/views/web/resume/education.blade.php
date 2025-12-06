@@ -33,14 +33,30 @@
                                 $startYear = optional($edu->start_at)->format('Y');
                                 $endYear = $edu->end_at ? $edu->end_at->format('Y') : 'Now';
                             @endphp
-                            <span>
-                                {{ $edu->title }}
-                                @if($startYear || $endYear)
-                                    ({{ $startYear }}@if($startYear && $endYear) - {{ $endYear }}@endif)
+                            <div class="mb-2">
+                                <span class="d-block">
+                                    {{ $edu->title }}
+                                    @if($startYear || $endYear)
+                                        ({{ $startYear }}@if($startYear && $endYear) - {{ $endYear }}@endif)
+                                    @endif
+                                    @if($edu->type)
+                                        <small>
+                                            {{ $edu->type }}
+                                        </small>
+                                    @endif
+                                </span>
+
+                                
+
+                                @if($edu->description)
+                                    <p class="text-muted small mb-1 mt-1">
+                                        {{ $edu->description }}
+                                    </p>
                                 @endif
-                            </span>
+                            </div>
+
                             @if(!$loop->last)
-                                </br>
+                                <hr class="my-2" style="border-color: rgba(255,255,255,0.1);">
                             @endif
                         @endforeach
                     </li>

@@ -34,14 +34,28 @@
                                 $startYear = optional($exp->start_at)->format('Y');
                                 $endYear = $exp->end_at ? $exp->end_at->format('Y') : 'Now';
                             @endphp
-                            <span>
-                                {{ $exp->title }}
-                                @if($startYear || $endYear)
-                                    ({{ $startYear }}@if($startYear && $endYear) - {{ $endYear }}@endif)
+                            <div class="mb-2">
+                                <span class="d-block">
+                                    {{ $exp->title }}
+                                    @if($startYear || $endYear)
+                                        ({{ $startYear }}@if($startYear && $endYear) - {{ $endYear }}@endif)
+                                    @endif
+                                    @if($exp->sub_title)
+                                        <small class="text-muted">
+                                            {{ $exp->sub_title }}
+                                        </small>
+                                    @endif
+                                </span>
+
+                                @if($exp->description)
+                                    <p class="text-muted small mb-1 mt-1">
+                                        {{ $exp->description }}
+                                    </p>
                                 @endif
-                            </span>
+                            </div>
+
                             @if(!$loop->last)
-                                </br>
+                                <hr class="my-2" style="border-color: rgba(255,255,255,0.1);">
                             @endif
                         @endforeach
                     </li>
