@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.2
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Dec 03, 2025 at 01:00 PM
+-- Host: 127.0.0.1:3306
+-- Generation Time: Dec 06, 2025 at 10:36 PM
 -- Server version: 8.0.40
 -- PHP Version: 8.3.16
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `portfolio_db`
+-- Database: `portfolio`
 --
 
 -- --------------------------------------------------------
@@ -95,6 +95,31 @@ CREATE TABLE `cache_locks` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `companies`
+--
+
+CREATE TABLE `companies` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `industry` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `location` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `website` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `companies`
+--
+
+INSERT INTO `companies` (`id`, `name`, `industry`, `location`, `logo`, `website`, `created_at`, `updated_at`) VALUES
+(1, 'Icon Creations', NULL, NULL, NULL, NULL, '2025-12-06 17:22:29', '2025-12-06 17:22:29'),
+(2, 'Public Prosecution Service of Egypt - Ministry of Justice', NULL, NULL, NULL, NULL, '2025-12-06 17:22:29', '2025-12-06 17:22:29');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `contact_requests`
 --
 
@@ -147,7 +172,7 @@ INSERT INTO `contact_requests_replay` (`id`, `contact_request_id`, `reply_messag
 
 CREATE TABLE `education` (
   `id` bigint UNSIGNED NOT NULL,
-  `university_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `university_id` bigint UNSIGNED NOT NULL,
   `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sub_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -164,16 +189,16 @@ CREATE TABLE `education` (
 -- Dumping data for table `education`
 --
 
-INSERT INTO `education` (`id`, `university_name`, `type`, `title`, `sub_title`, `description`, `image`, `icon`, `start_at`, `end_at`, `created_at`, `updated_at`) VALUES
-(1, 'Ain Shams University', 'Bachelor\'s', 'Faculty of Commerce', 'Accounting and Business Adminstration', NULL, NULL, NULL, '2008-09-01', '2012-05-01', '2025-12-03 08:38:02', '2025-12-03 08:38:02'),
-(2, 'Lane Community College', 'Online Course', 'Computerized Accounting & Fentech', NULL, NULL, NULL, NULL, '2012-01-01', '2012-03-01', '2025-12-03 08:53:06', '2025-12-03 08:53:06'),
-(3, 'Udacity', 'Nanodgree', 'Advanced full-stack Web Development', 'Web Development', NULL, NULL, NULL, '2022-11-01', '2023-04-01', '2025-12-03 09:33:51', '2025-12-03 09:33:51'),
-(4, 'Udacity', 'Online Course', 'Web Development Challenger', 'Web Development', NULL, NULL, NULL, '2022-07-01', '2022-10-01', '2025-12-03 09:36:43', '2025-12-03 09:36:43'),
-(5, 'Udacity', 'Nanodegree', 'Android Basics Nanodegree by Google', 'Android Basics', NULL, NULL, NULL, '2019-07-01', '2020-02-01', '2025-12-03 09:38:36', '2025-12-03 09:38:36'),
-(6, 'Edx by Harvard University', 'Course', 'CS50’s Introduction to Computer Science', 'Computer Science', 'Skills: Algorithms · C (Programming Language) · JavaScript · GitHub · Git · Python (Programming Language) · Dynamic Random-Access Memory (DRAM) · Databases · HTML5 · emoj · Data Structures · Flask', NULL, NULL, '2022-12-01', '2023-12-01', '2025-12-03 09:48:47', '2025-12-03 11:05:52'),
-(7, 'ALX by Helberton School', 'Nanodegree', 'Software Engineering - BackEnd Development', 'Software Engineering', NULL, NULL, NULL, '2023-06-01', '2024-09-01', '2025-12-03 09:51:43', '2025-12-03 09:52:10'),
-(8, 'AMIT - Licensed by the Ministry of Communications and Information Technology', 'Diploma', 'Data Science and AI Diploma', 'Data Science', 'Machine Learning & Artificial Intelligence Diploma – AMIT Learning (6 Months)\r\n\r\nA comprehensive hands-on program covering the full data science and AI lifecycle. The diploma included intensive training in Python for Data Science, SQL, data analysis, data visualization, and real-world machine learning workflows. I gained practical experience with NumPy, Pandas, Matplotlib, Seaborn, Scikit-learn, TensorFlow, Keras, and PyTorch.\r\n\r\nThe curriculum covered:\r\n\r\nData Science fundamentals and the difference between Data Science & Data Engineering\r\n\r\nPython programming for AI and scientific computing\r\n\r\nDatabases and SQL for data extraction\r\n\r\nData cleaning, preprocessing, and exploratory data analysis (EDA)\r\n\r\nData visualization and dashboarding\r\n\r\nMachine Learning algorithms (regression, classification, clustering)\r\n\r\nModel evaluation, optimization, and deployment concepts\r\n\r\nDeep Learning using Keras, TensorFlow, and PyTorch\r\n\r\nNeural networks, CNNs, RNNs, and advanced DL concepts\r\n\r\nAI project workflows and MLOps fundamentals\r\n\r\nGraduation Projects:\r\n\r\nCOVID-19 predictive analysis\r\n\r\nMedical diagnostics using ML\r\n\r\nFinancial data analysis and forecasting\r\n\r\nThe diploma included continuous mentorship, instructor support, and a ticketing system for troubleshooting and guidance to ensure full mastery of all modules.', NULL, NULL, '2025-12-19', '2026-07-31', '2025-12-03 09:58:48', '2025-12-03 09:58:48'),
-(9, 'Huawei Cloud', 'Course', 'Huawei Cloud Developer – HCCDA Tech Essentials', 'Huawei Cloud Developer', 'Skills: HCCDA · Cloud Computing · Cloud Computing IaaS · Huawei Cloud Services · Cloud Architecture Basics · Virtual Private Cloud (VPC) · Elastic Cloud Server (ECS) · Object Storage Service (OBS) · Identity and Access Management (IAM) · Data Security & Encryption Basics · Networking & Security Groups · Database Services (RDS, TaurusDB) · API & Service Integration · Networking Fundamentals (CIDR, Subnets, Routing, SNAT) · Infrastructure as a Service (IaaS) · Platform as a Service (PAAS) · Software as a Service (SaaS)', 'education/1764760603BhAv4cegubYjMOjrrBLb.jpeg', NULL, '2025-09-01', '2025-10-31', '2025-12-03 11:16:43', '2025-12-03 11:16:43');
+INSERT INTO `education` (`id`, `university_id`, `type`, `title`, `sub_title`, `description`, `image`, `icon`, `start_at`, `end_at`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Bachelor\'s', 'Faculty of Commerce', 'Accounting and Business Adminstration', NULL, NULL, NULL, '2008-09-01', '2012-05-01', '2025-12-03 08:38:02', '2025-12-03 08:38:02'),
+(2, 2, 'Online Course', 'Computerized Accounting & Fentech', 'Fentech', NULL, NULL, NULL, '2012-01-01', '2012-03-01', '2025-12-03 08:53:06', '2025-12-06 18:07:41'),
+(3, 3, 'Nanodgree', 'Advanced full-stack Web Development', 'Web Development', NULL, NULL, NULL, '2022-11-01', '2023-04-01', '2025-12-03 09:33:51', '2025-12-03 09:33:51'),
+(4, 3, 'Online Course', 'Web Development Challenger', 'Web Development', NULL, NULL, NULL, '2022-07-01', '2022-10-01', '2025-12-03 09:36:43', '2025-12-03 09:36:43'),
+(5, 3, 'Nanodegree', 'Android Basics Nanodegree by Google', 'Android Basics', NULL, NULL, NULL, '2019-07-01', '2020-02-01', '2025-12-03 09:38:36', '2025-12-03 09:38:36'),
+(6, 4, 'Course', 'CS50’s Introduction to Computer Science', 'Computer Science', 'Skills: Algorithms · C (Programming Language) · JavaScript · GitHub · Git · Python (Programming Language) · Dynamic Random-Access Memory (DRAM) · Databases · HTML5 · emoj · Data Structures · Flask', NULL, NULL, '2022-12-01', '2023-12-01', '2025-12-03 09:48:47', '2025-12-03 11:05:52'),
+(7, 5, 'Nanodegree', 'Software Engineering - BackEnd Development', 'Software Engineering', NULL, NULL, NULL, '2023-06-01', '2024-09-01', '2025-12-03 09:51:43', '2025-12-03 09:52:10'),
+(8, 6, 'Diploma', 'Data Science and AI Diploma', 'Data Science', 'Machine Learning & Artificial Intelligence Diploma – AMIT Learning (6 Months)\r\n\r\nA comprehensive hands-on program covering the full data science and AI lifecycle. The diploma included intensive training in Python for Data Science, SQL, data analysis, data visualization, and real-world machine learning workflows. I gained practical experience with NumPy, Pandas, Matplotlib, Seaborn, Scikit-learn, TensorFlow, Keras, and PyTorch.\r\n\r\nThe curriculum covered:\r\n\r\nData Science fundamentals and the difference between Data Science & Data Engineering\r\n\r\nPython programming for AI and scientific computing\r\n\r\nDatabases and SQL for data extraction\r\n\r\nData cleaning, preprocessing, and exploratory data analysis (EDA)\r\n\r\nData visualization and dashboarding\r\n\r\nMachine Learning algorithms (regression, classification, clustering)\r\n\r\nModel evaluation, optimization, and deployment concepts\r\n\r\nDeep Learning using Keras, TensorFlow, and PyTorch\r\n\r\nNeural networks, CNNs, RNNs, and advanced DL concepts\r\n\r\nAI project workflows and MLOps fundamentals\r\n\r\nGraduation Projects:\r\n\r\nCOVID-19 predictive analysis\r\n\r\nMedical diagnostics using ML\r\n\r\nFinancial data analysis and forecasting\r\n\r\nThe diploma included continuous mentorship, instructor support, and a ticketing system for troubleshooting and guidance to ensure full mastery of all modules.', NULL, NULL, '2025-12-19', '2026-07-31', '2025-12-03 09:58:48', '2025-12-03 09:58:48'),
+(9, 7, 'Course', 'Huawei Cloud Developer – HCCDA Tech Essentials', 'Huawei Cloud Development', 'Skills: HCCDA · Cloud Computing · Cloud Computing IaaS · Huawei Cloud Services · Cloud Architecture Basics · Virtual Private Cloud (VPC) · Elastic Cloud Server (ECS) · Object Storage Service (OBS) · Identity and Access Management (IAM) · Data Security & Encryption Basics · Networking & Security Groups · Database Services (RDS, TaurusDB) · API & Service Integration · Networking Fundamentals (CIDR, Subnets, Routing, SNAT) · Infrastructure as a Service (IaaS) · Platform as a Service (PAAS) · Software as a Service (SaaS)', 'education/1764760603BhAv4cegubYjMOjrrBLb.jpeg', NULL, '2025-09-01', '2025-10-31', '2025-12-03 11:16:43', '2025-12-06 18:00:20');
 
 -- --------------------------------------------------------
 
@@ -183,7 +208,7 @@ INSERT INTO `education` (`id`, `university_name`, `type`, `title`, `sub_title`, 
 
 CREATE TABLE `experience` (
   `id` bigint UNSIGNED NOT NULL,
-  `co_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_id` bigint UNSIGNED NOT NULL,
   `work_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sub_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -200,12 +225,12 @@ CREATE TABLE `experience` (
 -- Dumping data for table `experience`
 --
 
-INSERT INTO `experience` (`id`, `co_name`, `work_type`, `title`, `sub_title`, `description`, `image`, `icon`, `start_at`, `end_at`, `created_at`, `updated_at`) VALUES
-(1, 'Icon Creations', 'Part-time', 'Back-end Developer', 'On-Site', 'At Icon Creations, I played a pivotal role in developing robust backend systems and dynamic dashboards for esteemed clients like Orascom and Knowledge Net. My responsibilities included designing RESTful APIs, optimizing databases, and ensuring seamless integration with front-end teams. I focused on enhancing system performance, CMS content management system and managing deployments, which contributed to delivering exceptional client solutions.', 'experience/17647617423gslRGhg9AeNaNScfo8j.png', NULL, '2023-11-01', NULL, '2025-12-03 11:27:13', '2025-12-03 11:35:42'),
-(2, 'Public Prosecution Service of Egypt - Ministry of Justice', 'Full-time', 'ERP Systems Administration & Head of Criminal Registry Operations', 'On-Site', '• Oversaw all reports and violations received by the Public Prosecution, ensuring accurate documentation and timely processing.  \r\n• Managed the ERP systems for the Agouza Traffic Prosecution, enhancing operational efficiency.  \r\n• Issued clearance certificates, contributing to a streamlined workflow and improved public service delivery.', 'experience/17647617260YcVyacrUQspiHNH5tYf.png', NULL, '2019-11-01', NULL, '2025-12-03 11:35:26', '2025-12-03 11:37:50'),
-(3, 'Public Prosecution Service of Egypt - Ministry of Justice', 'Full-time', 'IT & Data Entry Supervisor', 'On-Site', '• Supervised the IT and data entry operations for recording traffic violations at the Public Prosecution Service of Egypt.  \r\n• Enhanced data accuracy and efficiency by implementing streamlined processes and training staff.  \r\n• Collaborated with cross-functional teams to ensure compliance with legal standards and improve reporting systems.', 'experience/1764763785nsPVzJN47dYwmAKOys5R.png', NULL, '2018-03-01', '2019-11-01', '2025-12-03 12:09:45', '2025-12-03 12:14:41'),
-(4, 'Public Prosecution Service of Egypt - Ministry of Justice', 'Full-time', 'Data Entry Specialist', 'On-Site', '• Recorded and processed over 1,000 traffic violation reports daily for the Public Prosecution Service of Egypt.  \r\n• Ensured accuracy and compliance with legal standards, contributing to the efficiency of the Ministry of Justice.  \r\n• Collaborated with law enforcement agencies to streamline data entry processes, enhancing overall workflow.', 'experience/1764764768ejz21BwvFXUzP0w2eOd8.png', NULL, '2017-01-01', '2018-03-01', '2025-12-03 12:26:08', '2025-12-03 12:26:08'),
-(5, 'Public Prosecution Service of Egypt - Ministry of Justice', 'Full-time', 'Prosecutor\'s Secretary - Secretary to the Head of the Giza Traffic Prosecutions', 'On-Site', '• Provided comprehensive administrative support to the Head of the Giza Traffic Prosecution, ensuring efficient office operations.  \r\n• Managed case files and documentation, facilitating timely processing and adherence to legal protocols.  \r\n• Coordinated communication between various departments, enhancing collaboration and information flow within the Public Prosecution Service.', 'experience/1764764892Gq1179IwO26BmSxfaGVL.png', NULL, '2015-09-05', '2017-01-01', '2025-12-03 12:28:12', '2025-12-03 12:28:12');
+INSERT INTO `experience` (`id`, `company_id`, `work_type`, `title`, `sub_title`, `description`, `image`, `icon`, `start_at`, `end_at`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Part-time', 'Back-end Developer', 'On-Site', 'At Icon Creations, I played a pivotal role in developing robust backend systems and dynamic dashboards for esteemed clients like Orascom and Knowledge Net. My responsibilities included designing RESTful APIs, optimizing databases, and ensuring seamless integration with front-end teams. I focused on enhancing system performance, CMS content management system and managing deployments, which contributed to delivering exceptional client solutions.', 'experience/17647617423gslRGhg9AeNaNScfo8j.png', NULL, '2023-11-01', NULL, '2025-12-03 11:27:13', '2025-12-03 11:35:42'),
+(2, 2, 'Full-time', 'ERP Systems Administration & Head of Criminal Registry Operations', 'On-Site', '• Oversaw all reports and violations received by the Public Prosecution, ensuring accurate documentation and timely processing.  \r\n• Managed the ERP systems for the Agouza Traffic Prosecution, enhancing operational efficiency.  \r\n• Issued clearance certificates, contributing to a streamlined workflow and improved public service delivery.', 'experience/17647617260YcVyacrUQspiHNH5tYf.png', NULL, '2019-11-01', NULL, '2025-12-03 11:35:26', '2025-12-03 11:37:50'),
+(3, 2, 'Full-time', 'IT & Data Entry Supervisor', 'On-Site', '• Supervised the IT and data entry operations for recording traffic violations at the Public Prosecution Service of Egypt.  \r\n• Enhanced data accuracy and efficiency by implementing streamlined processes and training staff.  \r\n• Collaborated with cross-functional teams to ensure compliance with legal standards and improve reporting systems.', 'experience/1764763785nsPVzJN47dYwmAKOys5R.png', NULL, '2018-03-01', '2019-11-01', '2025-12-03 12:09:45', '2025-12-03 12:14:41'),
+(4, 2, 'Full-time', 'Data Entry Specialist', 'On-Site', '• Recorded and processed over 1,000 traffic violation reports daily for the Public Prosecution Service of Egypt.  \r\n• Ensured accuracy and compliance with legal standards, contributing to the efficiency of the Ministry of Justice.  \r\n• Collaborated with law enforcement agencies to streamline data entry processes, enhancing overall workflow.', 'experience/1764764768ejz21BwvFXUzP0w2eOd8.png', NULL, '2017-01-01', '2018-03-01', '2025-12-03 12:26:08', '2025-12-03 12:26:08'),
+(5, 2, 'Full-time', 'Prosecutor\'s Secretary - Secretary to the Head of the Giza Traffic Prosecutions', 'On-Site', '• Provided comprehensive administrative support to the Head of the Giza Traffic Prosecution, ensuring efficient office operations.  \r\n• Managed case files and documentation, facilitating timely processing and adherence to legal protocols.  \r\n• Coordinated communication between various departments, enhancing collaboration and information flow within the Public Prosecution Service.', 'experience/1764764892Gq1179IwO26BmSxfaGVL.png', NULL, '2015-09-05', '2017-01-01', '2025-12-03 12:28:12', '2025-12-03 12:28:12');
 
 -- --------------------------------------------------------
 
@@ -260,7 +285,7 @@ CREATE TABLE `intro` (
 --
 
 INSERT INTO `intro` (`id`, `name`, `title`, `image`, `cv_pdf`, `created_at`, `updated_at`) VALUES
-(1, 'Mohamed Nouh', 'Software Developer', '1764613412dji2Ia3HZ1P1nTkuNmhm.png', '17646139263Loq9DE23xYknyoq055W.pdf', '2025-12-01 17:36:55', '2025-12-01 18:32:06');
+(1, 'Mohamed Nouh', 'Software Developer', '1764613412dji2Ia3HZ1P1nTkuNmhm.png', '17650599916brpK24szLOKDK3l4lNp.pdf', '2025-12-01 17:36:55', '2025-12-06 22:26:31');
 
 -- --------------------------------------------------------
 
@@ -349,7 +374,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (16, '2024_09_21_202618_create_resume_table', 1),
 (17, '2024_09_21_202640_create_skills_table', 1),
 (18, '2025_05_08_183903_create_messages_table', 1),
-(19, '2025_05_14_155920_add_columns_to_settings_table', 1);
+(19, '2025_05_14_155920_add_columns_to_settings_table', 1),
+(20, '2025_05_10_000000_create_companies_table', 2),
+(21, '2025_05_10_000100_create_universities_table', 2),
+(22, '2025_05_10_000200_update_experience_table_add_company_id', 2),
+(23, '2025_05_10_000300_update_education_table_add_university_id', 2),
+(24, '2025_05_10_000500_update_skills_table_add_logo', 3);
 
 -- --------------------------------------------------------
 
@@ -457,7 +487,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('uSPNDnN048FSZOsZPwr0gkaXY4AQ0zJw17XhCSog', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiWWkzSGs0TnhwTTA2b1BmTFJyUDVuaERwWEZPd0pSaVBlZ1lEWGhYayI7czo2OiJsb2NhbGUiO3M6MjoiZW4iO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjQwOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvZGFzaGJvYXJkL3Byb2plY3RzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1764765259);
+('BwhgQ7idY1GGJzQad0GQJJh31i5gxqT7gzhOaK61', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiODhzNTVKTExTYnZTc0pyd2R0YVpBZU5lVGtZOXNMTEluV3B1YVlmZyI7czo2OiJsb2NhbGUiO3M6MjoiZW4iO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjIxOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUyOiJsb2dpbl9hZG1pbl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1765060006);
 
 -- --------------------------------------------------------
 
@@ -511,9 +541,85 @@ CREATE TABLE `skills` (
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `progress` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `skills`
+--
+
+INSERT INTO `skills` (`id`, `name`, `type`, `progress`, `logo`, `created_at`, `updated_at`) VALUES
+(1, 'HTML', 'frontend', '95', 'skills/1765046484kUR1migGDZZYGb12jQfQ.svg', '2025-12-06 18:41:24', '2025-12-06 20:20:50'),
+(2, 'CSS', 'frontend', '70', 'skills/1765047651FjWZSEL5bMetl3Fae44p.svg', '2025-12-06 19:00:51', '2025-12-06 19:00:51'),
+(3, 'Bootstrap', 'frontend', '80', 'skills/1765047680sj3hW4bbRI7EWk3ShoPQ.svg', '2025-12-06 19:01:20', '2025-12-06 19:01:20'),
+(4, 'JavaScript', 'backend', '75', 'skills/1765049775CFiKPkZABcFR5TcnjiLa.svg', '2025-12-06 19:02:08', '2025-12-06 19:36:15'),
+(5, 'PHP', 'backend', '80', 'skills/1765047764VeLQeALdxymg7VBjLuqz.svg', '2025-12-06 19:02:44', '2025-12-06 19:02:44'),
+(6, '.ENV', 'devops', '70', 'skills/1765047831ub60kBQmtLnEYposGvry.svg', '2025-12-06 19:03:51', '2025-12-06 19:03:51'),
+(7, 'Laravel', 'backend', '90', 'skills/1765047859aYQyiL7BdNoU1Yc3j3zP.svg', '2025-12-06 19:04:19', '2025-12-06 19:04:19'),
+(8, 'Git', 'general', '80', 'skills/1765047897emByU7XwpGQv3vdncFre.svg', '2025-12-06 19:04:57', '2025-12-06 19:04:57'),
+(9, 'GitHub', 'tools', '90', 'skills/1765053434Ch6uEG7uxgtSi34jCkhw.svg', '2025-12-06 19:05:23', '2025-12-06 20:40:31'),
+(10, 'MySQL', 'database', '75', 'skills/1765047985Ha4zaDF3TyOz9C4cyaZ4.svg', '2025-12-06 19:06:25', '2025-12-06 21:43:31'),
+(11, 'phpMyAdmin', 'tools', '80', 'skills/1765048035DMIGwipkveP4JcKxoA1z.svg', '2025-12-06 19:07:15', '2025-12-06 19:07:15'),
+(12, 'Node.js', 'backend', '40', 'skills/1765048208c9ZRqHccz2uRPOyIt9pG.svg', '2025-12-06 19:10:08', '2025-12-06 22:18:31'),
+(13, 'Huawei Cloud Services', 'devops', '60', 'skills/1765049658sc4ugZHkyXFHTRd9ZJp7.svg', '2025-12-06 19:34:18', '2025-12-06 19:34:18'),
+(14, 'Sass', 'frontend', '60', 'skills/1765049834VZqyZ8Xn7cvjb74bMcMR.svg', '2025-12-06 19:37:14', '2025-12-06 19:37:14'),
+(15, 'tailwind-CSS', 'frontend', '50', 'skills/1765049884aqNljlYLJ9yIVdoWgTMS.svg', '2025-12-06 19:38:04', '2025-12-06 19:38:04'),
+(16, 'React.js', 'frontend', '40', 'skills/1765049916hYw4puUtAbZ6t5QF4OR7.svg', '2025-12-06 19:38:36', '2025-12-06 19:38:36'),
+(17, 'MongoDB', 'database', '30', 'skills/1765049983mPeOp0Q4vqLgxoJxcufF.svg', '2025-12-06 19:39:43', '2025-12-06 21:43:50'),
+(18, 'Digital Ocean', 'devops', '60', 'skills/1765050346YDfitPgWiBRQD0LCvQyk.svg', '2025-12-06 19:45:46', '2025-12-06 19:45:46'),
+(19, 'Hostinger', 'devops', '75', 'skills/1765050388bjgoI4bCYYyQ7RxMRQym.svg', '2025-12-06 19:46:28', '2025-12-06 19:46:28'),
+(20, 'Python', 'data_science_and_analytics', '50', 'skills/1765050413k2GP87CAihrBewCReejp.svg', '2025-12-06 19:46:53', '2025-12-06 21:37:20'),
+(21, 'Jest', 'testing', '50', 'skills/17650504647na0aEyKUWNwTRdLozcU.svg', '2025-12-06 19:47:44', '2025-12-06 19:47:44'),
+(22, 'Jasmine', 'testing', '50', 'skills/1765050490FwLD641n7AWfZvuKmvdT.svg', '2025-12-06 19:48:10', '2025-12-06 19:48:10'),
+(23, 'PHP Unit', 'testing', '60', 'skills/17650507759zlbbQ3ofgOm9Io7xaXq.svg', '2025-12-06 19:52:55', '2025-12-06 20:29:51'),
+(24, 'Docker', 'devops', '30', 'skills/1765050940HyuCeRZGsdX7ED9Kfa82.svg', '2025-12-06 19:55:40', '2025-12-06 19:55:40'),
+(25, 'Linux', 'general', '60', 'skills/1765053571ktMzrWUn9ASoEhejBa83.svg', '2025-12-06 20:39:31', '2025-12-06 20:39:31'),
+(26, 'Terminal', 'general', '60', 'skills/1765053658PaxPVybnOM1J0Bik3B48.svg', '2025-12-06 20:40:58', '2025-12-06 20:40:58'),
+(27, 'cpanel', 'tools', '70', 'skills/1765053760oR6yGNoDwGhahDQvl4cL.svg', '2025-12-06 20:42:40', '2025-12-06 20:42:40'),
+(28, 'VScode', 'tools', '80', 'skills/1765053889Qw1TZRQtD7Ssc6kcQ4na.svg', '2025-12-06 20:44:49', '2025-12-06 20:44:49'),
+(29, 'Express.js', 'backend', '30', 'skills/1765053990ZGxyMdHR8yAqU1exKF8Z.svg', '2025-12-06 20:46:30', '2025-12-06 20:46:30'),
+(30, 'JWT', 'backend', '70', 'skills/1765054138KKBTon5sjdExEDUfVk07.svg', '2025-12-06 20:48:58', '2025-12-06 20:48:58'),
+(31, 'Postgresql', 'database', '40', 'skills/1765055562NE1wjDzl3ODMAj5ZzQ0G.svg', '2025-12-06 21:12:42', '2025-12-06 21:43:40'),
+(32, 'SQLite', 'database', '50', 'skills/1765055615duWOWxD1L92PZ6ZR75lD.svg', '2025-12-06 21:13:35', '2025-12-06 21:44:00'),
+(33, 'C++', 'backend', '10', 'skills/1765055680sLMHCALTwZZe9sXeBu1s.svg', '2025-12-06 21:14:40', '2025-12-06 21:14:40'),
+(34, 'Work Agile', 'personal_skills', '90', 'skills/1765055940AQMB6yEACUdV8E7oPFS7.jpg', '2025-12-06 21:19:00', '2025-12-06 21:19:00'),
+(35, 'Power PI', 'data_science_and_analytics', '20', 'skills/1765057133pblp6aHo7nG6DtI1YOrq.png', '2025-12-06 21:38:53', '2025-12-06 21:38:53'),
+(36, 'Microsoft Excel', 'data_science_and_analytics', '80', 'skills/1765057217055uW69JgLYn1x9VMgqb.png', '2025-12-06 21:40:17', '2025-12-06 21:40:17'),
+(37, 'C', 'backend', '10', 'skills/1765057315BgDIF2YdOvmrnOddoKRR.svg', '2025-12-06 21:41:55', '2025-12-06 21:41:55'),
+(38, 'Leadership', 'personal_skills', '80', 'skills/1765057861RCHmE48CiuhxWrwR2qhR.png', '2025-12-06 21:51:01', '2025-12-06 21:51:01'),
+(39, 'Innovation', 'personal_skills', '70', 'skills/1765057980xQVsVM80l5o9VLawc8hp.png', '2025-12-06 21:53:00', '2025-12-06 21:53:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `universities`
+--
+
+CREATE TABLE `universities` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `country` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `website` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `universities`
+--
+
+INSERT INTO `universities` (`id`, `name`, `country`, `city`, `logo`, `website`, `created_at`, `updated_at`) VALUES
+(1, 'Ain Shams University', NULL, NULL, NULL, NULL, '2025-12-06 17:22:29', '2025-12-06 17:22:29'),
+(2, 'Lane Community College', NULL, NULL, NULL, NULL, '2025-12-06 17:22:29', '2025-12-06 17:22:29'),
+(3, 'Udacity', NULL, NULL, NULL, NULL, '2025-12-06 17:22:29', '2025-12-06 17:22:29'),
+(4, 'Edx by Harvard University', NULL, NULL, NULL, NULL, '2025-12-06 17:22:29', '2025-12-06 17:22:29'),
+(5, 'ALX by Helberton School', NULL, NULL, NULL, NULL, '2025-12-06 17:22:29', '2025-12-06 17:22:29'),
+(6, 'AMIT - Licensed by the Ministry of Communications and Information Technology', NULL, NULL, NULL, NULL, '2025-12-06 17:22:29', '2025-12-06 17:22:29'),
+(7, 'Huawei Cloud', NULL, NULL, NULL, NULL, '2025-12-06 17:22:29', '2025-12-06 17:22:29');
 
 -- --------------------------------------------------------
 
@@ -562,6 +668,13 @@ ALTER TABLE `cache_locks`
   ADD PRIMARY KEY (`key`);
 
 --
+-- Indexes for table `companies`
+--
+ALTER TABLE `companies`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `companies_name_unique` (`name`);
+
+--
 -- Indexes for table `contact_requests`
 --
 ALTER TABLE `contact_requests`
@@ -578,13 +691,15 @@ ALTER TABLE `contact_requests_replay`
 -- Indexes for table `education`
 --
 ALTER TABLE `education`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `education_university_id_foreign` (`university_id`);
 
 --
 -- Indexes for table `experience`
 --
 ALTER TABLE `experience`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `experience_company_id_foreign` (`company_id`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -684,6 +799,13 @@ ALTER TABLE `skills`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `universities`
+--
+ALTER TABLE `universities`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `universities_name_unique` (`name`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -705,6 +827,12 @@ ALTER TABLE `about`
 --
 ALTER TABLE `admins`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `companies`
+--
+ALTER TABLE `companies`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `contact_requests`
@@ -764,7 +892,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -800,7 +928,13 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `skills`
 --
 ALTER TABLE `skills`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+
+--
+-- AUTO_INCREMENT for table `universities`
+--
+ALTER TABLE `universities`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -817,6 +951,18 @@ ALTER TABLE `users`
 --
 ALTER TABLE `contact_requests_replay`
   ADD CONSTRAINT `contact_requests_replay_contact_request_id_foreign` FOREIGN KEY (`contact_request_id`) REFERENCES `contact_requests` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `education`
+--
+ALTER TABLE `education`
+  ADD CONSTRAINT `education_university_id_foreign` FOREIGN KEY (`university_id`) REFERENCES `universities` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+--
+-- Constraints for table `experience`
+--
+ALTER TABLE `experience`
+  ADD CONSTRAINT `experience_company_id_foreign` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 --
 -- Constraints for table `portfolio`

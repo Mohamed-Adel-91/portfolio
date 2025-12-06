@@ -32,6 +32,11 @@ class Project extends Model
         'lunched_at' => 'date',
     ];
 
+    public function portfolioItems()
+    {
+        return $this->hasMany(Portfolio::class);
+    }
+
     public function getImagePathAttribute(): ?string
     {
         if (!$this->image) {

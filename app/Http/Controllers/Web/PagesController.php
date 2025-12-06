@@ -8,9 +8,14 @@ use App\Models\ContactRequest;
 use App\Models\Education;
 use App\Models\Experience;
 use App\Models\Intro;
+use App\Models\Gallery;
+use App\Models\Portfolio;
+use App\Models\Project;
 use App\Models\Skill;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 
 class PagesController extends Controller
@@ -30,6 +35,8 @@ class PagesController extends Controller
             ->orderByDesc('progress')
             ->get()
             ->groupBy('type');
+        $portfolioFilters = $this->buildPortfolioFilters();
+        $portfolioItems = $this->buildPortfolioItems($portfolioFilters);
 
         return view('web.layouts.master')->with([
             'pageName' => 'Mohamed Adel - Personal Portfolio Website',
@@ -39,7 +46,108 @@ class PagesController extends Controller
             'educations' => $educations,
             'experiences' => $experiences,
             'skillsByType' => $skillsByType,
+            'portfolioFilters' => $portfolioFilters,
+            'portfolioItems' => $portfolioItems,
         ]);
+    }
+
+    private function buildPortfolioFilters(): Collection
+    {
+        $filters = collect([
+            ['id' => 'all', 'label' => 'See All'],
+            ['id' => 1, 'label' => 'Certificates', 'type' => 'certificates'],
+            ['id' => 2, 'label' => 'Events', 'type' => 'events'],
+        ]);
+
+        $projects = Project::with(['portfolioItems' => function ($q) {
+            $q->whereNotNull('image')
+                ->where('image', '!=', '');
+        }])
+            ->orderBy('lunched_at', 'desc')
+            ->get()
+            ->filter(fn ($project) => $project->portfolioItems->isNotEmpty());
+        $nextId = 10;
+
+        foreach ($projects as $project) {
+            $filters->push([
+                'id' => $nextId,
+                'label' => $project->name ?? 'Project',
+                'type' => 'project',
+                'projectId' => $project->id,
+            ]);
+            $nextId++;
+        }
+
+        return $filters;
+    }
+
+    private function buildPortfolioItems(Collection $filters): Collection
+    {
+        $items = collect();
+
+        $certificates = Education::orderByDesc('start_at')->get();
+        foreach ($certificates as $edu) {
+            if (empty($edu->image)) {
+                continue;
+            }
+            $image = $edu->image ? asset('upload/' . ltrim($edu->image, '/')) : 'https://via.placeholder.com/600x400?text=Certificate';
+            $items->push([
+                'category' => 1,
+                'title' => $edu->title ?? 'Certificate',
+                'subtitle' => $edu->sub_title ?? $edu->type ?? 'Certificate',
+                'image' => $image,
+                'link' => $edu->image ? $image : '#',
+                'badge' => 'Certificate',
+            ]);
+        }
+
+        $events = Gallery::orderByDesc('created_at')->get();
+        foreach ($events as $event) {
+            if (empty($event->image)) {
+                continue;
+            }
+            $image = $event->image ? asset('upload/gallery/' . ltrim($event->image, '/')) : 'https://via.placeholder.com/600x400?text=Event';
+            $items->push([
+                'category' => 2,
+                'title' => $event->title ?? 'Event',
+                'subtitle' => $event->sub_title ?? 'Event',
+                'image' => $image,
+                'link' => $event->iframe ?: ($event->image ? $image : '#'),
+                'badge' => 'Event',
+            ]);
+        }
+
+        $filtersProjects = $filters->where('type', 'project')->keyBy('projectId');
+        $projects = Project::with('portfolioItems')->orderBy('lunched_at', 'desc')->get();
+
+        foreach ($projects as $project) {
+            $filterId = optional($filtersProjects->get($project->id))['id'] ?? null;
+            if (! $filterId) {
+                continue;
+            }
+
+            foreach ($project->portfolioItems as $port) {
+                if (empty($port->image)) {
+                    continue;
+                }
+                $imagePath = ltrim($port->image, '/');
+                if (Str::startsWith($imagePath, 'portfolio/')) {
+                    $imagePath = Str::after($imagePath, 'portfolio/');
+                }
+                $image = asset('upload/portfolio/' . $imagePath);
+
+                $items->push([
+                    'category' => $filterId,
+                    'title' => $port->title ?? $project->name ?? 'Project',
+                    'subtitle' => $port->sub_title ?? 'Project',
+                    'image' => $image,
+                    'link' => $project->url ?: $image,
+                    'badge' => 'Project',
+                ]);
+            }
+        }
+
+        return $items;
     }
 
     public function contactUs()
