@@ -46,8 +46,6 @@
                                     @endif
                                 </span>
 
-                                
-
                                 @if($edu->description)
                                     <p class="text-muted small mb-1 mt-1">
                                         {{ $edu->description }}
