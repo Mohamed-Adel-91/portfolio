@@ -4,8 +4,8 @@ namespace App\Enums;
 
 enum SkillType: string
 {
-    case FRONTEND = 'frontend';
     case BACKEND = 'backend';
+    case FRONTEND = 'frontend';
     case DEVOPS = 'devops';
     case TESTING = 'testing';
     case TOOLS = 'tools';
@@ -15,8 +15,8 @@ enum SkillType: string
     public function label(): string
     {
         return match ($this) {
-            self::FRONTEND => 'Frontend',
             self::BACKEND => 'Backend',
+            self::FRONTEND => 'Frontend',
             self::DEVOPS => 'DevOps',
             self::TESTING => 'Testing',
             self::TOOLS => 'Tools',

@@ -15,17 +15,22 @@
             <div class="content-right" id="accordionSkills">
                 @php
                     $typeLabels = [
-                        'frontend' => 'Frontend',
                         'backend' => 'Backend',
                         'devops' => 'DevOps',
+                        'frontend' => 'Frontend',
                         'testing' => 'Testing',
                         'tools' => 'Tools',
                         'general' => 'General',
                         'personal_skills' => 'Personal Skills',
                     ];
+                    $orderedTypeKeys = collect(['backend', 'devops','frontend',  'testing', 'tools', 'general', 'personal_skills'])
+                        ->filter(fn ($key) => ($skillsByType ?? collect())->has($key));
+                    $remainingTypes = collect($skillsByType ?? collect())->keys()->diff($orderedTypeKeys);
+                    $orderedTypeKeys = $orderedTypeKeys->concat($remainingTypes);
                 @endphp
 
-                @forelse($skillsByType ?? collect() as $type => $skills)
+                @forelse($orderedTypeKeys as $type)
+                    @php $skills = ($skillsByType ?? collect())[$type] ?? collect(); @endphp
                     @php
                         $label = $typeLabels[$type] ?? ucfirst(str_replace('_', ' ', (string) $type));
                         $collapseId = 'skill-type-' . Str::slug((string) $type);

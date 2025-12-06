@@ -21,10 +21,10 @@ class PagesController extends Controller
         $about = About::first();
         $settings = Setting::first();
         $educations = Education::with('university')
-            ->orderBy('start_at', 'asc')
+            ->orderBy('start_at', 'desc')
             ->get();
         $experiences = Experience::with('company')
-            ->orderBy('start_at', 'asc')
+            ->orderBy('start_at', 'desc')
             ->get();
         $skillsByType = Skill::orderBy('type')
             ->orderByDesc('progress')
