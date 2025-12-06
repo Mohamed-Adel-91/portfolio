@@ -1,8 +1,52 @@
-<div class="row gutters">
+@php
+    $formAction = $formAction ?? route('admin.experience.store');
+    $formMethod = strtoupper($formMethod ?? 'POST');
+    $selectedCompanyId = old('company_id', session('selected_company_id', $selectedCompanyId ?? $experience->company_id ?? null));
+@endphp
+
+<div class="mb-3">
+    @if (session('inline_company_success'))
+        <div class="alert alert-success" role="alert">
+            {{ session('inline_company_success') }}
+        </div>
+    @endif
+    @if ($errors->has('name'))
+        <div class="alert alert-danger" role="alert">
+            {{ $errors->first('name') }}
+        </div>
+    @endif
+    <form class="form-inline" method="POST" action="{{ route('admin.experience.company.storeInline') }}">
+        @csrf
+        <div class="form-row align-items-end">
+            <div class="form-group col-md-8">
+                <label class="sr-only" for="inline_company_name">New Company</label>
+                <input type="text" class="form-control" id="inline_company_name" name="name" placeholder="Add new company">
+            </div>
+            <div class="form-group col-md-4">
+                <button type="submit" class="btn btn-secondary">Add Company</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<form method="POST" action="{{ $formAction }}" enctype="multipart/form-data">
+    @csrf
+    @if ($formMethod !== 'POST')
+        @method($formMethod)
+    @endif
+
+    <div class="row gutters">
     <div class="form-group col-md-6">
-        <label for="co_name">Company</label>
-        <input type="text" class="form-control" id="co_name" name="co_name" value="{{ old('co_name', optional($experience->company)->name) }}" required>
-        @error('co_name')
+        <label for="company_id">Company</label>
+        <select class="form-control" id="company_id" name="company_id" required>
+            <option value="">-- Select Company --</option>
+            @foreach($companies as $company)
+                <option value="{{ $company->id }}" {{ (int) $selectedCompanyId === $company->id ? 'selected' : '' }}>
+                    {{ $company->name }}
+                </option>
+            @endforeach
+        </select>
+        @error('company_id')
             <span class="text-danger small">{{ $message }}</span>
         @enderror
     </div>
@@ -80,3 +124,4 @@
         <button type="submit" class="btn btn-primary">{{ $submitLabel ?? 'Save' }}</button>
     </div>
 </div>
+</form>

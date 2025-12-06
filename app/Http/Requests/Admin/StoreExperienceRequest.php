@@ -14,7 +14,7 @@ class StoreExperienceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'co_name' => ['required', 'string', 'max:255'],
+            'company_id' => ['required', 'exists:companies,id'],
             'work_type' => ['nullable', 'string', 'max:255'],
             'title' => ['required', 'string', 'max:255'],
             'sub_title' => ['nullable', 'string', 'max:255'],

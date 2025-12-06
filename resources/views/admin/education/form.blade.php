@@ -1,8 +1,52 @@
-<div class="row gutters">
+@php
+    $formAction = $formAction ?? route('admin.education.store');
+    $formMethod = strtoupper($formMethod ?? 'POST');
+    $selectedUniversityId = old('university_id', session('selected_university_id', $selectedUniversityId ?? $education->university_id ?? null));
+@endphp
+
+<div class="mb-3">
+    @if (session('inline_university_success'))
+        <div class="alert alert-success" role="alert">
+            {{ session('inline_university_success') }}
+        </div>
+    @endif
+    @if ($errors->has('name'))
+        <div class="alert alert-danger" role="alert">
+            {{ $errors->first('name') }}
+        </div>
+    @endif
+    <form class="form-inline" method="POST" action="{{ route('admin.education.university.storeInline') }}">
+        @csrf
+        <div class="form-row align-items-end">
+            <div class="form-group col-md-8">
+                <label class="sr-only" for="inline_university_name">New University</label>
+                <input type="text" class="form-control" id="inline_university_name" name="name" placeholder="Add new university">
+            </div>
+            <div class="form-group col-md-4">
+                <button type="submit" class="btn btn-secondary">Add University</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<form method="POST" action="{{ $formAction }}" enctype="multipart/form-data">
+    @csrf
+    @if ($formMethod !== 'POST')
+        @method($formMethod)
+    @endif
+
+    <div class="row gutters">
     <div class="form-group col-md-6">
-        <label for="university_name">University</label>
-        <input type="text" class="form-control" id="university_name" name="university_name" value="{{ old('university_name', optional($education->university)->name) }}" required>
-        @error('university_name')
+        <label for="university_id">University</label>
+        <select class="form-control" id="university_id" name="university_id" required>
+            <option value="">-- Select University --</option>
+            @foreach($universities as $university)
+                <option value="{{ $university->id }}" {{ (int) $selectedUniversityId === $university->id ? 'selected' : '' }}>
+                    {{ $university->name }}
+                </option>
+            @endforeach
+        </select>
+        @error('university_id')
             <span class="text-danger small">{{ $message }}</span>
         @enderror
     </div>
@@ -80,3 +124,4 @@
         <button type="submit" class="btn btn-primary">{{ $submitLabel ?? 'Save' }}</button>
     </div>
 </div>
+</form>

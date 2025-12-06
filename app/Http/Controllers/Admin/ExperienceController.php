@@ -11,6 +11,7 @@ use App\Traits\DeleteFileTrait;
 use App\Traits\FileUploadTrait;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class ExperienceController extends Controller
 {
@@ -32,9 +33,14 @@ class ExperienceController extends Controller
 
     public function create(): View
     {
+        $companies = Company::orderBy('name')->get();
+        $selectedCompanyId = old('company_id') ?? session('selected_company_id') ?? null;
+
         return view('admin.experience.create', [
             'pageName' => 'Add Experience',
             'experience' => new Experience(),
+            'companies' => $companies,
+            'selectedCompanyId' => $selectedCompanyId,
         ]);
     }
 
@@ -42,8 +48,7 @@ class ExperienceController extends Controller
     {
         $data = $request->validated();
 
-        $data['company_id'] = $this->resolveCompanyId($data['co_name'] ?? null);
-        unset($data['co_name']);
+        $data['company_id'] = (int) $data['company_id'];
 
         if ($request->hasFile('image')) {
             $this->ensureUploadDirectoryExists();
@@ -71,10 +76,14 @@ class ExperienceController extends Controller
     public function edit(Experience $experience): View
     {
         $experience->load('company');
+        $companies = Company::orderBy('name')->get();
+        $selectedCompanyId = old('company_id') ?? session('selected_company_id') ?? $experience->company_id;
 
         return view('admin.experience.edit', [
             'pageName' => 'Edit Experience',
             'experience' => $experience,
+            'companies' => $companies,
+            'selectedCompanyId' => $selectedCompanyId,
         ]);
     }
 
@@ -82,8 +91,7 @@ class ExperienceController extends Controller
     {
         $data = $request->validated();
 
-        $data['company_id'] = $this->resolveCompanyId($data['co_name'] ?? null);
-        unset($data['co_name']);
+        $data['company_id'] = (int) $data['company_id'];
 
         if ($request->hasFile('image')) {
             $this->ensureUploadDirectoryExists();
@@ -111,6 +119,19 @@ class ExperienceController extends Controller
             ->with('success', 'Experience updated successfully.');
     }
 
+    public function storeCompanyInline(Request $request): RedirectResponse
+    {
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+        ]);
+
+        $company = Company::firstOrCreate(['name' => $validated['name']]);
+
+        return back()
+            ->with('inline_company_success', 'Company saved.')
+            ->with('selected_company_id', $company->id);
+    }
+
     public function destroy(Experience $experience): RedirectResponse
     {
         if ($experience->image) {
@@ -131,16 +152,5 @@ class ExperienceController extends Controller
         if (! is_dir($directory)) {
             mkdir($directory, 0755, true);
         }
-    }
-
-    private function resolveCompanyId(?string $companyName): int
-    {
-        $name = trim((string) $companyName);
-
-        if ($name === '') {
-            $name = 'Unspecified Company';
-        }
-
-        return Company::firstOrCreate(['name' => $name])->id;
     }
 }

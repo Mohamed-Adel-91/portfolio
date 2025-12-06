@@ -14,7 +14,7 @@ class StoreEducationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'university_name' => ['required', 'string', 'max:255'],
+            'university_id' => ['required', 'exists:universities,id'],
             'type' => ['nullable', 'string', 'max:255'],
             'title' => ['required', 'string', 'max:255'],
             'sub_title' => ['nullable', 'string', 'max:255'],

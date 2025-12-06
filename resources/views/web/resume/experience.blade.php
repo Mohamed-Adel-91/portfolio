@@ -21,16 +21,16 @@
                 </li>
                 <li>
                     <h4>Amazon <small style="font-size: 12px;">Self-Employed</small></h4>
-                    <h4>Jumia <small style="font-size: 12px;">Self-Employed</small></h4>
-                    <h4>Souq.com <small style="font-size: 12px;">Self-Employed</small></h4>
-                    <span>Online Seller (2019 - 2023)</span>
-                </li>
-                {{-- <li>
                     <span>Online Seller (2019 - 2023)</span>
                 </li>
                 <li>
+                    <h4>Souq.com <small style="font-size: 12px;">Self-Employed</small></h4>
+                    <span>Online Seller (2019 - 2023)</span>
+                </li>
+                <li>
+                    <h4>Jumia <small style="font-size: 12px;">Self-Employed</small></h4>
                     <span>Online Seller (2019 - 2021)</span>
-                </li> --}}
+                </li>
                 <li>
                     <h4>Public Prosecution Service of Egypt - Giza Traffic Department <small
                             style="font-size: 12px;">Full-Time</small></h4>

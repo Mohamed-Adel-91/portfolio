@@ -50,6 +50,10 @@ Route::group(['as' => 'admin.', 'prefix' => 'dashboard', 'middleware' => 'AuthPe
     Route::put('/sections/intro/update', [IntroController::class, 'update'])->name('intro.update');
     Route::get('/sections/about/edit', [AboutController::class, 'edit'])->name('about.edit');
     Route::put('/sections/about/update', [AboutController::class, 'update'])->name('about.update');
+    Route::post('/experience/company/inline', [ExperienceController::class, 'storeCompanyInline'])
+        ->name('experience.company.storeInline');
+    Route::post('/education/university/inline', [EducationController::class, 'storeUniversityInline'])
+        ->name('education.university.storeInline');
     Route::resource('experience', ExperienceController::class)->except(['show']);
     Route::resource('education', EducationController::class)->except(['show']);
     Route::resource('resume', ResumeController::class)->except(['show']);

@@ -10,23 +10,22 @@
             <div class="main-container">
                 @include('admin.layouts.alerts')
 
-                <form method="POST" action="{{ route('admin.education.update', $education) }}" enctype="multipart/form-data">
-                    @csrf
-                    @method('PUT')
-
-                    <div class="row gutters">
-                        <div class="col-12">
-                            <div class="card h-100">
-                                <div class="card-header">
-                                    <div class="card-title">Website Sections > Education > Edit</div>
-                                </div>
-                                <div class="card-body">
-                                    @include('admin.education.form', ['submitLabel' => 'Update Education'])
-                                </div>
+                <div class="row gutters">
+                    <div class="col-12">
+                        <div class="card h-100">
+                            <div class="card-header">
+                                <div class="card-title">Website Sections > Education > Edit</div>
+                            </div>
+                            <div class="card-body">
+                                @include('admin.education.form', [
+                                    'submitLabel' => 'Update Education',
+                                    'formAction' => route('admin.education.update', $education),
+                                    'formMethod' => 'PUT',
+                                ])
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

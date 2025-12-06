@@ -11,6 +11,7 @@ use App\Traits\DeleteFileTrait;
 use App\Traits\FileUploadTrait;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class EducationController extends Controller
 {
@@ -32,9 +33,14 @@ class EducationController extends Controller
 
     public function create(): View
     {
+        $universities = University::orderBy('name')->get();
+        $selectedUniversityId = old('university_id') ?? session('selected_university_id') ?? null;
+
         return view('admin.education.create', [
             'pageName' => 'Add Education',
             'education' => new Education(),
+            'universities' => $universities,
+            'selectedUniversityId' => $selectedUniversityId,
         ]);
     }
 
@@ -42,8 +48,7 @@ class EducationController extends Controller
     {
         $data = $request->validated();
 
-        $data['university_id'] = $this->resolveUniversityId($data['university_name'] ?? null);
-        unset($data['university_name']);
+        $data['university_id'] = (int) $data['university_id'];
 
         if ($request->hasFile('image')) {
             $this->ensureUploadDirectoryExists();
@@ -71,10 +76,14 @@ class EducationController extends Controller
     public function edit(Education $education): View
     {
         $education->load('university');
+        $universities = University::orderBy('name')->get();
+        $selectedUniversityId = old('university_id') ?? session('selected_university_id') ?? $education->university_id;
 
         return view('admin.education.edit', [
             'pageName' => 'Edit Education',
             'education' => $education,
+            'universities' => $universities,
+            'selectedUniversityId' => $selectedUniversityId,
         ]);
     }
 
@@ -82,8 +91,7 @@ class EducationController extends Controller
     {
         $data = $request->validated();
 
-        $data['university_id'] = $this->resolveUniversityId($data['university_name'] ?? null);
-        unset($data['university_name']);
+        $data['university_id'] = (int) $data['university_id'];
 
         if ($request->hasFile('image')) {
             $this->ensureUploadDirectoryExists();
@@ -111,6 +119,19 @@ class EducationController extends Controller
             ->with('success', 'Education updated successfully.');
     }
 
+    public function storeUniversityInline(Request $request): RedirectResponse
+    {
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+        ]);
+
+        $university = University::firstOrCreate(['name' => $validated['name']]);
+
+        return back()
+            ->with('inline_university_success', 'University saved.')
+            ->with('selected_university_id', $university->id);
+    }
+
     public function destroy(Education $education): RedirectResponse
     {
         if ($education->image) {
@@ -131,16 +152,5 @@ class EducationController extends Controller
         if (! is_dir($directory)) {
             mkdir($directory, 0755, true);
         }
-    }
-
-    private function resolveUniversityId(?string $universityName): int
-    {
-        $name = trim((string) $universityName);
-
-        if ($name === '') {
-            $name = 'Unspecified University';
-        }
-
-        return University::firstOrCreate(['name' => $name])->id;
     }
 }
