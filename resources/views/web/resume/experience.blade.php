@@ -10,53 +10,42 @@
     </div>
     <div class="col-md-6 col-sm-12 col-xs-12">
         <div class="content-right">
+            @php
+                $groupedExperiences = $experiences
+                    ->filter(fn ($exp) => $exp->company)
+                    ->groupBy(fn ($exp) => $exp->company->name);
+            @endphp
             <ul class="timeline">
-                <li>
-                    <h4>Icon Creations <small style="font-size: 12px;">Part-time</small></h4>
-                    <span>Back-End Web Developer (2023 - Now)</span>
-                </li>
-                <li>
-                    <h4>Upwork <small style="font-size: 12px;">Freelancer</small></h4>
-                    <span>Full-Stack Web Developer (2023 - Now)</span>
-                </li>
-                <li>
-                    <h4>Amazon <small style="font-size: 12px;">Self-Employed</small></h4>
-                    <span>Online Seller (2019 - 2023)</span>
-                </li>
-                <li>
-                    <h4>Souq.com <small style="font-size: 12px;">Self-Employed</small></h4>
-                    <span>Online Seller (2019 - 2023)</span>
-                </li>
-                <li>
-                    <h4>Jumia <small style="font-size: 12px;">Self-Employed</small></h4>
-                    <span>Online Seller (2019 - 2021)</span>
-                </li>
-                <li>
-                    <h4>Public Prosecution Service of Egypt - Giza Traffic Department <small
-                            style="font-size: 12px;">Full-Time</small></h4>
-                    <span>Head of the Criminal Registry (2019 - Now)</span>
-                    </br><span>IT & Data Entry Supervisor(2018 - 2019)</span>
-                    </br><span>Data Entry Spicialist (2017 - 2018)</span>
-                    </br><span>Prosecutor's secretary (2015 - 2017)</span>
-                </li>
+                @foreach($groupedExperiences as $companyName => $items)
+                    @php
+                        $first = $items->first();
+                        $workType = $first->work_type;
+                    @endphp
+                    <li>
+                        <h4>
+                            {{ $companyName }}
+                            @if($workType)
+                                <small style="font-size: 12px;">{{ $workType }}</small>
+                            @endif
+                        </h4>
 
-                {{-- <li>
-                    <h4>CIB Bank <small style="font-size: 12px;">Full-Time</small></h4>
-                    <span>Sales Executive (2015 - 2015)</span>
-                </li> --}}
-                <li>
-                    <h4>Citi Bank <small style="font-size: 12px;">Full-Time</small></h4>
-                    <span>Sales Executive (2014 - 2015)</span>
-                </li>
-                <li>
-                    <h4>Wadi Degla Club <small style="font-size: 12px;">Full-Time</small></h4>
-                    <span>Sales Representative (2013 - 2014)</span>
-                </li>
-                <li>
-                    <h4>Intarnational Trade and Investment <small style="font-size: 12px;">Full-Time</small></h4>
-                    <span>Senior Teller (2012 - 2013)</span>
-                    </br><span>Teller (2012 - 2013)</span>
-                </li>
+                        @foreach($items as $exp)
+                            @php
+                                $startYear = optional($exp->start_at)->format('Y');
+                                $endYear = $exp->end_at ? $exp->end_at->format('Y') : 'Now';
+                            @endphp
+                            <span>
+                                {{ $exp->title }}
+                                @if($startYear || $endYear)
+                                    ({{ $startYear }}@if($startYear && $endYear) - {{ $endYear }}@endif)
+                                @endif
+                            </span>
+                            @if(!$loop->last)
+                                </br>
+                            @endif
+                        @endforeach
+                    </li>
+                @endforeach
             </ul>
         </div>
     </div>

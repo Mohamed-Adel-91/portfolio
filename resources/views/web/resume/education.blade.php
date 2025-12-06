@@ -9,30 +9,42 @@
     </div>
     <div class="col-md-6 col-sm-12 col-xs-12">
         <div class="content-right">
+            @php
+                $groupedEducations = $educations
+                    ->filter(fn ($edu) => $edu->university)
+                    ->groupBy(fn ($edu) => $edu->university->name);
+            @endphp
             <ul class="timeline">
-                <li>
-                    <h4>ALX - Helberton School <small style="font-size: 12px;">online</small></h4>
-                    <span>Software Engineering - BackEnd Development (2023 - 2024)</span>
-                </li>
-                <li>
-                    <h4>Harvard University - Edx <small style="font-size: 12px;">online</small></h4>
-                    <span>CS50’s Introduction to Computer Science (2022 - 2023)</span>
-                </li>
-                <li>
-                    <h4>Udacity <small style="font-size: 12px;">online</small></h4>
-                    <span>Advanced full-stack Web Development Nanodgree (2022 - 2023)</span>
-                    </br><span>Web Development Challenger (2021 - 2022)</span>
-                    </br><span>Android Basics Nanodegree by Google (2019 - 2020)</span>
-                </li>
-                <li>
-                    <h4>Lane Community College <small style="font-size: 12px;">online</small>
-                    </h4>
-                    <span>Computerized Accounting & Fentech (2012)</span>
-                </li>
-                <li>
-                    <h4>Ain Shams University</h4>
-                    <span>Accounting and Business Adminstration Faculty of Commerce (2008 - 2012)</span>
-                </li>
+                @foreach($groupedEducations as $universityName => $items)
+                    @php
+                        $first = $items->first();
+                        $mode = $first->sub_title ?? $first->type;
+                    @endphp
+                    <li>
+                        <h4>
+                            {{ $universityName }}
+                            @if($mode)
+                                <small style="font-size: 12px;">{{ $mode }}</small>
+                            @endif
+                        </h4>
+
+                        @foreach($items as $edu)
+                            @php
+                                $startYear = optional($edu->start_at)->format('Y');
+                                $endYear = $edu->end_at ? $edu->end_at->format('Y') : 'Now';
+                            @endphp
+                            <span>
+                                {{ $edu->title }}
+                                @if($startYear || $endYear)
+                                    ({{ $startYear }}@if($startYear && $endYear) - {{ $endYear }}@endif)
+                                @endif
+                            </span>
+                            @if(!$loop->last)
+                                </br>
+                            @endif
+                        @endforeach
+                    </li>
+                @endforeach
             </ul>
         </div>
     </div>

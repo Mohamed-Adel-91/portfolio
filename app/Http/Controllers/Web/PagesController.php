@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Models\About;
 use App\Models\ContactRequest;
+use App\Models\Education;
+use App\Models\Experience;
 use App\Models\Intro;
 use App\Models\Setting;
 use Illuminate\Http\Request;
@@ -14,14 +16,23 @@ class PagesController extends Controller
 {
     public function index()
     {
-        $intro = Intro::first() ;
-        $about = About::first() ;
-        $settings = Setting::first() ;
+        $intro = Intro::first();
+        $about = About::first();
+        $settings = Setting::first();
+        $educations = Education::with('university')
+            ->orderBy('start_at', 'desc')
+            ->get();
+        $experiences = Experience::with('company')
+            ->orderBy('start_at', 'desc')
+            ->get();
+
         return view('web.layouts.master')->with([
             'pageName' => 'Mohamed Adel - Personal Portfolio Website',
             'intro' => $intro,
             'about' => $about,
             'settings' => $settings,
+            'educations' => $educations,
+            'experiences' => $experiences,
         ]);
     }
 
