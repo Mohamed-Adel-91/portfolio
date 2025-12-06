@@ -814,6 +814,91 @@ ul {
     transition: all .5s ease;
 }
 
+.portfolio-grid {
+    margin-top: 1.5rem;
+}
+
+.portfolio-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+    background-color: #121212;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    padding-top: 62.5%;
+}
+
+.portfolio-card-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.portfolio-card img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+}
+
+.event-portfolio-card img {
+    object-fit: contain;
+}
+
+.portfolio-caption-overlay {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: 10px 14px;
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.75),
+            rgba(0, 0, 0, 0.2),
+            transparent);
+    color: #fff;
+}
+
+.portfolio-caption-overlay h4 {
+    font-size: 0.9rem;
+    margin: 0 0 2px;
+}
+
+.portfolio-caption-overlay .subtitle {
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+
+.portfolio-pagination {
+    margin-top: 1.75rem;
+}
+
+.portfolio-pagination .pagination {
+    justify-content: center;
+}
+
+.portfolio-pagination .page-link {
+    background-color: #161616;
+    border-color: #333;
+    color: #f4f4f4;
+}
+
+.portfolio-pagination .page-link:hover {
+    background-color: #222;
+    border-color: #444;
+    color: #ffb300;
+}
+
+.portfolio-pagination .page-item.active .page-link {
+    background-color: #ffb300;
+    border-color: #ffb300;
+    color: #000;
+}
+
+.portfolio-pagination .page-item.disabled .page-link {
+    background-color: #0f0f0f;
+    color: #555;
+    border-color: #222;
+}
+
 @keyframes titles {
     0% {
         transform: translateY(100%);

@@ -5,6 +5,7 @@
                 <h3>My Portfolio</h3>
             </div>
             <h2 class="section-heading text-center">Selected Work</h2>
+
             <div class="portfolio-filter-menu">
                 <ul>
                     @foreach ($portfolioFilters as $filter)
@@ -15,12 +16,14 @@
                 </ul>
             </div>
 
-            <div class="row no-gutters filtr-container">
+            <div class="row no-gutters filtr-container portfolio-grid">
                 @forelse ($portfolioItems as $item)
                     @if (!empty($item['image']))
-                        <div class="col-md-4 col-sm-12 col-xs-12 filtr-item" data-category="{{ $item['category'] }}">
-                            <div class="content-image">
-                                <a href="{{ $item['link'] }}" class="portfolio-popup">
+                        <div class="col-md-4 col-sm-6 col-xs-12 mb-4 filtr-item"
+                            data-category="{{ $item['category'] }}">
+                            <div
+                                class="content-image {{ $item['category'] === 2 ? 'event-portfolio-card' : 'portfolio-card' }} portfolio-card">
+                                <a href="{{ $item['link'] }}" class="portfolio-popup portfolio-card-inner">
                                     <img src="{{ $item['image'] }}" alt="{{ $item['title'] }}">
                                     <div class="image-overlay"></div>
                                     <div class="portfolio-caption">
@@ -44,6 +47,11 @@
                     </div>
                 @endforelse
             </div>
+            @if ($portfolioItems instanceof \Illuminate\Pagination\LengthAwarePaginator && $portfolioItems->hasPages())
+                <div class="portfolio-pagination">
+                    {{ $portfolioItems->onEachSide(1)->links('pagination::bootstrap-4') }}
+                </div>
+            @endif
         </div>
     </div>
 </div>
