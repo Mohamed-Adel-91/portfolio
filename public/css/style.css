@@ -367,7 +367,7 @@ ul {
     font-family: var(--font-sans, "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
     font-size: 15px;
     line-height: 1.8;
-    color: #e5e7eb;
+    color: #808080;
 }
 
 .about-description * {

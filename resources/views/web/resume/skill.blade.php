@@ -16,14 +16,16 @@
                 @php
                     $typeLabels = [
                         'backend' => 'Backend',
-                        'devops' => 'DevOps',
+                        'database' => 'Database',
                         'frontend' => 'Frontend',
+                        'devops' => 'DevOps',
+                        'data_science_and_analytics' => 'Data Science & Analytics',
                         'testing' => 'Testing',
                         'tools' => 'Tools',
                         'general' => 'General',
                         'personal_skills' => 'Personal Skills',
                     ];
-                    $orderedTypeKeys = collect(['backend', 'devops','frontend',  'testing', 'tools', 'general', 'personal_skills'])
+                    $orderedTypeKeys = collect(['backend','database','frontend', 'devops', 'data_science_and_analytics',  'testing', 'tools', 'general', 'personal_skills'])
                         ->filter(fn ($key) => ($skillsByType ?? collect())->has($key));
                     $remainingTypes = collect($skillsByType ?? collect())->keys()->diff($orderedTypeKeys);
                     $orderedTypeKeys = $orderedTypeKeys->concat($remainingTypes);

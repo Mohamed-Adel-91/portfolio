@@ -13,7 +13,7 @@ $(function() {
         bgColor: "#212121" //Hex, RGB or RGBA colors
 
     });
-       
+
     // smooth scroll
     $("a").on("click", function(event) {
 
@@ -40,7 +40,11 @@ $(function() {
     // carousel resume
     $('.owl-carousel').owlCarousel({
         items: 1,
-        margin: 10
+        margin: 10,
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 3000,
+        autoplayHoverPause: true
     });
 
     // collapse show on resume
