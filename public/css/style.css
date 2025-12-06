@@ -573,6 +573,90 @@ ul {
     margin-top: 50px;
 }
 
+.skill-grid {
+    gap: 12px;
+}
+
+.skill-item {
+    width: 96px;
+}
+
+.skill-circle-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.skill-circle {
+    --size: 82px;
+    --thickness: 6px;
+    --bg-track: rgba(255, 255, 255, 0.08);
+    --progress-color: #ff8a00;
+
+    position: relative;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    background:
+        conic-gradient(var(--progress-color) calc(var(--progress) * 1%),
+            var(--bg-track) 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;
+}
+
+.skill-circle-inner {
+    width: calc(var(--size) - 2 * var(--thickness));
+    height: calc(var(--size) - 2 * var(--thickness));
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.skill-circle-inner img {
+    max-width: 60%;
+    max-height: 60%;
+    object-fit: contain;
+}
+
+.skill-initials {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #fff;
+}
+
+.skill-type-title {
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.skill-name {
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.skill-type-title .btn-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.skill-type-title .btn-link:hover,
+.skill-type-title .btn-link:focus {
+    color: #ccc;
+    text-decoration: none;
+    box-shadow: none;
+}
+
 /*portfolio*/
 .portfolio .row .col-md-4 {
     padding: 15px;
