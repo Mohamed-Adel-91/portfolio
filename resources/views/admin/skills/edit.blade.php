@@ -10,7 +10,7 @@
             <div class="main-container">
                 @include('admin.layouts.alerts')
 
-                <form method="POST" action="{{ route('admin.skills.update', $skill) }}">
+                <form method="POST" action="{{ route('admin.skills.update', $skill) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 

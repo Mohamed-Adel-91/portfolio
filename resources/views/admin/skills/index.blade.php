@@ -24,6 +24,7 @@
                                     <table class="table custom-table m-0">
                                         <thead>
                                             <tr>
+                                                <th>Logo</th>
                                                 <th>Name</th>
                                                 <th>Type</th>
                                                 <th>Progress</th>
@@ -33,6 +34,14 @@
                                         <tbody>
                                             @forelse ($skills as $skill)
                                                 <tr>
+                                                    <td>
+                                                        @if ($skill->logo_path)
+                                                            <img src="{{ asset($skill->logo_path) }}" alt="{{ $skill->name }} logo"
+                                                                class="img-thumbnail" style="height: 40px; width: 40px; object-fit: contain;">
+                                                        @else
+                                                            <span class="text-muted">No logo</span>
+                                                        @endif
+                                                    </td>
                                                     <td>{{ $skill->name }}</td>
                                                     <td>{{ $skill->type ?? 'N/A' }}</td>
                                                     <td>{{ $skill->progress }}%</td>

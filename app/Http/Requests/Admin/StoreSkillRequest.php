@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Models\Skill;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreSkillRequest extends FormRequest
 {
@@ -15,8 +17,9 @@ class StoreSkillRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'type' => ['nullable', 'string', 'max:255'],
-            'progress' => ['required', 'numeric', 'min:0', 'max:100'],
+            'type' => ['required', 'string', Rule::in(array_keys(Skill::typeOptions()))],
+            'progress' => ['nullable', 'string', 'max:255'],
+            'logo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,svg,webp', 'max:2048'],
         ];
     }
 }

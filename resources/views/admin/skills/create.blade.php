@@ -10,7 +10,7 @@
             <div class="main-container">
                 @include('admin.layouts.alerts')
 
-                <form method="POST" action="{{ route('admin.skills.store') }}">
+                <form method="POST" action="{{ route('admin.skills.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row gutters">
                         <div class="col-12">
