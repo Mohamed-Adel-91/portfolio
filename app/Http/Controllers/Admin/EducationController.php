@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreEducationRequest;
 use App\Http\Requests\Admin\UpdateEducationRequest;
+use App\Models\University;
 use App\Models\Education;
 use App\Traits\DeleteFileTrait;
 use App\Traits\FileUploadTrait;
@@ -19,7 +20,9 @@ class EducationController extends Controller
 
     public function index(): View
     {
-        $educations = Education::orderByDesc('start_at')->paginate(10);
+        $educations = Education::with('university')
+            ->orderByDesc('start_at')
+            ->paginate(10);
 
         return view('admin.education.index', [
             'pageName' => 'Education',
@@ -38,6 +41,9 @@ class EducationController extends Controller
     public function store(StoreEducationRequest $request): RedirectResponse
     {
         $data = $request->validated();
+
+        $data['university_id'] = $this->resolveUniversityId($data['university_name'] ?? null);
+        unset($data['university_name']);
 
         if ($request->hasFile('image')) {
             $this->ensureUploadDirectoryExists();
@@ -64,6 +70,8 @@ class EducationController extends Controller
 
     public function edit(Education $education): View
     {
+        $education->load('university');
+
         return view('admin.education.edit', [
             'pageName' => 'Edit Education',
             'education' => $education,
@@ -73,6 +81,9 @@ class EducationController extends Controller
     public function update(UpdateEducationRequest $request, Education $education): RedirectResponse
     {
         $data = $request->validated();
+
+        $data['university_id'] = $this->resolveUniversityId($data['university_name'] ?? null);
+        unset($data['university_name']);
 
         if ($request->hasFile('image')) {
             $this->ensureUploadDirectoryExists();
@@ -120,5 +131,16 @@ class EducationController extends Controller
         if (! is_dir($directory)) {
             mkdir($directory, 0755, true);
         }
+    }
+
+    private function resolveUniversityId(?string $universityName): int
+    {
+        $name = trim((string) $universityName);
+
+        if ($name === '') {
+            $name = 'Unspecified University';
+        }
+
+        return University::firstOrCreate(['name' => $name])->id;
     }
 }

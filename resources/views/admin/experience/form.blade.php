@@ -1,7 +1,7 @@
 <div class="row gutters">
     <div class="form-group col-md-6">
         <label for="co_name">Company</label>
-        <input type="text" class="form-control" id="co_name" name="co_name" value="{{ old('co_name', $experience->co_name) }}" required>
+        <input type="text" class="form-control" id="co_name" name="co_name" value="{{ old('co_name', optional($experience->company)->name) }}" required>
         @error('co_name')
             <span class="text-danger small">{{ $message }}</span>
         @enderror

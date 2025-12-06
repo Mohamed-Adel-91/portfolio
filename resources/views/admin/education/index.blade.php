@@ -35,7 +35,7 @@
                                         <tbody>
                                             @forelse ($educations as $education)
                                                 <tr>
-                                                    <td>{{ $education->university_name }}</td>
+                                                    <td>{{ $education->university->name ?? 'N/A' }}</td>
                                                     <td>{{ $education->title }}</td>
                                                     <td>{{ $education->type ?? 'N/A' }}</td>
                                                     <td>

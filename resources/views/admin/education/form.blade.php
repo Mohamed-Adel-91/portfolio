@@ -1,7 +1,7 @@
 <div class="row gutters">
     <div class="form-group col-md-6">
         <label for="university_name">University</label>
-        <input type="text" class="form-control" id="university_name" name="university_name" value="{{ old('university_name', $education->university_name) }}" required>
+        <input type="text" class="form-control" id="university_name" name="university_name" value="{{ old('university_name', optional($education->university)->name) }}" required>
         @error('university_name')
             <span class="text-danger small">{{ $message }}</span>
         @enderror

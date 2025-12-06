@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreExperienceRequest;
 use App\Http\Requests\Admin\UpdateExperienceRequest;
+use App\Models\Company;
 use App\Models\Experience;
 use App\Traits\DeleteFileTrait;
 use App\Traits\FileUploadTrait;
@@ -19,7 +20,9 @@ class ExperienceController extends Controller
 
     public function index(): View
     {
-        $experiences = Experience::orderByDesc('start_at')->paginate(10);
+        $experiences = Experience::with('company')
+            ->orderByDesc('start_at')
+            ->paginate(10);
 
         return view('admin.experience.index', [
             'pageName' => 'Experience',
@@ -38,6 +41,9 @@ class ExperienceController extends Controller
     public function store(StoreExperienceRequest $request): RedirectResponse
     {
         $data = $request->validated();
+
+        $data['company_id'] = $this->resolveCompanyId($data['co_name'] ?? null);
+        unset($data['co_name']);
 
         if ($request->hasFile('image')) {
             $this->ensureUploadDirectoryExists();
@@ -64,6 +70,8 @@ class ExperienceController extends Controller
 
     public function edit(Experience $experience): View
     {
+        $experience->load('company');
+
         return view('admin.experience.edit', [
             'pageName' => 'Edit Experience',
             'experience' => $experience,
@@ -73,6 +81,9 @@ class ExperienceController extends Controller
     public function update(UpdateExperienceRequest $request, Experience $experience): RedirectResponse
     {
         $data = $request->validated();
+
+        $data['company_id'] = $this->resolveCompanyId($data['co_name'] ?? null);
+        unset($data['co_name']);
 
         if ($request->hasFile('image')) {
             $this->ensureUploadDirectoryExists();
@@ -120,5 +131,16 @@ class ExperienceController extends Controller
         if (! is_dir($directory)) {
             mkdir($directory, 0755, true);
         }
+    }
+
+    private function resolveCompanyId(?string $companyName): int
+    {
+        $name = trim((string) $companyName);
+
+        if ($name === '') {
+            $name = 'Unspecified Company';
+        }
+
+        return Company::firstOrCreate(['name' => $name])->id;
     }
 }

@@ -35,7 +35,7 @@
                                         <tbody>
                                             @forelse ($experiences as $experience)
                                                 <tr>
-                                                    <td>{{ $experience->co_name }}</td>
+                                                    <td>{{ $experience->company->name ?? 'N/A' }}</td>
                                                     <td>{{ $experience->title }}</td>
                                                     <td>{{ $experience->work_type ?? 'N/A' }}</td>
                                                     <td>
