@@ -15,8 +15,8 @@ class IntroRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'title' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:5120',
-            'cv_pdf' => 'nullable|mimes:pdf|max:5120',
+            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:20480',
+            'cv_pdf' => 'nullable|mimes:pdf|max:20480',
         ];
     }
 }
