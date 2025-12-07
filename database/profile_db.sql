@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Dec 06, 2025 at 11:32 PM
+-- Host: localhost:3306
+-- Generation Time: Dec 07, 2025 at 01:13 PM
 -- Server version: 8.0.40
 -- PHP Version: 8.3.16
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `portfolio`
+-- Database: `portfolio_db`
 --
 
 -- --------------------------------------------------------
@@ -100,11 +100,11 @@ CREATE TABLE `cache_locks` (
 
 CREATE TABLE `companies` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `industry` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `location` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `website` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `industry` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `logo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `website` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -140,7 +140,8 @@ CREATE TABLE `contact_requests` (
 --
 
 INSERT INTO `contact_requests` (`id`, `first_name`, `last_name`, `email`, `subject`, `message`, `reply_status`, `created_at`, `updated_at`) VALUES
-(1, '‪Mohamed', 'Adel‬‏', 'mohamed101291@gmail.com', 'gfdjnsh', 'tdyue', '1', '2025-12-01 19:07:34', '2025-12-03 08:33:44');
+(1, '‪Mohamed', 'Adel‬‏', 'mohamed101291@gmail.com', 'gfdjnsh', 'tdyue', '1', '2025-12-01 19:07:34', '2025-12-03 08:33:44'),
+(2, '‪Mohamed', 'Adel‬‏', 'mohamed101291@gmail.com', 'dtwt', 'sdfgsfga', '0', '2025-12-07 11:02:08', '2025-12-07 11:02:08');
 
 -- --------------------------------------------------------
 
@@ -264,13 +265,6 @@ CREATE TABLE `gallery` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `gallery`
---
-
-INSERT INTO `gallery` (`id`, `title`, `sub_title`, `image`, `iframe`, `created_at`, `updated_at`) VALUES
-(1, 'Career Expo Event', 'Career Expo Event', '1765061880nNNmYfwlghGZPVZ6czau.jpeg', NULL, '2025-12-06 22:58:00', '2025-12-06 22:58:00');
 
 -- --------------------------------------------------------
 
@@ -467,7 +461,13 @@ CREATE TABLE `projects` (
 INSERT INTO `projects` (`id`, `name`, `description`, `image`, `url`, `lunched_at`, `created_at`, `updated_at`) VALUES
 (1, 'Netflex Clone', 'Single Landing Page HTML & CSS Native', '1764765256ltWDe3LoIoqTcaiYPPbN.png', 'https://mohamed-adel-91.github.io/Netflex_clone/', '2023-08-23', '2025-12-03 12:34:16', '2025-12-06 22:48:10'),
 (2, 'Game Hub', 'Game Hub is website created by React.js with typescript', '1765061391J09FxxWTYWKyybqcgNkK.png', 'https://game-hub-hazel-two.vercel.app/', '2023-12-18', '2025-12-06 22:49:51', '2025-12-06 22:49:51'),
-(3, 'Orascom Services', 'Orascom Services CMS Dashboard', '1765061486hP0ybzGx2QvOQNC5QwlL.png', 'https://dev-iconcreations.com/2024/Orascom-website/public/en', '2024-06-10', '2025-12-06 22:51:26', '2025-12-06 22:51:26');
+(3, 'Orascom Services', 'Orascom Services CMS Dashboard', '1765061486hP0ybzGx2QvOQNC5QwlL.png', 'https://dev-iconcreations.com/2024/Orascom-website/public/en', '2024-06-10', '2025-12-06 22:51:26', '2025-12-06 22:51:26'),
+(4, 'BAIC Egypt', '- Handle Backend Submit forms in the website with Icon Creations development team', '1765110070QlnBprj7WMknOLdolpRH.png', 'https://baic-egypt.com/', '2024-06-04', '2025-12-07 12:21:10', '2025-12-07 12:21:10'),
+(5, 'Air-Master Carrier of Egypt', NULL, '1765110316kX4fnpfaeKxwpy7bStzP.png', 'https://dev-iconcreations.com/2024/air-master/public/en', '2024-07-05', '2025-12-07 12:25:16', '2025-12-07 12:25:16'),
+(6, 'mdp Egypt', NULL, '1765110730LOTkIEjSXmwHLwLn7G4a.png', 'https://www.mdp.global/', '2024-08-18', '2025-12-07 12:32:10', '2025-12-07 12:32:10'),
+(7, 'Quote2Supply', '- I participated with the development team at Icon Creations in Phase (1) development for Users, Products and Services models and Homepage CMS', '1765110853IbbVGwvqg5UGP9rBFhR1.png', 'https://quote-to-supply-v15.vercel.app/', '2025-06-01', '2025-12-07 12:34:13', '2025-12-07 12:50:42'),
+(8, 'Knowledge Net', NULL, '1765110946fzASpj7fTJiIicAF8w8w.png', 'https://kn-it.com/', '2025-10-26', '2025-12-07 12:35:46', '2025-12-07 12:35:46'),
+(9, 'Mini Egypt', NULL, '1765111555nsH9A2qn48yqt6vgGkR9.png', 'https://dev-iconcreations.com/MINI/public/en', '2025-02-14', '2025-12-07 12:45:55', '2025-12-07 12:45:55');
 
 -- --------------------------------------------------------
 
@@ -504,7 +504,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('BwhgQ7idY1GGJzQad0GQJJh31i5gxqT7gzhOaK61', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiODhzNTVKTExTYnZTc0pyd2R0YVpBZU5lVGtZOXNMTEluV3B1YVlmZyI7czo2OiJsb2NhbGUiO3M6MjoiZW4iO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjQwOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvZGFzaGJvYXJkL3Byb2plY3RzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1765063877);
+('Rr4rYSvTYdyuO7hT9UaxfAy1rGYYYpTLiyBSo2sv', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiV3RqdjFwWTRnaTFDNDlQWHJLclFLVTdEazBNeFZHd29GQjlvWm42NiI7czo2OiJsb2NhbGUiO3M6MjoiZW4iO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjQwOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvZGFzaGJvYXJkL3Byb2plY3RzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1765111843);
 
 -- --------------------------------------------------------
 
@@ -558,7 +558,7 @@ CREATE TABLE `skills` (
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `progress` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `logo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -616,11 +616,11 @@ INSERT INTO `skills` (`id`, `name`, `type`, `progress`, `logo`, `created_at`, `u
 
 CREATE TABLE `universities` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `country` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `website` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `country` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `logo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `website` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -856,7 +856,7 @@ ALTER TABLE `companies`
 -- AUTO_INCREMENT for table `contact_requests`
 --
 ALTER TABLE `contact_requests`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `contact_requests_replay`
@@ -928,7 +928,7 @@ ALTER TABLE `portfolio`
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `resume`
