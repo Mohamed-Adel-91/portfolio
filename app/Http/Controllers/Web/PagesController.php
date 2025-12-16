@@ -25,7 +25,7 @@ class PagesController extends Controller
     {
         $intro = Intro::first();
         $about = About::first();
-        $settings = Setting::first();
+        $setting = Setting::first();
         $educations = Education::with('university')
             ->orderBy('start_at', 'desc')
             ->get();
@@ -49,7 +49,8 @@ class PagesController extends Controller
             'pageName' => 'Mohamed Adel - Personal Portfolio Website',
             'intro' => $intro,
             'about' => $about,
-            'settings' => $settings,
+            'settings' => $setting,
+            'setting' => $setting,
             'educations' => $educations,
             'experiences' => $experiences,
             'skillsByType' => $skillsByType,

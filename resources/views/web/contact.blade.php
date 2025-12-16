@@ -7,51 +7,12 @@
                         <div class="section-title section-title-left">
                             <h3>Contact Me</h3>
                         </div>
-                        <h2 class="section-heading">Realize your dream with us</h2>
-
+                        <h2 class="section-heading" id="slogan">
+                            {{ optional($setting)->slogan ?? 'Realize your dream with us' }}
+                        </h2>
                         <ul>
                             <li>
-                                <a href="https://www.facebook.com/mohamed.adel.101291/"><i
-                                        class="fab fa-facebook-f"></i></a>
-                            </li>
-                            <li>
-                                <a href="https://m.me/mohamed.adel.101291/"><i class="fab fa-messenger">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-messenger" viewBox="0 0 16 16">
-                                            <path
-                                                d="M0 7.76C0 3.301 3.493 0 8 0s8 3.301 8 7.76-3.493 7.76-8 7.76c-.81 0-1.586-.107-2.316-.307a.64.64 0 0 0-.427.03l-1.588.702a.64.64 0 0 1-.898-.566l-.044-1.423a.64.64 0 0 0-.215-.456C.956 12.108 0 10.092 0 7.76m5.546-1.459-2.35 3.728c-.225.358.214.761.551.506l2.525-1.916a.48.48 0 0 1 .578-.002l1.869 1.402a1.2 1.2 0 0 0 1.735-.32l2.35-3.728c.226-.358-.214-.761-.551-.506L9.728 7.381a.48.48 0 0 1-.578.002L7.281 5.98a1.2 1.2 0 0 0-1.735.32z" />
-                                        </svg>
-                                    </i></a>
-                            </li>
-                            <li>
-                                <a href="https://twitter.com/MohamedTaha1012">
-                                    <i>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
-                                            <path
-                                                d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
-                                        </svg>
-                                    </i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://www.linkedin.com/in/mohamed-adel-661131245/"><i
-                                        class="fab fa-linkedin"></i></a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/Mohamed-Adel-91"><i class="fab fa-github"></i></a>
-                            </li>
-                            <li>
-                                <a href="https://www.youtube.com/channel/UCkGudCvAEYSVVFW8uFEkeyQ"><i
-                                        class="fab fa-youtube"></i></a>
-                            </li>
-                            <li>
-                                <a href="https://wa.me/0201067000662">
-                                    <i class="fab fa-whatsapp"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="tel:0201067000662">
+                                <a href="{{ optional($setting)->phone1 ? 'tel:' . optional($setting)->phone1 : '#' }}">
                                     <i class="fab fa-call">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-telephone-outbound-fill"
@@ -62,9 +23,60 @@
                                     </i>
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ optional($setting)->facebook ?? '#' }}"><i
+                                        class="fab fa-facebook-f"></i></a>
+                            </li>
+                            <li>
+                                <a href="{{ optional($setting)->messenger ?? '#' }}"><i class="fab fa-messenger">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-messenger" viewBox="0 0 16 16">
+                                            <path
+                                                d="M0 7.76C0 3.301 3.493 0 8 0s8 3.301 8 7.76-3.493 7.76-8 7.76c-.81 0-1.586-.107-2.316-.307a.64.64 0 0 0-.427.03l-1.588.702a.64.64 0 0 1-.898-.566l-.044-1.423a.64.64 0 0 0-.215-.456C.956 12.108 0 10.092 0 7.76m5.546-1.459-2.35 3.728c-.225.358.214.761.551.506l2.525-1.916a.48.48 0 0 1 .578-.002l1.869 1.402a1.2 1.2 0 0 0 1.735-.32l2.35-3.728c.226-.358-.214-.761-.551-.506L9.728 7.381a.48.48 0 0 1-.578.002L7.281 5.98a1.2 1.2 0 0 0-1.735.32z" />
+                                        </svg>
+                                    </i></a>
+                            </li>
+                            <li>
+                                <a
+                                    href="{{ optional($setting)->whats_up ? 'https://wa.me/' . optional($setting)->whats_up : '#' }}">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ optional($setting)->twitter ?? '#' }}">
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
+                                            <path
+                                                d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
+                                        </svg>
+                                    </i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ optional($setting)->instagram ?? '#' }}"><i
+                                        class="fab fa-instagram"></i></a>
+                            </li>
+                            <li>
+                                <a href="{{ optional($setting)->linkedin ?? '#' }}"><i class="fab fa-linkedin"></i></a>
+                            </li>
+                            <li>
+                                <a href="{{ optional($setting)->github ?? '#' }}"><i class="fab fa-github"></i></a>
+                            </li>
+                            <li>
+                                <a href="{{ optional($setting)->youtube ?? '#' }}"><i class="fab fa-youtube"></i></a>
+                            </li>
                         </ul>
-                        <h5 style="margin-top: 20px;">Phone : +201067000662</h5>
-                        <h5 style="margin-top: 5px;">Email : mohamed101291@gmail.com</h5>
+                        <h5 style="margin-top: 20px;">Phone :
+                            <a href="{{ optional($setting)->phone1 ? 'tel:' . optional($setting)->phone1 : '#' }}">
+                                {{ optional($setting)->phone1 ?? '' }}
+                            </a>
+                        </h5>
+                        <h5 style="margin-top: 5px;">Email :
+                            <a href="{{ optional($setting)->email ? 'mailto:' . optional($setting)->email : '#' }}">
+                                {{ optional($setting)->email ?? '' }}
+                            </a>
+                        </h5>
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12">
@@ -107,7 +119,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn-gradient" type="submit" id="submit" name="submit">Send Message</button>
+                            <button class="btn-gradient" type="submit" id="submit" name="submit">Send
+                                Message</button>
                         </form>
                     </div>
                 </div>

@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ asset('images/favicon.png') }}">
-    <title>{{ $pageName }}</title>
+    <title>{{ optional($setting)->meta_title ?? config('app.name') }}</title>
+    <meta name="description" content="{{ optional($setting)->meta_description ?? '' }}">
+    <meta name="keywords" content="{{ optional($setting)->meta_tags ?? '' }}">
 
     @include('web.layouts.scripts.css')
     <!-- ========================= CSS ============================ -->

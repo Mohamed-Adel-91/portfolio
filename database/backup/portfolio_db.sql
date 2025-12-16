@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 07, 2025 at 01:13 PM
+-- Generation Time: Dec 16, 2025 at 12:42 PM
 -- Server version: 8.0.40
 -- PHP Version: 8.3.16
 
@@ -200,7 +200,9 @@ INSERT INTO `education` (`id`, `university_id`, `type`, `title`, `sub_title`, `d
 (7, 5, 'Nanodegree', 'Software Engineering - BackEnd Development', 'Software Engineering', NULL, NULL, NULL, '2023-06-01', '2024-09-01', '2025-12-03 09:51:43', '2025-12-03 09:52:10'),
 (8, 6, 'Diploma', 'Data Science and AI Diploma', 'Data Science', 'Machine Learning & Artificial Intelligence Diploma – AMIT Learning (6 Months)\r\n\r\nA comprehensive hands-on program covering the full data science and AI lifecycle. The diploma included intensive training in Python for Data Science, SQL, data analysis, data visualization, and real-world machine learning workflows. I gained practical experience with NumPy, Pandas, Matplotlib, Seaborn, Scikit-learn, TensorFlow, Keras, and PyTorch.\r\n\r\nThe curriculum covered:\r\n\r\nData Science fundamentals and the difference between Data Science & Data Engineering\r\n\r\nPython programming for AI and scientific computing\r\n\r\nDatabases and SQL for data extraction\r\n\r\nData cleaning, preprocessing, and exploratory data analysis (EDA)\r\n\r\nData visualization and dashboarding\r\n\r\nMachine Learning algorithms (regression, classification, clustering)\r\n\r\nModel evaluation, optimization, and deployment concepts\r\n\r\nDeep Learning using Keras, TensorFlow, and PyTorch\r\n\r\nNeural networks, CNNs, RNNs, and advanced DL concepts\r\n\r\nAI project workflows and MLOps fundamentals\r\n\r\nGraduation Projects:\r\n\r\nCOVID-19 predictive analysis\r\n\r\nMedical diagnostics using ML\r\n\r\nFinancial data analysis and forecasting\r\n\r\nThe diploma included continuous mentorship, instructor support, and a ticketing system for troubleshooting and guidance to ensure full mastery of all modules.', NULL, NULL, '2025-12-19', '2026-07-31', '2025-12-03 09:58:48', '2025-12-03 09:58:48'),
 (9, 7, 'Course', 'Huawei Cloud Developer – HCCDA Tech Essentials', 'Huawei Cloud Development', 'Skills: HCCDA · Cloud Computing · Cloud Computing IaaS · Huawei Cloud Services · Cloud Architecture Basics · Virtual Private Cloud (VPC) · Elastic Cloud Server (ECS) · Object Storage Service (OBS) · Identity and Access Management (IAM) · Data Security & Encryption Basics · Networking & Security Groups · Database Services (RDS, TaurusDB) · API & Service Integration · Networking Fundamentals (CIDR, Subnets, Routing, SNAT) · Infrastructure as a Service (IaaS) · Platform as a Service (PAAS) · Software as a Service (SaaS)', 'education/1764760603BhAv4cegubYjMOjrrBLb.jpeg', NULL, '2025-09-01', '2025-10-31', '2025-12-03 11:16:43', '2025-12-06 18:00:20'),
-(10, 8, 'Course', 'Cybersecurity Awareness', 'Cybersecurity', NULL, 'education/176506228479q9o7GJA5vumITOrYyc.jpg', NULL, '2025-11-15', '2025-11-30', '2025-12-06 23:04:44', '2025-12-06 23:04:44');
+(10, 8, 'Course', 'Cybersecurity Awareness', 'Cybersecurity', NULL, 'education/176506228479q9o7GJA5vumITOrYyc.jpg', NULL, '2025-11-15', '2025-11-30', '2025-12-06 23:04:44', '2025-12-06 23:04:44'),
+(11, 5, 'Online Course', 'ALX Founder Academy program', 'Founder Academy', 'This 4-week journey was intense, practical, and eye-opening. It helped me sharpen my entrepreneurial mindset, validate ideas faster, and understand what it truly takes to build scalable, impactful ventures.', 'education/1765879254RejSThdJ31JDP9zr4VEY.png', NULL, '2025-10-01', '2025-11-30', '2025-12-16 10:00:54', '2025-12-16 10:00:54'),
+(12, 9, 'Online Course', 'Laravel RESTful APIs for beginners -Become a Master from Udemy', 'Laravel RESTful APIs', NULL, 'education/1765880366EcciulyB2LasFmsyOALV.jpeg', NULL, '2025-06-01', '2025-07-24', '2025-12-16 10:19:26', '2025-12-16 10:19:26');
 
 -- --------------------------------------------------------
 
@@ -265,6 +267,14 @@ CREATE TABLE `gallery` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `gallery`
+--
+
+INSERT INTO `gallery` (`id`, `title`, `sub_title`, `image`, `iframe`, `created_at`, `updated_at`) VALUES
+(2, 'Applied Product Management', 'PIF Project Management at ALX', '1765879977zMqi5korFlfg2F1Ku8aH.jpeg', NULL, '2025-12-16 10:12:57', '2025-12-16 10:12:57'),
+(3, 'Public Prosecution of Egypt Traffic', 'Employee of the year 2021', '1765886502evFF4ek49eJN8VTcRon2.jpg', NULL, '2025-12-16 12:01:42', '2025-12-16 12:01:42');
 
 -- --------------------------------------------------------
 
@@ -459,7 +469,7 @@ CREATE TABLE `projects` (
 --
 
 INSERT INTO `projects` (`id`, `name`, `description`, `image`, `url`, `lunched_at`, `created_at`, `updated_at`) VALUES
-(1, 'Netflex Clone', 'Single Landing Page HTML & CSS Native', '1764765256ltWDe3LoIoqTcaiYPPbN.png', 'https://mohamed-adel-91.github.io/Netflex_clone/', '2023-08-23', '2025-12-03 12:34:16', '2025-12-06 22:48:10'),
+(1, 'Netflex Clone', 'Single Landing Page HTML & CSS Native', '1764765256ltWDe3LoIoqTcaiYPPbN.png', 'https://mohamed-adel-91.github.io/Netflex_clone/', '2023-08-30', '2025-12-03 12:34:16', '2025-12-16 11:17:52'),
 (2, 'Game Hub', 'Game Hub is website created by React.js with typescript', '1765061391J09FxxWTYWKyybqcgNkK.png', 'https://game-hub-hazel-two.vercel.app/', '2023-12-18', '2025-12-06 22:49:51', '2025-12-06 22:49:51'),
 (3, 'Orascom Services', 'Orascom Services CMS Dashboard', '1765061486hP0ybzGx2QvOQNC5QwlL.png', 'https://dev-iconcreations.com/2024/Orascom-website/public/en', '2024-06-10', '2025-12-06 22:51:26', '2025-12-06 22:51:26'),
 (4, 'BAIC Egypt', '- Handle Backend Submit forms in the website with Icon Creations development team', '1765110070QlnBprj7WMknOLdolpRH.png', 'https://baic-egypt.com/', '2024-06-04', '2025-12-07 12:21:10', '2025-12-07 12:21:10'),
@@ -467,7 +477,8 @@ INSERT INTO `projects` (`id`, `name`, `description`, `image`, `url`, `lunched_at
 (6, 'mdp Egypt', NULL, '1765110730LOTkIEjSXmwHLwLn7G4a.png', 'https://www.mdp.global/', '2024-08-18', '2025-12-07 12:32:10', '2025-12-07 12:32:10'),
 (7, 'Quote2Supply', '- I participated with the development team at Icon Creations in Phase (1) development for Users, Products and Services models and Homepage CMS', '1765110853IbbVGwvqg5UGP9rBFhR1.png', 'https://quote-to-supply-v15.vercel.app/', '2025-06-01', '2025-12-07 12:34:13', '2025-12-07 12:50:42'),
 (8, 'Knowledge Net', NULL, '1765110946fzASpj7fTJiIicAF8w8w.png', 'https://kn-it.com/', '2025-10-26', '2025-12-07 12:35:46', '2025-12-07 12:35:46'),
-(9, 'Mini Egypt', NULL, '1765111555nsH9A2qn48yqt6vgGkR9.png', 'https://dev-iconcreations.com/MINI/public/en', '2025-02-14', '2025-12-07 12:45:55', '2025-12-07 12:45:55');
+(9, 'Mini Egypt', NULL, '1765111555nsH9A2qn48yqt6vgGkR9.png', 'https://dev-iconcreations.com/MINI/public/en', '2025-02-14', '2025-12-07 12:45:55', '2025-12-07 12:45:55'),
+(10, 'Simple Landing Page', NULL, '1765882689i9n1n3foiTgwr5FypmWQ.png', NULL, '2023-08-23', '2025-12-16 10:58:09', '2025-12-16 10:58:09');
 
 -- --------------------------------------------------------
 
@@ -504,7 +515,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('Rr4rYSvTYdyuO7hT9UaxfAy1rGYYYpTLiyBSo2sv', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiV3RqdjFwWTRnaTFDNDlQWHJLclFLVTdEazBNeFZHd29GQjlvWm42NiI7czo2OiJsb2NhbGUiO3M6MjoiZW4iO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjQwOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvZGFzaGJvYXJkL3Byb2plY3RzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1765111843);
+('LoHzD0PeimOsmexvYXDZIFXrFlfP5QR904i194l4', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiZVVzemJha1pOQnk4cWJMREdzQ1NTQ2dqNEpPYkhWSjZaQnpydGlNeiI7czo2OiJsb2NhbGUiO3M6MjoiZW4iO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjIxOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1765877136),
+('OiKawnO0XCHMwQ5l0n7FWCM1W4jecYsnRIl75n4k', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiNjZmT3poOFMyUGlnNzlMU3FQaE8wdGhUMFVlYkMydVZQUnNvSTJUYyI7czo2OiJsb2NhbGUiO3M6MjoiZW4iO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjM5OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvZGFzaGJvYXJkL2dhbGxlcnkiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUyOiJsb2dpbl9hZG1pbl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1765888931);
 
 -- --------------------------------------------------------
 
@@ -545,7 +557,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `email`, `slogan`, `address`, `phone1`, `phone2`, `whats_up`, `facebook`, `messenger`, `twitter`, `instagram`, `youtube`, `linkedin`, `github`, `meta_title`, `meta_description`, `meta_tags`, `customers`, `created_at`, `updated_at`, `activity_terms`, `google_play`, `app_store`, `ad_link_1`, `ad_link_2`) VALUES
-(1, 'mohamed101291@gmail.com', 'Realize your dream with us', 'Orabi st., Agouza , Giza , Egypt', '+201208333047', '+201067000662', '+201208333047', 'https://www.facebook.com/mohamed.adel.101291/', 'https://m.me/mohamed.adel.101291/', 'https://x.com/MohamedTaha1012', 'https://instagram.com/example', 'https://www.youtube.com/channel/UCkGudCvAEYSVVFW8uFEkeyQ', 'https://www.linkedin.com/in/mohamed-adel-nouh/', 'https://github.com/Mohamed-Adel-91', 'Welcome to Our Website', 'We provide top-tier services to meet your needs.', 'web, services, company, example', 50, NULL, '2025-12-02 11:36:32', NULL, NULL, NULL, NULL, NULL);
+(1, 'mohamed101291@gmail.com', 'Realize your dream with us', 'Orabi st., Agouza , Giza , Egypt', '+201208333047', '+201067000662', '+201208333047', 'https://www.facebook.com/mohamed.adel.101291/', 'https://m.me/mohamed.adel.101291/', 'https://x.com/MohamedTaha1012', 'https://www.instagram.com/mohamedadel101291', 'https://www.youtube.com/channel/UCkGudCvAEYSVVFW8uFEkeyQ', 'https://www.linkedin.com/in/mohamed-adel-nouh/', 'https://github.com/Mohamed-Adel-91', 'Welcome to Our Website', 'We provide top-tier services to meet your needs.', 'web, services, company, example', 68, NULL, '2025-12-16 11:45:25', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -634,10 +646,11 @@ INSERT INTO `universities` (`id`, `name`, `country`, `city`, `logo`, `website`, 
 (2, 'Lane Community College', NULL, NULL, NULL, NULL, '2025-12-06 17:22:29', '2025-12-06 17:22:29'),
 (3, 'Udacity', NULL, NULL, NULL, NULL, '2025-12-06 17:22:29', '2025-12-06 17:22:29'),
 (4, 'Edx by Harvard University', NULL, NULL, NULL, NULL, '2025-12-06 17:22:29', '2025-12-06 17:22:29'),
-(5, 'ALX by Helberton School', NULL, NULL, NULL, NULL, '2025-12-06 17:22:29', '2025-12-06 17:22:29'),
+(5, 'ALX by Helberton School and Master Card', NULL, NULL, NULL, NULL, '2025-12-06 17:22:29', '2025-12-06 17:22:29'),
 (6, 'AMIT - Licensed by the Ministry of Communications and Information Technology', NULL, NULL, NULL, NULL, '2025-12-06 17:22:29', '2025-12-06 17:22:29'),
 (7, 'Huawei Cloud', NULL, NULL, NULL, NULL, '2025-12-06 17:22:29', '2025-12-06 17:22:29'),
-(8, 'HP-Life', NULL, NULL, NULL, NULL, '2025-12-06 23:03:13', '2025-12-06 23:03:13');
+(8, 'HP-Life', NULL, NULL, NULL, NULL, '2025-12-06 23:03:13', '2025-12-06 23:03:13'),
+(9, 'Udemy', NULL, NULL, NULL, NULL, '2025-12-16 10:15:18', '2025-12-16 10:15:18');
 
 -- --------------------------------------------------------
 
@@ -868,7 +881,7 @@ ALTER TABLE `contact_requests_replay`
 -- AUTO_INCREMENT for table `education`
 --
 ALTER TABLE `education`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `experience`
@@ -886,7 +899,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `gallery`
 --
 ALTER TABLE `gallery`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `intro`
@@ -928,7 +941,7 @@ ALTER TABLE `portfolio`
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `resume`
@@ -952,7 +965,7 @@ ALTER TABLE `skills`
 -- AUTO_INCREMENT for table `universities`
 --
 ALTER TABLE `universities`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
