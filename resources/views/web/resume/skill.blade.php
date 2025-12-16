@@ -98,3 +98,15 @@
         </div>
     </div>
 </div>
+
+@push('custom-web-js-scripts')
+    <script>
+        (function ($) {
+            const accordion = $('#accordionSkills');
+
+            accordion.find('.collapse').on('show.bs.collapse', function () {
+                accordion.find('.collapse.show').not(this).collapse('hide');
+            });
+        })(jQuery);
+    </script>
+@endpush
