@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $url
  * @property \Illuminate\Support\Carbon|null $lunched_at
  * @property-read string|null $image_path
+ * @property-read string|null $image_url
  */
 class Project extends Model
 {
@@ -44,5 +45,12 @@ class Project extends Model
         }
 
         return 'upload/projects/' . ltrim($this->image, '/');
+    }
+
+    public function getImageUrlAttribute(): ?string
+    {
+        $path = $this->image_path;
+
+        return $path ? asset($path) : null;
     }
 }

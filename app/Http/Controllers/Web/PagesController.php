@@ -36,6 +36,11 @@ class PagesController extends Controller
             ->orderByDesc('progress')
             ->get()
             ->groupBy('type');
+        $projects = Project::query()
+            ->whereNotNull('image')
+            ->where('image', '!=', '')
+            ->orderBy('lunched_at', 'desc')
+            ->get();
         $portfolioFilters = $this->buildPortfolioFilters();
         $portfolioItems = $this->buildPortfolioItems($portfolioFilters);
         $portfolioItems = $this->paginateItems($portfolioItems, 9);
@@ -48,6 +53,7 @@ class PagesController extends Controller
             'educations' => $educations,
             'experiences' => $experiences,
             'skillsByType' => $skillsByType,
+            'projects' => $projects,
             'portfolioFilters' => $portfolioFilters,
             'portfolioItems' => $portfolioItems,
         ]);

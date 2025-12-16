@@ -6,92 +6,25 @@
             </div>
             <h2 class="section-heading">Recent Builds</h2>
             <div class="row">
-                <div class="col-md-6" style="margin-top: 20px;">
-                    <div class="content">
-                        <div class="image" style="height: 250px; overflow: hidden;">
-                            <img src="images/pages/Netflex-clone.png" alt="">
-                        </div>
-                        <button class="btn-gradient" type="button" onclick="toggleImageHeight(this)">Show Full Image</button>
-                        <div class="blog-title">
-                            <h4><a href="#">Netflex Clone</a></h4>
-                            <p>Single Landing Page HTML & CSS Native </p>
-                            <div class="date">
-                                August 23, 2019 <i class="fas fa-circle"></i> <a
-                                    href="https://mohamed-adel-91.github.io/Netflex_clone/"><span>Go To
-                                        Website</span></a>
+                @foreach(($projects ?? collect()) as $project)
+                    <div class="col-md-6" style="margin-top: 20px;">
+                        <div class="content{{ $loop->iteration === 2 ? ' no-mb' : '' }}">
+                            <div class="image" style="height: 250px; overflow: hidden;">
+                                <img src="{{ asset($project->image_path) }}" alt="{{ $project->name }}">
+                            </div>
+                            <button class="btn-gradient" type="button" onclick="toggleImageHeight(this)">Show Full Image</button>
+                            <div class="blog-title">
+                                <h4><a href="{{ $project->url ?: '#' }}" target="_blank">{{ $project->name }}</a></h4>
+                                <p>{{ $project->description }}</p>
+                                <div class="date">
+                                    {{ optional($project->lunched_at)->format('F d, Y') }} <i class="fas fa-circle"></i> <a
+                                        href="{{ $project->url ?: '#' }}" target="_blank"><span>Go To
+                                            Website</span></a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-md-6" style="margin-top: 20px;">
-                    <div class="content no-mb">
-                        <div class="image" style="height: 250px; overflow: hidden;">
-                            <img src="images/pages/gamehub.png" alt="">
-                        </div>
-                        <button class="btn-gradient" type="button" onclick="toggleImageHeight(this)">Show Full Image</button>
-                        <div class="blog-title">
-                            <h4><a href="https://game-hub-hazel-two.vercel.app/">Game Hub</a></h4>
-                            <p>Game Hub is website created by React.js with typescript </p>
-                            <div class="date">
-                                December 18, 2023 <i class="fas fa-circle"></i> <a
-                                    href="https://game-hub-hazel-two.vercel.app/"><span>Go To
-                                        Website</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6" style="margin-top: 20px;">
-                    <div class="content">
-                        <div class="image" style="height: 250px; overflow: hidden;">
-                            <img src="images/pages/cs-temblate-one.png" alt="">
-                        </div>
-                        <button class="btn-gradient" type="button" onclick="toggleImageHeight(this)">Show Full Image</button>
-                        <div class="blog-title">
-                            <h4><a href="#">CompuService</a></h4>
-                            <p>Single Landing Page HTML & CSS Native </p>
-                            <div class="date">
-                                August 23, 2019 <i class="fas fa-circle"></i> <a href="#"><span>Go To
-                                        Website</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6" style="margin-top: 20px;">
-                    <div class="content">
-                        <div class="image" style="height: 250px; overflow: hidden;">
-                            <img src="images/pages/gamerspress.png" alt="">
-                        </div>
-                        <button class="btn-gradient" type="button" onclick="toggleImageHeight(this)">Show Full Image</button>
-                        <div class="blog-title">
-                            <h4><a href="#">Gamers Press</a></h4>
-                            <p>Single Landing Page HTML & CSS Native </p>
-                            <div class="date">
-                                August 23, 2019 <i class="fas fa-circle"></i> <a
-                                    href="https://mohamed-adel-91.github.io/GamersPress/"><span>Go To
-                                        Website</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6" style="margin-top: 20px;">
-                    <div class="content">
-                        <div class="image" style="height: 250px; overflow: hidden;">
-                            <img src="images/pages/Kudzoka.png" alt="">
-                        </div>
-                        <button class="btn-gradient" type="button" onclick="toggleImageHeight(this)">Show Full Image</button>
-                        <div class="blog-title">
-                            <h4><a href="#">Kudzoka</a></h4>
-                            <p>Single Landing Page HTML & CSS Native </p>
-                            <div class="date">
-                                August 23, 2019 <i class="fas fa-circle"></i> <a
-                                    href="https://mohamed-adel-91.github.io/Kudzoka/"><span>Go To
-                                        Website</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                @endforeach
             </div>
         </div>
 
