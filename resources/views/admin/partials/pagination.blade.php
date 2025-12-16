@@ -1,5 +1,9 @@
 <!-- ################## Pagination Part Start ################## -->
 <div>
+    @php
+        $queryParams = request()->except('page');
+        $queryString = $queryParams ? '&' . http_build_query($queryParams) : '';
+    @endphp
     <div class="d-flex p-4 justify-content-center">
         <nav aria-label="Page navigation example">
             <ul class="pagination">
@@ -8,9 +12,7 @@
                     <li class="page-item disabled"><span class="page-link">Previous</span></li>
                 @else
                     <li class="page-item">
-                        <a class="page-link"
-                            href="{{ $data->previousPageUrl() . (request()->query() ? '&' . http_build_query(request()->query()) : '') }}"
-                            rel="prev">Previous</a>
+                        <a class="page-link" href="{{ $data->previousPageUrl() . $queryString }}" rel="prev">Previous</a>
                     </li>
                 @endif
 
@@ -28,8 +30,7 @@
                                 <li class="page-item active"><span class="page-link">{{ $page }}</span></li>
                             @else
                                 <li class="page-item">
-                                    <a class="page-link"
-                                        href="{{ $url . (request()->query() ? '&' . http_build_query(request()->query()) : '') }}">{{ $page }}</a>
+                                    <a class="page-link" href="{{ $url . $queryString }}">{{ $page }}</a>
                                 </li>
                             @endif
                         @endforeach
@@ -39,9 +40,7 @@
                 <!-- Next Page Link -->
                 @if ($data->hasMorePages())
                     <li class="page-item">
-                        <a class="page-link"
-                            href="{{ $data->nextPageUrl() . (request()->query() ? '&' . http_build_query(request()->query()) : '') }}"
-                            rel="next">Next</a>
+                        <a class="page-link" href="{{ $data->nextPageUrl() . $queryString }}" rel="next">Next</a>
                     </li>
                 @else
                     <li class="page-item disabled"><span class="page-link">Next</span></li>
