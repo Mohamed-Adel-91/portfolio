@@ -824,6 +824,28 @@ ul {
     transform-style: preserve-3d;
 }
 
+.portfolio-card-anim {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    transform-origin: center center;
+}
+
+.portfolio-item-out {
+    opacity: 0;
+    transform: scale(0.5) translate3d(0, 0, 0);
+}
+
+.portfolio-item-preenter {
+    opacity: 0;
+    transform: scale(0.5) translate3d(0, 0, 0);
+}
+
+.portfolio-item-in {
+    opacity: 1;
+    transform: scale(1) translate3d(0, 0, 0);
+}
+
 .portfolio-animating-out {
     opacity: 0;
     transform: scale(0.95) translate3d(0, 20px, 0);

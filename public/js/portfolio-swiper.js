@@ -11,7 +11,8 @@
         var paginationEl = swiperEl ? swiperEl.querySelector('.swiper-pagination') : null;
         var swiperInstance = null;
         var isAnimating = false;
-        var animationDuration = 500;
+        var baseDuration = 500;
+        var stagger = 30;
         var activeFilterEl = document.querySelector('.portfolio-filter-menu li.active');
 
         if (!swiperEl || !wrapperEl) {
@@ -19,7 +20,6 @@
         }
 
         wrapperEl.classList.add('portfolio-grid-3d');
-        wrapperEl.classList.remove('portfolio-animating-out', 'portfolio-animating-in');
 
         function escapeHtml(value) {
             return String(value)
@@ -127,6 +127,58 @@
             return html;
         }
 
+        function getCurrentCards() {
+            return Array.prototype.slice.call(wrapperEl.querySelectorAll('.filtr-item'));
+        }
+
+        function applyOutAnimation(cards) {
+            if (!cards.length) {
+                return 0;
+            }
+
+            cards.forEach(function (card, index) {
+                card.classList.add('portfolio-card-anim');
+                card.classList.remove('portfolio-item-preenter', 'portfolio-item-in', 'portfolio-item-out');
+                card.style.transition =
+                    'transform ' + baseDuration + 'ms ease-out, opacity ' + baseDuration + 'ms ease-out';
+                card.style.transitionDelay = index * stagger + 'ms';
+            });
+
+            void cards[0].offsetWidth;
+
+            cards.forEach(function (card) {
+                card.classList.add('portfolio-item-out');
+            });
+
+            return baseDuration + (cards.length - 1) * stagger;
+        }
+
+        function applyInAnimation() {
+            var cards = getCurrentCards();
+            if (!cards.length) {
+                return 0;
+            }
+
+            cards.forEach(function (card, index) {
+                card.classList.add('portfolio-card-anim', 'portfolio-item-preenter');
+                card.classList.remove('portfolio-item-out', 'portfolio-item-in');
+                card.style.transition =
+                    'transform ' + baseDuration + 'ms ease-out, opacity ' + baseDuration + 'ms ease-out';
+                card.style.transitionDelay = index * stagger + 'ms';
+            });
+
+            window.requestAnimationFrame(function () {
+                window.requestAnimationFrame(function () {
+                    cards.forEach(function (card) {
+                        card.classList.remove('portfolio-item-preenter');
+                        card.classList.add('portfolio-item-in');
+                    });
+                });
+            });
+
+            return baseDuration + (cards.length - 1) * stagger;
+        }
+
         function destroySwiper() {
             if (swiperInstance) {
                 swiperInstance.destroy(true, true);
@@ -211,15 +263,20 @@
 
         function animateAndRebuild(filterId) {
             isAnimating = true;
-            wrapperEl.classList.remove('portfolio-animating-in');
-            wrapperEl.classList.add('portfolio-animating-out');
+            var cards = getCurrentCards();
+            var outTime = applyOutAnimation(cards);
 
             window.setTimeout(function () {
                 render(filterItems(filterId));
-                wrapperEl.classList.remove('portfolio-animating-out');
-                wrapperEl.classList.add('portfolio-animating-in');
-                isAnimating = false;
-            }, animationDuration);
+                var inTime = applyInAnimation();
+                if (inTime > 0) {
+                    window.setTimeout(function () {
+                        isAnimating = false;
+                    }, inTime);
+                } else {
+                    isAnimating = false;
+                }
+            }, outTime);
         }
 
         document.querySelectorAll('.portfolio-filter-menu li').forEach(function (item) {
