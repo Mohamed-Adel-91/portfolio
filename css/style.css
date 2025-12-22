@@ -818,6 +818,24 @@ ul {
     margin-top: 1.5rem;
 }
 
+.portfolio-grid-3d {
+    backface-visibility: hidden;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+.portfolio-animating-out {
+    opacity: 0;
+    transform: scale(0.95) translate3d(0, 20px, 0);
+    transition: 0.5s ease-out;
+}
+
+.portfolio-animating-in {
+    opacity: 1;
+    transform: scale(1) translate3d(0, 0, 0);
+    transition: 0.5s ease-out;
+}
+
 .portfolio-swiper .swiper-slide {
     height: auto;
 }
