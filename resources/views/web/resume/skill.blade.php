@@ -36,22 +36,20 @@
                     @php
                         $label = $typeLabels[$type] ?? ucfirst(str_replace('_', ' ', (string) $type));
                         $collapseId = 'skill-type-' . Str::slug((string) $type);
-                        $isFirst = $loop->first;
                     @endphp
                     <div class="card mb-3">
                         <div class="card-header p-0">
                             <h4 class="skill-type-title mb-0">
                                 <button class="btn btn-link d-flex align-items-center w-100 text-left px-3 py-2"
                                     type="button" data-toggle="collapse" data-target="#{{ $collapseId }}"
-                                    aria-expanded="{{ $isFirst ? 'true' : 'false' }}"
+                                    aria-expanded="true"
                                     aria-controls="{{ $collapseId }}">
                                     <i class="fas fa-circle mr-2" style="font-size: 8px;"></i>
                                     {{ $label }}
                                 </button>
                             </h4>
                         </div>
-                        <div id="{{ $collapseId }}" class="collapse {{ $isFirst ? 'show' : '' }}"
-                            data-parent="#accordionSkills">
+                        <div id="{{ $collapseId }}" class="collapse show">
                             <div class="card-body pt-3">
                                 <div class="skill-grid d-flex flex-wrap">
                                     @foreach ($skills as $skill)
@@ -98,15 +96,3 @@
         </div>
     </div>
 </div>
-
-@push('custom-web-js-scripts')
-    <script>
-        (function ($) {
-            const accordion = $('#accordionSkills');
-
-            accordion.find('.collapse').on('show.bs.collapse', function () {
-                accordion.find('.collapse.show').not(this).collapse('hide');
-            });
-        })(jQuery);
-    </script>
-@endpush
