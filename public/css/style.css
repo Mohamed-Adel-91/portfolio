@@ -951,6 +951,10 @@ ul {
     border-color: rgba(245, 158, 11, 0.45);
 }
 
+.swiper-pagination-bullet-active {
+    background: #ff8a00;
+}
+
 .portfolio-empty {
     margin-top: 1.5rem;
 }
