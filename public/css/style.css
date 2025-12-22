@@ -607,6 +607,18 @@ ul {
     margin-top: 50px;
 }
 
+.resume-carousel .owl-stage-outer {
+    transition: height 0.35s ease;
+}
+
+.resume-carousel .owl-item {
+    height: auto !important;
+}
+
+.resume-carousel .content {
+    height: auto !important;
+}
+
 .skill-grid {
     gap: 12px;
 }

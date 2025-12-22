@@ -38,14 +38,42 @@ $(function() {
     });
 
     // carousel resume
-    $('.owl-carousel').owlCarousel({
-        items: 1,
-        margin: 10,
-        loop: true,
-        autoplay: true,
-        autoplayTimeout: 3000,
-        autoplayHoverPause: true
-    });
+    var $resume = $('.resume-carousel');
+    if ($resume.length) {
+        var timeout = parseInt($resume.attr('data-autoplay-timeout'), 10) || 10000;
+
+        $resume.owlCarousel({
+            items: 1,
+            margin: 10,
+            loop: true,
+            autoplay: true,
+            autoplayTimeout: timeout,
+            autoplayHoverPause: true,
+            autoHeight: true,
+            smartSpeed: 600
+        });
+
+        function syncResumeHeight() {
+            var $active = $resume.find('.owl-item.active .content');
+            if (!$active.length) {
+                return;
+            }
+            var height = $active.outerHeight(true);
+            $resume.find('.owl-stage-outer').css('height', height + 'px');
+        }
+
+        $resume.on('initialized.owl.carousel', function () {
+            setTimeout(syncResumeHeight, 0);
+        });
+
+        $resume.on('changed.owl.carousel translated.owl.carousel refreshed.owl.carousel', function () {
+            setTimeout(syncResumeHeight, 0);
+        });
+
+        $(window).on('resize', function () {
+            syncResumeHeight();
+        });
+    }
 
     // collapse show on resume
     $('.collapse-show').collapse();

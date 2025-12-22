@@ -607,6 +607,18 @@ ul {
     margin-top: 50px;
 }
 
+.resume-carousel .owl-stage-outer {
+    transition: height 0.35s ease;
+}
+
+.resume-carousel .owl-item {
+    height: auto !important;
+}
+
+.resume-carousel .content {
+    height: auto !important;
+}
+
 .skill-grid {
     gap: 12px;
 }
@@ -937,6 +949,10 @@ ul {
 .portfolio-swiper .swiper-button-next:hover {
     background: rgba(15, 15, 15, 0.85);
     border-color: rgba(245, 158, 11, 0.45);
+}
+
+.swiper-pagination-bullet-active {
+    background: #ff8a00;
 }
 
 .portfolio-empty {
