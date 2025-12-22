@@ -1018,6 +1018,30 @@ ul {
     border: 1px solid rgba(255, 255, 255, 0.03);
 }
 
+.projects-masonry {
+    column-count: 2;
+    column-gap: 24px;
+    margin-top: 20px;
+}
+
+.projects-masonry-item {
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    margin-bottom: 24px;
+}
+
+.projects-masonry-item .content {
+    display: block;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+@media (max-width: 767.98px) {
+    .projects-masonry {
+        column-count: 1;
+    }
+}
+
 .blog .content:hover img {
     -moz-transform: scale(1.03);
     -webkit-transform: scale(1.03);
@@ -1042,7 +1066,7 @@ ul {
 
 .blog .content .btn-gradient,
 .blog .content .button {
-    margin: 12px 0 0;
+    margin: 12px 20px 0;
 }
 
 .blog .content .blog-title h4 {
@@ -1315,10 +1339,6 @@ ul {
 
     .blog .content {
         margin-bottom: 30px;
-    }
-
-    .blog .content.no-mb {
-        margin-bottom: 0;
     }
 
     .contact .content-left {

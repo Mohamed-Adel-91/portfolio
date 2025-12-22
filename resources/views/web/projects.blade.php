@@ -5,10 +5,10 @@
                 <h3>My Projects</h3>
             </div>
             <h2 class="section-heading">Recent Builds</h2>
-            <div class="row">
+            <div class="projects-masonry">
                 @foreach(($projects ?? collect()) as $project)
-                    <div class="col-md-6" style="margin-top: 20px;">
-                        <div class="content{{ $loop->iteration === 2 ? ' no-mb' : '' }}">
+                    <div class="projects-masonry-item">
+                        <div class="content">
                             <div class="image" style="height: 250px; overflow: hidden;">
                                 <img src="{{ asset($project->image_path) }}" alt="{{ $project->name }}">
                             </div>
