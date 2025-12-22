@@ -56,6 +56,19 @@
                                                 <td>{{ date('d-m-Y h:i A', strtotime($item->created_at)) }}</td>
                                                 <td>
                                                     <div class="td-actions">
+                                                        <a href="#" class="icon bg-primary show-btn text-decoration-none"
+                                                            data-toggle="modal" data-target="#contactDetailsModal"
+                                                            data-first-name="{{ $item->first_name }}"
+                                                            data-last-name="{{ $item->last_name }}"
+                                                            data-email="{{ $item->email }}"
+                                                            data-subject="{{ $item->subject }}"
+                                                            data-message="{{ $item->message }}"
+                                                            data-reply-status="{{ $item->reply_status == 1 ? 'Replied' : 'No Reply' }}"
+                                                            data-replies-count="{{ $item->replays->count() }}"
+                                                            data-submitted-at="{{ date('d-m-Y h:i A', strtotime($item->created_at)) }}"
+                                                            title="Show" aria-label="Show">
+                                                            <i class="icon-eye"></i>
+                                                        </a>
                                                         <a href="mailto:{{ $item->email }}"
                                                             class="icon bg-info text-decoration-none" data-toggle="tooltip"
                                                             title="Send Email">
@@ -82,6 +95,54 @@
                             @include('admin.partials.pagination')
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Details Modal -->
+    <div class="modal fade" id="contactDetailsModal" tabindex="-1" role="dialog"
+        aria-labelledby="contactDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="contactDetailsModalLabel">Contact Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <p class="form-control-plaintext" id="detail_name"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <p class="form-control-plaintext" id="detail_email"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Subject</label>
+                        <p class="form-control-plaintext" id="detail_subject"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <div class="border rounded p-2 bg-light" id="detail_message"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Reply Status</label>
+                        <p class="form-control-plaintext" id="detail_reply_status"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Replies Count</label>
+                        <p class="form-control-plaintext" id="detail_replies_count"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Submitted At</label>
+                        <p class="form-control-plaintext" id="detail_submitted_at"></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -131,6 +192,25 @@
 
         <script>
             $(document).ready(function() {
+                $('.show-btn').click(function() {
+                    const firstName = $(this).data('first-name') || '';
+                    const lastName = $(this).data('last-name') || '';
+                    const email = $(this).data('email') || '';
+                    const subject = $(this).data('subject') || '';
+                    const message = $(this).data('message') || '';
+                    const replyStatus = $(this).data('reply-status') || '';
+                    const repliesCount = $(this).data('replies-count') || 0;
+                    const submittedAt = $(this).data('submitted-at') || '';
+
+                    $('#detail_name').text(`${firstName} ${lastName}`.trim());
+                    $('#detail_email').text(email);
+                    $('#detail_subject').text(subject);
+                    $('#detail_message').text(message);
+                    $('#detail_reply_status').text(replyStatus);
+                    $('#detail_replies_count').text(repliesCount);
+                    $('#detail_submitted_at').text(submittedAt);
+                });
+
                 $('.reply-btn').click(function() {
                     let contactId = $(this).data('id');
                     let contactEmail = $(this).data('email');
