@@ -9,6 +9,7 @@
 <script src="js/main.js"></script>
 <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="js/jquery.easing.js"></script>
-{{-- <script type="text/javascript" src="js/smoothscroll.js"></script> --}}
 <script type="text/javascript" src="js/jquery.nicescroll.min.js"></script>
+<script type="text/javascript" src="js/smoothscroll.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 @stack('custom-web-js-scripts')

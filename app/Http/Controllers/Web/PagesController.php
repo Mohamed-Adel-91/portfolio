@@ -15,7 +15,6 @@ use App\Models\Skill;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 
@@ -43,7 +42,6 @@ class PagesController extends Controller
             ->get();
         $portfolioFilters = $this->buildPortfolioFilters();
         $portfolioItems = $this->buildPortfolioItems($portfolioFilters);
-        $portfolioItems = $this->paginateItems($portfolioItems, 9);
 
         return view('web.layouts.master')->with([
             'pageName' => 'Mohamed Adel - Personal Portfolio Website',
@@ -157,24 +155,6 @@ class PagesController extends Controller
         }
 
         return $items;
-    }
-
-    private function paginateItems(Collection $items, int $perPage = 9): LengthAwarePaginator
-    {
-        $currentPage = max((int) request()->input('page', 1), 1);
-        $total = $items->count();
-        $results = $items->slice(($currentPage - 1) * $perPage, $perPage)->values();
-
-        return new LengthAwarePaginator(
-            $results,
-            $total,
-            $perPage,
-            $currentPage,
-            [
-                'path' => request()->url(),
-                'query' => request()->query(),
-            ]
-        );
     }
 
     public function contactUs()

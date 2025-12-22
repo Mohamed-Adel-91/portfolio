@@ -818,6 +818,19 @@ ul {
     margin-top: 1.5rem;
 }
 
+.portfolio-swiper .swiper-slide {
+    height: auto;
+}
+
+.portfolio-swiper .swiper-pagination {
+    position: static;
+    margin-top: 0.75rem;
+}
+
+.portfolio-empty {
+    margin-top: 1.5rem;
+}
+
 .portfolio-card {
     position: relative;
     overflow: hidden;
@@ -884,12 +897,12 @@ ul {
 .portfolio-pagination .page-link:hover {
     background-color: #222;
     border-color: #444;
-    color: #ffb300;
+    color: var(--accent-start);
 }
 
 .portfolio-pagination .page-item.active .page-link {
-    background-color: #ffb300;
-    border-color: #ffb300;
+    background-color: var(--accent-start);
+    border-color: var(--accent-start);
     color: #000;
 }
 

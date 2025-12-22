@@ -818,6 +818,19 @@ ul {
     margin-top: 1.5rem;
 }
 
+.portfolio-swiper .swiper-slide {
+    height: auto;
+}
+
+.portfolio-swiper .swiper-pagination {
+    position: static;
+    margin-top: 0.75rem;
+}
+
+.portfolio-empty {
+    margin-top: 1.5rem;
+}
+
 .portfolio-card {
     position: relative;
     overflow: hidden;
