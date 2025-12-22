@@ -17,8 +17,9 @@
                                     <div class="about-description line-clamp-12" id="aboutDescription">
                                         {!! $about ? $about->description : '######' !!}
                                     </div>
-                                    <button class="read-more-btn" type="button" onclick="toggleAboutDescription(this)"
-                                        aria-expanded="false">
+                                    <div class="about-fade"></div>
+                                    <button type="button" class="read-more-btn d-none" id="aboutReadMoreBtn"
+                                        onclick="toggleAboutDescription(this)" aria-expanded="false">
                                         Read more
                                     </button>
                                 </div>
@@ -33,6 +34,23 @@
 
 @push('custom-web-js-scripts')
     <script>
+        function initAboutReadMore() {
+            var desc = document.getElementById('aboutDescription');
+            var btn = document.getElementById('aboutReadMoreBtn');
+            var fade = document.querySelector('.about-fade');
+
+            if (!desc || !btn) {
+                return;
+            }
+
+            var hasOverflow = desc.scrollHeight > desc.clientHeight + 5;
+            if (hasOverflow) {
+                btn.classList.remove('d-none');
+            } else if (fade) {
+                fade.classList.add('d-none');
+            }
+        }
+
         function toggleAboutDescription(button) {
             var el = document.getElementById('aboutDescription');
             if (!el) {
@@ -41,6 +59,12 @@
             var expanded = el.classList.toggle('is-expanded');
             button.textContent = expanded ? 'Read less' : 'Read more';
             button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initAboutReadMore);
+        } else {
+            initAboutReadMore();
         }
     </script>
 @endpush
