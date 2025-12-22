@@ -828,17 +828,17 @@ ul {
     will-change: transform, opacity;
     backface-visibility: hidden;
     transform-style: preserve-3d;
-    transform-origin: center center;
+    transform-origin: top left;
 }
 
 .portfolio-item-out {
     opacity: 0;
-    transform: scale(0.5) translate3d(0, 0, 0);
+    transform: scale(0.5) translate3d(-30px, -30px, 0);
 }
 
 .portfolio-item-preenter {
     opacity: 0;
-    transform: scale(0.5) translate3d(0, 0, 0);
+    transform: scale(0.5) translate3d(-30px, -30px, 0);
 }
 
 .portfolio-item-in {
@@ -865,6 +865,44 @@ ul {
 .portfolio-swiper .swiper-pagination {
     position: static;
     margin-top: 0.75rem;
+}
+
+.portfolio-swiper {
+    padding: 0 56px;
+    box-sizing: border-box;
+}
+
+.portfolio-swiper .swiper-button-prev,
+.portfolio-swiper .swiper-button-next {
+    width: 42px;
+    height: 42px;
+    margin-top: 0;
+    border-radius: 50%;
+    background: rgba(15, 15, 15, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    top: 50%;
+    transform: translateY(-50%);
+    transition: background 0.2s ease-out, border-color 0.2s ease-out;
+}
+
+.portfolio-swiper .swiper-button-prev {
+    left: 8px;
+}
+
+.portfolio-swiper .swiper-button-next {
+    right: 8px;
+}
+
+.portfolio-swiper .swiper-button-prev::after,
+.portfolio-swiper .swiper-button-next::after {
+    font-size: 18px;
+    color: #F59E0B;
+}
+
+.portfolio-swiper .swiper-button-prev:hover,
+.portfolio-swiper .swiper-button-next:hover {
+    background: rgba(15, 15, 15, 0.85);
+    border-color: rgba(245, 158, 11, 0.45);
 }
 
 .portfolio-empty {
