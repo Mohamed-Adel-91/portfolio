@@ -43,7 +43,7 @@ $(function() {
         margin: 10,
         loop: true,
         autoplay: true,
-        autoplayTimeout: 3000,
+        autoplayTimeout: 10000,
         autoplayHoverPause: true
     });
 
