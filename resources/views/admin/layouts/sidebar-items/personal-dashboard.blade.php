@@ -1,9 +1,9 @@
 @php
     $sectionsActive = request()->routeIs([
         'admin.pray.*',
-        'admin.tasks.*',
-        'admin.debts.*',
-        'admin.works.*'
+        // 'admin.tasks.*',
+        // 'admin.debts.*',
+        // 'admin.works.*'
     ]);
 @endphp
 
