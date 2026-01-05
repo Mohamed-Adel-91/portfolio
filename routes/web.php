@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\PortfolioController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\PrayerCounterController;
 use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Web\FormsController;
 use App\Http\Controllers\Web\PagesController;
@@ -44,6 +45,8 @@ Route::group(['middleware' => 'guest'], function () {
 Route::group(['as' => 'admin.', 'prefix' => 'dashboard', 'middleware' => 'AuthPerson:admin'], function () {
     Route::get('/', [ContactUsController::class, 'index'])->name('index');
     Route::post('/contact/reply', [ContactUsController::class, 'replyToContactRequest'])->name('contact.reply');
+    Route::get('/prayers', [PrayerCounterController::class, 'index'])->name('prayers.index');
+    Route::post('/prayers/done/{prayer}', [PrayerCounterController::class, 'done'])->name('prayers.done');
     Route::get('/settings/edit', [SettingsController::class, 'edit'])->name('settings.edit');
     Route::put('/settings/update', [SettingsController::class, 'update'])->name('settings.update');
     Route::get('/sections/intro/edit', [IntroController::class, 'edit'])->name('intro.edit');

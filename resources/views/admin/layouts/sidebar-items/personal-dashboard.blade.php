@@ -1,6 +1,6 @@
 @php
     $sectionsActive = request()->routeIs([
-        'admin.pray.*',
+        'admin.prayers.*',
         // 'admin.tasks.*',
         // 'admin.debts.*',
         // 'admin.works.*'
@@ -16,10 +16,10 @@
 
     <div id="websiteSections" class="sidebar-submenu collapse {{ $sectionsActive ? 'show' : '' }}">
         <ul class="pl-0">
-            <li class="{{ request()->routeIs('admin.pray.*') ? 'active' : '' }}">
-                <a href="{{ route('admin.pray.edit') }}"
-                    class="{{ request()->routeIs('admin.pray.*') ? 'current-page' : '' }}">
-                    <i class="bi bi-card-heading"></i> Pray
+            <li class="{{ request()->routeIs('admin.prayers.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.prayers.index') }}"
+                    class="{{ request()->routeIs('admin.prayers.*') ? 'current-page' : '' }}">
+                    <i class="bi bi-moon-stars"></i> Prayer Counters
                 </a>
             </li>
 
