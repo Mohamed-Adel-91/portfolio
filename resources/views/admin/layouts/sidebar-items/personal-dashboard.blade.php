@@ -2,7 +2,7 @@
     $sectionsActive = request()->routeIs([
         'admin.prayers.*',
         // 'admin.tasks.*',
-        // 'admin.debts.*',
+        // 'admin.credit.*',
         // 'admin.works.*'
     ]);
 @endphp
@@ -23,13 +23,13 @@
                 </a>
             </li>
 
-            <li class="{{ request()->routeIs('admin.debts.*') ? 'active' : '' }}">
-                <a href="{{ route('admin.debts.index') }}"
-                    class="{{ request()->routeIs('admin.debts.*') ? 'current-page' : '' }}">
-                    <i class="bi bi-mortarboard-fill"></i> debt progress
+            <li class="{{ request()->routeIs('admin.credit.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.credit.index') }}"
+                    class="{{ request()->routeIs('admin.credit.*') ? 'current-page' : '' }}">
+                    <i class="bi bi-mortarboard-fill"></i> Credit Progress
                 </a>
             </li>
-            
+
             {{-- <li class="{{ request()->routeIs('admin.tasks.*') ? 'active' : '' }}">
                 <a href="{{ route('admin.tasks.edit') }}"
                     class="{{ request()->routeIs('admin.tasks.*') ? 'current-page' : '' }}">
