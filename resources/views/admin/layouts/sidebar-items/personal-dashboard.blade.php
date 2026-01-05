@@ -23,6 +23,13 @@
                 </a>
             </li>
 
+            <li class="{{ request()->routeIs('admin.debts.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.debts.index') }}"
+                    class="{{ request()->routeIs('admin.debts.*') ? 'current-page' : '' }}">
+                    <i class="bi bi-mortarboard-fill"></i> debt progress
+                </a>
+            </li>
+            
             {{-- <li class="{{ request()->routeIs('admin.tasks.*') ? 'active' : '' }}">
                 <a href="{{ route('admin.tasks.edit') }}"
                     class="{{ request()->routeIs('admin.tasks.*') ? 'current-page' : '' }}">
@@ -35,14 +42,8 @@
                     class="{{ request()->routeIs('admin.works.*') ? 'current-page' : '' }}">
                     <i class="bi bi-file-earmark-text-fill"></i> work
                 </a>
-            </li>
-
-            <li class="{{ request()->routeIs('admin.debts.*') ? 'active' : '' }}">
-                <a href="{{ route('admin.debts.index') }}"
-                    class="{{ request()->routeIs('admin.debts.*') ? 'current-page' : '' }}">
-                    <i class="bi bi-mortarboard-fill"></i> debt progress
-                </a>
             </li> --}}
+
         </ul>
     </div>
 </li>
