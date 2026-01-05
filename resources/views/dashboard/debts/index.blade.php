@@ -57,7 +57,7 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                         <div class="card h-100">
                             <div class="card-body">
-                                <div class="text-muted">إجمالي قيمة القروض</div>
+                                <div class="text-muted">Total Loan Principal</div>
                                 <div class="debt-total text-danger" data-summary="total-loan-principal">
                                     {{ $formatMoney($totalLoanPrincipal) }} EGP
                                 </div>
@@ -67,7 +67,7 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                         <div class="card h-100">
                             <div class="card-body">
-                                <div class="text-muted">إجمالي المتبقي من القروض</div>
+                                <div class="text-muted">Total Loan Remaining</div>
                                 <div class="debt-total text-warning" data-summary="total-loan-remaining">
                                     {{ $formatMoney($totalLoanRemaining) }} EGP
                                 </div>
@@ -78,7 +78,7 @@
 
                 <div class="row gutters mt-3">
                     @foreach ($accounts as $account)
-                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-3">
                             <div class="card h-100 debt-account-card" data-account-id="{{ $account->id }}"
                                 data-account-type="{{ $account->type }}">
                                 <div class="card-body">
