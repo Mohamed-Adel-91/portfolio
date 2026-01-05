@@ -23,7 +23,7 @@
                 </a>
             </li>
 
-            <li class="{{ request()->routeIs('admin.tasks.*') ? 'active' : '' }}">
+            {{-- <li class="{{ request()->routeIs('admin.tasks.*') ? 'active' : '' }}">
                 <a href="{{ route('admin.tasks.edit') }}"
                     class="{{ request()->routeIs('admin.tasks.*') ? 'current-page' : '' }}">
                     <i class="bi bi-person-fill"></i> Tasks
@@ -42,7 +42,7 @@
                     class="{{ request()->routeIs('admin.debts.*') ? 'current-page' : '' }}">
                     <i class="bi bi-mortarboard-fill"></i> debt progress
                 </a>
-            </li>
+            </li> --}}
         </ul>
     </div>
 </li>
