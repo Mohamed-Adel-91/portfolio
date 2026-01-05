@@ -32,13 +32,16 @@
                 <li class="{{ Request::segment(2) == 'settings' ? 'active' : '' }}">
                     <a href="{{ route('admin.settings.edit') }}"
                         class="{{ Request::segment(2) == 'settings' ? 'current-page' : '' }}">
-                        <i class="icon-settings"></i>Settings
+                        <i class="icon-settings"></i>Contact Settings
                     </a>
                 </li>
 
                 <!-- sidebar sections start -->
                 @include('admin.layouts.sidebar-items.sections')
                 <!-- sidebar sections end -->
+                <!-- sidebar personal-dashboard start -->
+                @include('admin.layouts.sidebar-items.personal-dashboard')
+                <!-- sidebar personal-dashboard end -->
 
             </ul>
         </div>
