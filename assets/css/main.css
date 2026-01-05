@@ -4553,12 +4553,12 @@ ul.user-messages li {
     background: #484848; }
     .alert.alert-secondary hr {
       border-top-color: #555555; }
-  .alert.alert-success {
-    background: #18800c; }
+  /* .alert.alert-success {
+    background: #18800c; } */
     .alert.alert-success hr {
       border-top-color: #1c970e; }
-  .alert.alert-danger {
-    background: #e40000; }
+  /* .alert.alert-danger {
+    background: #e40000; } */
     .alert.alert-danger hr {
       border-top-color: #fe0000; }
   .alert.alert-info {

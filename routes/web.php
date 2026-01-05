@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\PrayerCounterController;
+use App\Http\Controllers\Dashboard\DebtController;
 use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Web\FormsController;
 use App\Http\Controllers\Web\PagesController;
@@ -65,6 +66,13 @@ Route::group(['as' => 'admin.', 'prefix' => 'dashboard', 'middleware' => 'AuthPe
     Route::resource('gallery', GalleryController::class)->except(['show']);
     Route::resource('skills', SkillController::class)->except(['show']);
 
+});
+
+Route::group(['as' => 'dashboard.debts.', 'prefix' => 'dashboard/debts', 'middleware' => 'AuthPerson:admin'], function () {
+    Route::get('/', [DebtController::class, 'index'])->name('index');
+    Route::get('/{account}', [DebtController::class, 'show'])->name('show');
+    Route::post('/transaction', [DebtController::class, 'storeTransaction'])->name('transaction');
+    Route::post('/{account}/limit', [DebtController::class, 'updateLimit'])->name('limit');
 });
 
 Route::fallback(function () {
