@@ -261,7 +261,7 @@
                                                                     </form>
                                                                 @endif
                                                                 <form method="POST" action="{{ route('admin.personal.todo-tasks.destroy', $task) }}"
-                                                                    onsubmit="return confirm('Delete this task?');">
+                                                                    class="js-task-delete" data-title="{{ $task->title }}">
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
@@ -377,6 +377,7 @@
             const bulkAction = document.getElementById('bulk_action');
             const bulkQuadrantGroup = document.getElementById('bulkQuadrantGroup');
             const bulkCategoryGroup = document.getElementById('bulkCategoryGroup');
+            const deleteForms = document.querySelectorAll('.js-task-delete');
 
             if (selectAll) {
                 selectAll.addEventListener('change', function() {
@@ -399,6 +400,29 @@
             if (bulkAction) {
                 bulkAction.addEventListener('change', toggleBulkFields);
                 toggleBulkFields();
+            }
+
+            if (deleteForms.length) {
+                deleteForms.forEach((form) => {
+                    form.addEventListener('submit', function(event) {
+                        event.preventDefault();
+                        const title = form.dataset.title ? `"${form.dataset.title}"` : 'this task';
+
+                        Swal.fire({
+                            title: 'Delete task?',
+                            text: `You are about to delete ${title}. This cannot be undone.`,
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#dc3545',
+                            cancelButtonColor: '#6c757d',
+                            confirmButtonText: 'Yes, delete it',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                form.submit();
+                            }
+                        });
+                    });
+                });
             }
         });
     </script>
