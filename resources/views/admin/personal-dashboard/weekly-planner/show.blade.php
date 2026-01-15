@@ -47,7 +47,7 @@
 
                 <div class="row gutters mt-3">
                     <div class="col-lg-8">
-                        <div class="card h-100">
+                        <div class="card">
                             <div class="card-header">
                                 <div class="card-title">Weekly Focus</div>
                             </div>
@@ -67,7 +67,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <div class="card h-100">
+                        <div class="card">
                             <div class="card-header">
                                 <div class="card-title">Quick Stats</div>
                             </div>
@@ -189,7 +189,7 @@
 
                 <div class="row gutters mt-3">
                     <div class="col-lg-8">
-                        <div class="card h-100">
+                        <div class="card">
                             <div class="card-header">
                                 <div class="card-title">Week Notes</div>
                             </div>
@@ -207,7 +207,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <div class="card h-100">
+                        <div class="card">
                             <div class="card-header">
                                 <div class="card-title">Unscheduled Tasks</div>
                             </div>
@@ -246,7 +246,7 @@
                             </div>
                         </div>
 
-                        <div class="card h-100 mt-3">
+                        <div class="card mt-3">
                             <div class="card-header">
                                 <div class="card-title">Quick Create Task</div>
                             </div>
