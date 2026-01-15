@@ -14,6 +14,7 @@
             'delegate' => 'bg-primary',
             'delete' => 'bg-danger',
         ];
+        $today = \Carbon\Carbon::now(config('app.timezone'))->toDateString();
     @endphp
 
     <div class="page-wrapper">
@@ -190,7 +191,20 @@
                                             </thead>
                                             <tbody>
                                                 @forelse ($tasks as $task)
-                                                    <tr>
+                                                    @php
+                                                        $rowClass = '';
+                                                        if ($task->status === 'done') {
+                                                            $rowClass = 'table-success';
+                                                        } elseif ($task->due_date) {
+                                                            $dueDate = $task->due_date->toDateString();
+                                                            if ($dueDate < $today) {
+                                                                $rowClass = 'table-danger';
+                                                            } elseif ($dueDate === $today) {
+                                                                $rowClass = 'table-warning';
+                                                            }
+                                                        }
+                                                    @endphp
+                                                    <tr class="{{ $rowClass }}">
                                                         <td>
                                                             <input type="checkbox" name="task_ids[]" value="{{ $task->id }}">
                                                         </td>

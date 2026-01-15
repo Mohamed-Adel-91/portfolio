@@ -14,6 +14,7 @@
             'done' => 'bg-success',
             'archived' => 'bg-dark',
         ];
+        $today = \Carbon\Carbon::now(config('app.timezone'))->toDateString();
     @endphp
 
     <div class="page-wrapper">
@@ -100,7 +101,20 @@
                                             </div>
                                             <div class="day-tasks">
                                                 @forelse ($dayTasks as $task)
-                                                    <div class="day-task">
+                                                    @php
+                                                        $taskClass = '';
+                                                        if ($task->status === 'done') {
+                                                            $taskClass = 'task-success';
+                                                        } elseif ($task->due_date) {
+                                                            $dueDate = $task->due_date->toDateString();
+                                                            if ($dueDate < $today) {
+                                                                $taskClass = 'task-danger';
+                                                            } elseif ($dueDate === $today) {
+                                                                $taskClass = 'task-warning';
+                                                            }
+                                                        }
+                                                    @endphp
+                                                    <div class="day-task {{ $taskClass }}">
                                                         <div class="d-flex justify-content-between">
                                                             <div>
                                                                 <div class="task-title">{{ $task->title }}</div>
@@ -326,6 +340,21 @@
             border-radius: 6px;
             padding: 8px;
             margin-bottom: 8px;
+        }
+
+        .day-task.task-success {
+            background: #d1e7dd;
+            border-color: #badbcc;
+        }
+
+        .day-task.task-warning {
+            background: #fff3cd;
+            border-color: #ffecb5;
+        }
+
+        .day-task.task-danger {
+            background: #f8d7da;
+            border-color: #f5c2c7;
         }
 
         .task-title {
