@@ -2,20 +2,20 @@
     $sectionsActive = request()->routeIs([
         'admin.prayers.*',
         'dashboard.debts.*',
-        // 'admin.tasks.*',
-        // 'admin.credit.*',
-        // 'admin.works.*'
+        'admin.personal.todo-categories.*',
+        'admin.personal.todo-tasks.*',
+        'admin.personal.weekly-planner.*',
     ]);
 @endphp
 
 <li class="sidebar-dropdown {{ $sectionsActive ? 'active' : '' }}">
-    <a href="#" data-bs-toggle="collapse" data-bs-target="#websiteSections"
+    <a href="#" data-bs-toggle="collapse" data-bs-target="#personalDashboardSections"
         aria-expanded="{{ $sectionsActive ? 'true' : 'false' }}">
         <i class="bi bi-grid"></i>
         <span class="menu-text">Personal Dashboard</span>
     </a>
 
-    <div id="websiteSections" class="sidebar-submenu collapse {{ $sectionsActive ? 'show' : '' }}">
+    <div id="personalDashboardSections" class="sidebar-submenu collapse {{ $sectionsActive ? 'show' : '' }}">
         <ul class="pl-0">
             <li class="{{ request()->routeIs('admin.prayers.*') ? 'active' : '' }}">
                 <a href="{{ route('admin.prayers.index') }}"
@@ -31,19 +31,26 @@
                 </a>
             </li>
 
-            {{-- <li class="{{ request()->routeIs('admin.tasks.*') ? 'active' : '' }}">
-                <a href="{{ route('admin.tasks.edit') }}"
-                    class="{{ request()->routeIs('admin.tasks.*') ? 'current-page' : '' }}">
-                    <i class="bi bi-person-fill"></i> Tasks
+            <li class="{{ request()->routeIs('admin.personal.todo-categories.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.personal.todo-categories.index') }}"
+                    class="{{ request()->routeIs('admin.personal.todo-categories.*') ? 'current-page' : '' }}">
+                    <i class="bi bi-tags"></i> Tasks Categories
+                </a>
+            </li>
+            <li class="{{ request()->routeIs('admin.personal.todo-tasks.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.personal.todo-tasks.index') }}"
+                    class="{{ request()->routeIs('admin.personal.todo-tasks.*') ? 'current-page' : '' }}">
+                    <i class="bi bi-check2-square"></i> Tasks
                 </a>
             </li>
 
-            <li class="{{ request()->routeIs('admin.works.*') ? 'active' : '' }}">
-                <a href="{{ route('admin.works.index') }}"
-                    class="{{ request()->routeIs('admin.works.*') ? 'current-page' : '' }}">
-                    <i class="bi bi-file-earmark-text-fill"></i> work
+
+            <li class="{{ request()->routeIs('admin.personal.weekly-planner.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.personal.weekly-planner.show') }}"
+                    class="{{ request()->routeIs('admin.personal.weekly-planner.*') ? 'current-page' : '' }}">
+                    <i class="bi bi-calendar-week"></i> Weekly Planner
                 </a>
-            </li> --}}
+            </li>
 
         </ul>
     </div>

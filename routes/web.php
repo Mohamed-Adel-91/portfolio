@@ -14,6 +14,9 @@ use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\PrayerCounterController;
+use App\Http\Controllers\Admin\PersonalDashboard\TodoCategoryController;
+use App\Http\Controllers\Admin\PersonalDashboard\TodoTaskController;
+use App\Http\Controllers\Admin\PersonalDashboard\WeeklyPlannerController;
 use App\Http\Controllers\Dashboard\DebtController;
 use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Web\FormsController;
@@ -65,6 +68,27 @@ Route::group(['as' => 'admin.', 'prefix' => 'dashboard', 'middleware' => 'AuthPe
     Route::resource('portfolio', PortfolioController::class)->except(['show']);
     Route::resource('gallery', GalleryController::class)->except(['show']);
     Route::resource('skills', SkillController::class)->except(['show']);
+
+    Route::prefix('personal')->name('personal.')->group(function () {
+        Route::resource('todo-categories', TodoCategoryController::class)->except(['show']);
+        Route::resource('todo-tasks', TodoTaskController::class)->except(['show']);
+        Route::post('todo-tasks/{todo_task}/mark-done', [TodoTaskController::class, 'markDone'])
+            ->name('todo-tasks.mark-done');
+        Route::post('todo-tasks/{todo_task}/mark-open', [TodoTaskController::class, 'markOpen'])
+            ->name('todo-tasks.mark-open');
+        Route::post('todo-tasks/reorder', [TodoTaskController::class, 'reorder'])
+            ->name('todo-tasks.reorder');
+        Route::post('todo-tasks/bulk', [TodoTaskController::class, 'bulkUpdate'])
+            ->name('todo-tasks.bulk');
+        Route::get('weekly-planner/{weekStart?}', [WeeklyPlannerController::class, 'show'])
+            ->name('weekly-planner.show');
+        Route::post('weekly-planner/schedule', [WeeklyPlannerController::class, 'schedule'])
+            ->name('weekly-planner.schedule');
+        Route::post('weekly-planner/unschedule', [WeeklyPlannerController::class, 'unschedule'])
+            ->name('weekly-planner.unschedule');
+        Route::post('weekly-planner/notes', [WeeklyPlannerController::class, 'saveNotes'])
+            ->name('weekly-planner.notes');
+    });
 
 });
 
