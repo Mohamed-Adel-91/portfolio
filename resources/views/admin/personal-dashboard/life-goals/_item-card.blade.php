@@ -9,8 +9,8 @@
 <div class="col-lg-4 col-md-6">
     <div class="card h-100 goal-card">
         <div class="goal-image">
-            @if ($item->image_path)
-                <img src="{{ asset('storage/' . $item->image_path) }}" alt="{{ $item->title }}">
+            @if ($item->image_url)
+                <img src="{{ $item->image_url }}" alt="{{ $item->title }}">
             @else
                 <div class="goal-placeholder text-muted">
                     <i class="bi bi-image"></i>

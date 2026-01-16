@@ -29,6 +29,31 @@ class LifeGoalItem extends Model
         'is_active' => 'boolean',
     ];
 
+    public function getImagePathAttribute($value): ?string
+    {
+        if (! $value) {
+            return null;
+        }
+
+        $normalized = ltrim($value, '/');
+        if (str_starts_with($normalized, 'upload/')) {
+            return $normalized;
+        }
+
+        if (str_starts_with($normalized, 'storage/')) {
+            return $normalized;
+        }
+
+        return 'storage/' . $normalized;
+    }
+
+    public function getImageUrlAttribute(): ?string
+    {
+        $path = $this->image_path;
+
+        return $path ? asset($path) : null;
+    }
+
     public function category()
     {
         return $this->belongsTo(LifeGoalCategory::class, 'life_goal_category_id');

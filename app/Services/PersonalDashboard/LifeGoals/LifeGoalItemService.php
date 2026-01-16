@@ -11,7 +11,7 @@ class LifeGoalItemService
 {
     use FileUploadTrait;
 
-    private const IMAGE_FOLDER = 'life-goals';
+    private const IMAGE_FOLDER = 'upload/life-goals';
 
     public function create(array $data, ?UploadedFile $image = null): LifeGoalItem
     {
@@ -29,7 +29,7 @@ class LifeGoalItemService
         return DB::transaction(function () use ($item, $data, $image) {
             if ($image) {
                 $newPath = $this->storeImage($image);
-                $this->deleteImage($item->image_path);
+                $this->deleteImage($item->getRawOriginal('image_path'));
                 $data['image_path'] = $newPath;
             }
 
@@ -41,16 +41,15 @@ class LifeGoalItemService
 
     public function delete(LifeGoalItem $item): void
     {
-        $this->deleteImage($item->image_path);
+        $this->deleteImage($item->getRawOriginal('image_path'));
         $item->delete();
     }
 
     private function storeImage(UploadedFile $image): ?string
     {
-        $directory = $this->uploadDirectory();
         $this->ensureUploadDirectoryExists();
 
-        $uploaded = $this->uploadFile([$image], [$directory]);
+        $uploaded = $this->uploadFile([$image], [self::IMAGE_FOLDER]);
 
         if (empty($uploaded[0])) {
             return null;
@@ -65,20 +64,38 @@ class LifeGoalItemService
             return;
         }
 
-        $fullPath = storage_path('app/public/' . $path);
-        if (file_exists($fullPath)) {
-            unlink($fullPath);
+        $normalized = ltrim($path, '/');
+        if (str_starts_with($normalized, 'upload/')) {
+            $fullPath = public_path($normalized);
+            if (file_exists($fullPath)) {
+                unlink($fullPath);
+            }
+            return;
         }
-    }
 
-    private function uploadDirectory(): string
-    {
-        return storage_path('app/public/' . self::IMAGE_FOLDER);
+        if (str_starts_with($normalized, 'storage/')) {
+            $fullPath = public_path($normalized);
+            if (file_exists($fullPath)) {
+                unlink($fullPath);
+                return;
+            }
+
+            $storagePath = storage_path('app/public/' . ltrim(substr($normalized, strlen('storage/')), '/'));
+            if (file_exists($storagePath)) {
+                unlink($storagePath);
+            }
+            return;
+        }
+
+        $storagePath = storage_path('app/public/' . $normalized);
+        if (file_exists($storagePath)) {
+            unlink($storagePath);
+        }
     }
 
     private function ensureUploadDirectoryExists(): void
     {
-        $directory = $this->uploadDirectory();
+        $directory = public_path(self::IMAGE_FOLDER);
         if (! is_dir($directory)) {
             mkdir($directory, 0755, true);
         }

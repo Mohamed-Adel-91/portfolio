@@ -48,8 +48,8 @@
             <span class="text-danger small">{{ $message }}</span>
         @enderror
         <div class="goal-image-preview mt-2" id="goalImagePreview">
-            @if ($item->image_path)
-                <img src="{{ asset('storage/' . $item->image_path) }}" alt="Goal image">
+            @if ($item->image_url)
+                <img src="{{ $item->image_url }}" alt="Goal image">
             @else
                 <span class="text-muted small">No image selected.</span>
             @endif
