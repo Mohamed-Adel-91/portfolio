@@ -82,7 +82,7 @@
         @enderror
     </div>
 
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-3">
         <label for="due_date">Due Date</label>
         <input type="date" class="form-control" id="due_date" name="due_date"
             value="{{ old('due_date', optional($task->due_date)->toDateString()) }}">
@@ -91,11 +91,30 @@
         @enderror
     </div>
 
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-3">
         <label for="scheduled_date">Scheduled Date</label>
         <input type="date" class="form-control" id="scheduled_date" name="scheduled_date"
             value="{{ old('scheduled_date', optional($task->scheduled_date)->toDateString()) }}">
         @error('scheduled_date')
+            <span class="text-danger small">{{ $message }}</span>
+        @enderror
+    </div>
+
+    <div class="form-group col-md-3">
+        <label for="start_date">Start Date</label>
+        <input type="date" class="form-control" id="start_date" name="start_date"
+            value="{{ old('start_date', optional($task->start_date)->toDateString()) }}">
+        @error('start_date')
+            <span class="text-danger small">{{ $message }}</span>
+        @enderror
+    </div>
+
+    <div class="form-group col-md-3">
+        <label for="end_date">End Date</label>
+        <input type="date" class="form-control" id="end_date" name="end_date"
+            value="{{ old('end_date', optional($task->end_date)->toDateString()) }}">
+        <small class="text-muted">Use range for multi-day outcomes; schedule daily work using Subtasks.</small>
+        @error('end_date')
             <span class="text-danger small">{{ $message }}</span>
         @enderror
     </div>

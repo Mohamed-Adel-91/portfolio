@@ -3,7 +3,8 @@
 namespace App\Services\PersonalDashboard;
 
 use App\Models\TodoTask;
-use Carbon\Carbon;
+use App\Models\TodoTaskItem;
+use Illuminate\Support\Carbon;
 
 class TodoTaskService
 {
@@ -61,5 +62,59 @@ class TodoTaskService
         $task->save();
 
         return $task;
+    }
+
+    public function splitTaskIntoDailyItems(
+        TodoTask $task,
+        Carbon $start,
+        Carbon $end,
+        array $options = []
+    ): int {
+        $includeWeekends = $options['include_weekends'] ?? true;
+        $titlePrefix = $options['title_prefix'] ?? null;
+
+        $existingDates = $task->items()
+            ->whereNotNull('scheduled_date')
+            ->pluck('scheduled_date')
+            ->map(fn ($date) => Carbon::parse($date)->toDateString())
+            ->all();
+
+        $existingLookup = array_fill_keys($existingDates, true);
+        $current = $start->copy()->startOfDay();
+        $endDate = $end->copy()->startOfDay();
+        $created = 0;
+        $dayNumber = 1;
+        $nextSort = (int) $task->items()->max('sort_order');
+
+        while ($current->lte($endDate)) {
+            $isWeekend = in_array($current->dayOfWeek, [Carbon::SATURDAY, Carbon::SUNDAY], true);
+
+            if ($includeWeekends || ! $isWeekend) {
+                $dateKey = $current->toDateString();
+                if (! isset($existingLookup[$dateKey])) {
+                    $title = $titlePrefix
+                        ? trim($titlePrefix . ' ' . $task->title)
+                        : '(Day ' . $dayNumber . ') ' . $task->title;
+
+                    $nextSort++;
+                    TodoTaskItem::create([
+                        'todo_task_id' => $task->id,
+                        'title' => $title,
+                        'status' => TodoTaskItem::STATUS_OPEN,
+                        'scheduled_date' => $dateKey,
+                        'sort_order' => $nextSort,
+                    ]);
+
+                    $existingLookup[$dateKey] = true;
+                    $created++;
+                }
+
+                $dayNumber++;
+            }
+
+            $current->addDay();
+        }
+
+        return $created;
     }
 }

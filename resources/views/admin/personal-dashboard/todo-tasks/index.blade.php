@@ -14,7 +14,8 @@
             'delegate' => 'bg-primary',
             'delete' => 'bg-danger',
         ];
-        $today = \Carbon\Carbon::now(config('app.timezone'))->toDateString();
+        $todayDate = \Illuminate\Support\Carbon::now(config('app.timezone'));
+        $today = $todayDate->toDateString();
     @endphp
 
     <div class="page-wrapper">
@@ -117,6 +118,21 @@
                                                 value="{{ $filters['due_to'] ?? '' }}">
                                         </div>
                                         <div class="form-group col-md-2">
+                                            <label for="has_range">Has Range</label>
+                                            <select class="form-control" id="has_range" name="has_range">
+                                                <option value="">All</option>
+                                                <option value="1" {{ ($filters['has_range'] ?? '') === '1' ? 'selected' : '' }}>Yes</option>
+                                                <option value="0" {{ ($filters['has_range'] ?? '') === '0' ? 'selected' : '' }}>No</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="range_active_today">Active Today</label>
+                                            <select class="form-control" id="range_active_today" name="range_active_today">
+                                                <option value="">All</option>
+                                                <option value="1" {{ ($filters['range_active_today'] ?? '') === '1' ? 'selected' : '' }}>Active</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-2">
                                             <label for="sort">Sort</label>
                                             <select class="form-control" id="sort" name="sort">
                                                 <option value="newest" {{ $sort === 'newest' ? 'selected' : '' }}>Newest</option>
@@ -125,7 +141,7 @@
                                                 <option value="sort_order" {{ $sort === 'sort_order' ? 'selected' : '' }}>Manual Order</option>
                                             </select>
                                         </div>
-                                        <div class="form-group col-md-6 d-flex align-items-end">
+                                        <div class="form-group col-md-2 d-flex align-items-end">
                                             <button type="submit" class="btn btn-primary mr-2">Filter</button>
                                             <a href="{{ route('admin.personal.todo-tasks.index') }}" class="btn btn-outline-secondary">Reset</a>
                                         </div>
@@ -213,6 +229,17 @@
                                                             @if ($task->description)
                                                                 <div class="text-muted small">{{ Str::limit($task->description, 80) }}</div>
                                                             @endif
+                                                            <div class="d-flex flex-wrap gap-1 mt-1">
+                                                                @if ($task->hasRange())
+                                                                    <span class="badge bg-light text-dark border">{{ $task->rangeLabel() }}</span>
+                                                                    @if ($task->isRangeActiveOn($todayDate))
+                                                                        <span class="badge bg-info">Active</span>
+                                                                    @endif
+                                                                @endif
+                                                                @if ($task->items_count)
+                                                                    <span class="badge bg-primary">{{ $task->items_count }} items</span>
+                                                                @endif
+                                                            </div>
                                                         </td>
                                                         <td>
                                                             @if ($task->category)

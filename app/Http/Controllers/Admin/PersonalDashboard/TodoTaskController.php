@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Admin\PersonalDashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\SplitTodoTaskItemsRequest;
 use App\Http\Requests\Admin\StoreTodoTaskRequest;
 use App\Http\Requests\Admin\UpdateTodoTaskRequest;
 use App\Models\TodoCategory;
 use App\Models\TodoTask;
 use App\Services\PersonalDashboard\TodoTaskService;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -18,7 +19,9 @@ class TodoTaskController extends Controller
 {
     public function index(Request $request): View
     {
-        $query = TodoTask::query()->with('category');
+        $query = TodoTask::query()
+            ->with('category')
+            ->withCount('items');
 
         if ($request->filled('search')) {
             $search = $request->input('search');
@@ -61,6 +64,23 @@ class TodoTaskController extends Controller
             }
         }
 
+        if ($request->filled('has_range')) {
+            $hasRange = $request->input('has_range');
+            if ($hasRange === '1') {
+                $query->whereNotNull('start_date')->whereNotNull('end_date');
+            } elseif ($hasRange === '0') {
+                $query->whereNull('start_date')->whereNull('end_date');
+            }
+        }
+
+        if ($request->filled('range_active_today') && $request->input('range_active_today') === '1') {
+            $today = Carbon::now(config('app.timezone'))->toDateString();
+            $query->whereNotNull('start_date')
+                ->whereNotNull('end_date')
+                ->whereDate('start_date', '<=', $today)
+                ->whereDate('end_date', '>=', $today);
+        }
+
         $sort = $request->input('sort', 'newest');
         switch ($sort) {
             case 'due_date':
@@ -100,6 +120,8 @@ class TodoTaskController extends Controller
                 'due_from',
                 'due_to',
                 'scheduled',
+                'has_range',
+                'range_active_today',
             ]),
             'sort' => $sort,
         ]);
@@ -152,6 +174,8 @@ class TodoTaskController extends Controller
             ->orderBy('sort_order')
             ->orderBy('name')
             ->get();
+
+        $todo_task->load('items');
 
         return view('admin.personal-dashboard.todo-tasks.edit', [
             'pageName' => 'Edit Task',
@@ -278,5 +302,37 @@ class TodoTaskController extends Controller
         return redirect()
             ->back()
             ->with('success', 'Bulk action applied successfully.');
+    }
+
+    public function splitIntoItems(
+        SplitTodoTaskItemsRequest $request,
+        TodoTask $todo_task,
+        TodoTaskService $service
+    ): RedirectResponse {
+        if (! $todo_task->hasRange()) {
+            return redirect()
+                ->back()
+                ->with('error', 'Please set a start and end date before splitting.');
+        }
+
+        $created = $service->splitTaskIntoDailyItems(
+            $todo_task,
+            $todo_task->start_date,
+            $todo_task->end_date,
+            [
+                'include_weekends' => $request->boolean('include_weekends', true),
+                'title_prefix' => $request->input('title_prefix'),
+            ]
+        );
+
+        if ($created === 0) {
+            return redirect()
+                ->back()
+                ->with('info', 'All days already have items scheduled.');
+        }
+
+        return redirect()
+            ->back()
+            ->with('success', "Created {$created} daily items.");
     }
 }

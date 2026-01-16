@@ -24,6 +24,8 @@ class UpdateTodoTaskRequest extends FormRequest
             'stars' => ['nullable', 'integer', 'min:1', 'max:5'],
             'due_date' => ['nullable', 'date'],
             'scheduled_date' => ['nullable', 'date'],
+            'start_date' => ['nullable', 'date', 'required_with:end_date'],
+            'end_date' => ['nullable', 'date', 'required_with:start_date', 'after_or_equal:start_date'],
             'sort_order' => ['nullable', 'integer', 'min:0'],
         ];
     }

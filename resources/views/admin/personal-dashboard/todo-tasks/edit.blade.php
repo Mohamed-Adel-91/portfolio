@@ -26,6 +26,12 @@
                         </div>
                     </div>
                 </form>
+
+                <div class="row gutters mt-3">
+                    <div class="col-12">
+                        @include('admin.personal-dashboard.todo-tasks._items')
+                    </div>
+                </div>
             </div>
         </div>
     </div>

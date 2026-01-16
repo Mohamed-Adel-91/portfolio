@@ -6,9 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ScheduleTaskRequest;
 use App\Models\TodoCategory;
 use App\Models\TodoTask;
+use App\Models\TodoTaskItem;
 use App\Models\WeeklyPlan;
 use App\Services\PersonalDashboard\TodoTaskService;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -36,7 +37,7 @@ class WeeklyPlannerController extends Controller
         $days = collect(range(0, 6))
             ->map(fn (int $offset) => $weekStartDate->copy()->addDays($offset));
 
-        $tasks = TodoTask::query()
+        $scheduledTasks = TodoTask::query()
             ->with('category')
             ->whereBetween('scheduled_date', [
                 $weekStartDate->toDateString(),
@@ -47,8 +48,23 @@ class WeeklyPlannerController extends Controller
             ->orderBy('id')
             ->get();
 
-        $tasksByDay = $tasks->groupBy(function (TodoTask $task) {
+        $tasksByDay = $scheduledTasks->groupBy(function (TodoTask $task) {
             return $task->scheduled_date ? $task->scheduled_date->toDateString() : 'unscheduled';
+        });
+
+        $scheduledItems = TodoTaskItem::query()
+            ->with(['task.category'])
+            ->whereBetween('scheduled_date', [
+                $weekStartDate->toDateString(),
+                $weekEndDate->toDateString(),
+            ])
+            ->orderBy('scheduled_date')
+            ->orderBy('sort_order')
+            ->orderBy('id')
+            ->get();
+
+        $itemsByDay = $scheduledItems->groupBy(function (TodoTaskItem $item) {
+            return $item->scheduled_date ? $item->scheduled_date->toDateString() : 'unscheduled';
         });
 
         $unscheduledTasks = TodoTask::query()
@@ -59,18 +75,29 @@ class WeeklyPlannerController extends Controller
             ->orderBy('id')
             ->get();
 
+        $activeRangeTasks = TodoTask::query()
+            ->with('category')
+            ->whereNotNull('start_date')
+            ->whereNotNull('end_date')
+            ->whereDate('start_date', '<=', $weekEndDate->toDateString())
+            ->whereDate('end_date', '>=', $weekStartDate->toDateString())
+            ->whereIn('status', [TodoTask::STATUS_OPEN, TodoTask::STATUS_IN_PROGRESS])
+            ->orderBy('start_date')
+            ->orderBy('end_date')
+            ->get();
+
         $plan = WeeklyPlan::query()
             ->where('week_start_date', $weekStartDate->toDateString())
             ->first();
 
         $quadrantCounts = collect(TodoTask::quadrantOptions())
-            ->mapWithKeys(function ($label, $value) use ($tasks) {
-                return [$value => $tasks->where('quadrant', $value)->count()];
+            ->mapWithKeys(function ($label, $value) use ($scheduledTasks) {
+                return [$value => $scheduledTasks->where('quadrant', $value)->count()];
             })
             ->all();
 
-        $doneCount = $tasks->where('status', TodoTask::STATUS_DONE)->count();
-        $openCount = $tasks->whereIn('status', [TodoTask::STATUS_OPEN, TodoTask::STATUS_IN_PROGRESS])->count();
+        $doneCount = $scheduledTasks->where('status', TodoTask::STATUS_DONE)->count();
+        $openCount = $scheduledTasks->whereIn('status', [TodoTask::STATUS_OPEN, TodoTask::STATUS_IN_PROGRESS])->count();
 
         $categories = TodoCategory::query()
             ->where('is_active', true)
@@ -84,13 +111,17 @@ class WeeklyPlannerController extends Controller
             'weekEnd' => $weekEndDate,
             'days' => $days,
             'tasksByDay' => $tasksByDay,
+            'itemsByDay' => $itemsByDay,
             'unscheduledTasks' => $unscheduledTasks,
+            'activeRangeTasks' => $activeRangeTasks,
             'notes' => $plan?->notes,
             'prevWeek' => $weekStartDate->copy()->subWeek()->toDateString(),
             'nextWeek' => $weekStartDate->copy()->addWeek()->toDateString(),
             'quadrantCounts' => $quadrantCounts,
             'doneCount' => $doneCount,
             'openCount' => $openCount,
+            'scheduledTaskCount' => $scheduledTasks->count(),
+            'scheduledItemCount' => $scheduledItems->count(),
             'quadrantOptions' => TodoTask::quadrantOptions(),
             'categories' => $categories,
         ]);

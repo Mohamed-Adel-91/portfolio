@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\PrayerCounterController;
 use App\Http\Controllers\Admin\PersonalDashboard\TodoCategoryController;
 use App\Http\Controllers\Admin\PersonalDashboard\TodoTaskController;
+use App\Http\Controllers\Admin\PersonalDashboard\TodoTaskItemController;
 use App\Http\Controllers\Admin\PersonalDashboard\WeeklyPlannerController;
 use App\Http\Controllers\Dashboard\DebtController;
 use App\Http\Controllers\Api\CategoriesController;
@@ -72,6 +73,8 @@ Route::group(['as' => 'admin.', 'prefix' => 'dashboard', 'middleware' => 'AuthPe
     Route::prefix('personal')->name('personal.')->group(function () {
         Route::resource('todo-categories', TodoCategoryController::class)->except(['show']);
         Route::resource('todo-tasks', TodoTaskController::class)->except(['show']);
+        Route::post('todo-tasks/{todo_task}/split-items', [TodoTaskController::class, 'splitIntoItems'])
+            ->name('todo-tasks.split-items');
         Route::post('todo-tasks/{todo_task}/mark-done', [TodoTaskController::class, 'markDone'])
             ->name('todo-tasks.mark-done');
         Route::post('todo-tasks/{todo_task}/mark-open', [TodoTaskController::class, 'markOpen'])
@@ -80,12 +83,32 @@ Route::group(['as' => 'admin.', 'prefix' => 'dashboard', 'middleware' => 'AuthPe
             ->name('todo-tasks.reorder');
         Route::post('todo-tasks/bulk', [TodoTaskController::class, 'bulkUpdate'])
             ->name('todo-tasks.bulk');
+        Route::post('todo-tasks/{todo_task}/items', [TodoTaskItemController::class, 'store'])
+            ->name('todo-task-items.store');
+        Route::put('todo-tasks/{todo_task}/items/{item}', [TodoTaskItemController::class, 'update'])
+            ->name('todo-task-items.update');
+        Route::delete('todo-tasks/{todo_task}/items/{item}', [TodoTaskItemController::class, 'destroy'])
+            ->name('todo-task-items.destroy');
+        Route::post('todo-tasks/{todo_task}/items/{item}/mark-done', [TodoTaskItemController::class, 'markDone'])
+            ->name('todo-task-items.mark-done');
+        Route::post('todo-tasks/{todo_task}/items/{item}/mark-open', [TodoTaskItemController::class, 'markOpen'])
+            ->name('todo-task-items.mark-open');
+        Route::post('todo-tasks/{todo_task}/items/{item}/schedule', [TodoTaskItemController::class, 'schedule'])
+            ->name('todo-task-items.schedule');
+        Route::post('todo-tasks/{todo_task}/items/{item}/unschedule', [TodoTaskItemController::class, 'unschedule'])
+            ->name('todo-task-items.unschedule');
+        Route::post('todo-tasks/{todo_task}/items/reorder', [TodoTaskItemController::class, 'reorder'])
+            ->name('todo-task-items.reorder');
         Route::get('weekly-planner/{weekStart?}', [WeeklyPlannerController::class, 'show'])
             ->name('weekly-planner.show');
         Route::post('weekly-planner/schedule', [WeeklyPlannerController::class, 'schedule'])
             ->name('weekly-planner.schedule');
         Route::post('weekly-planner/unschedule', [WeeklyPlannerController::class, 'unschedule'])
             ->name('weekly-planner.unschedule');
+        Route::post('weekly-planner/items/{todo_task}/{item}/schedule', [TodoTaskItemController::class, 'schedule'])
+            ->name('weekly-planner.schedule-item');
+        Route::post('weekly-planner/items/{todo_task}/{item}/unschedule', [TodoTaskItemController::class, 'unschedule'])
+            ->name('weekly-planner.unschedule-item');
         Route::post('weekly-planner/notes', [WeeklyPlannerController::class, 'saveNotes'])
             ->name('weekly-planner.notes');
     });

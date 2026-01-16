@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
+use Carbon\CarbonInterface;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
+use Throwable;
 
 class TodoTask extends Model
 {
@@ -31,6 +34,8 @@ class TodoTask extends Model
         'stars',
         'due_date',
         'scheduled_date',
+        'start_date',
+        'end_date',
         'sort_order',
         'completed_at',
     ];
@@ -40,6 +45,8 @@ class TodoTask extends Model
         'sort_order' => 'integer',
         'due_date' => 'date',
         'scheduled_date' => 'date',
+        'start_date' => 'date',
+        'end_date' => 'date',
         'completed_at' => 'datetime',
     ];
 
@@ -48,9 +55,71 @@ class TodoTask extends Model
         return $this->belongsTo(TodoCategory::class, 'todo_category_id');
     }
 
+    public function items()
+    {
+        return $this->hasMany(TodoTaskItem::class, 'todo_task_id')
+            ->orderBy('sort_order')
+            ->orderBy('id');
+    }
+
     public function isDone(): bool
     {
         return $this->status === self::STATUS_DONE;
+    }
+
+    public function hasRange(): bool
+    {
+        return $this->start_date !== null && $this->end_date !== null;
+    }
+
+    public function isRangeActiveOn(CarbonInterface|DateTimeInterface|string|null $date): bool
+    {
+        if (! $this->hasRange()) {
+            return false;
+        }
+
+        if ($date === null) {
+            return false;
+        }
+
+        $timezone = config('app.timezone');
+
+        try {
+            if (is_string($date)) {
+                if (trim($date) === '') {
+                    return false;
+                }
+                $target = Carbon::parse($date, $timezone);
+            } elseif ($date instanceof DateTimeInterface) {
+                $target = Carbon::instance($date);
+            } else {
+                return false;
+            }
+        } catch (Throwable $exception) {
+            return false;
+        }
+
+        $start = Carbon::instance($this->start_date)->setTimezone($timezone)->startOfDay();
+        $end = Carbon::instance($this->end_date)->setTimezone($timezone)->endOfDay();
+        $target = $target->setTimezone($timezone)->startOfDay();
+
+        return $target->betweenIncluded($start, $end);
+    }
+
+    public function rangeLabel(): ?string
+    {
+        if (! $this->hasRange()) {
+            return null;
+        }
+
+        $start = $this->start_date;
+        $end = $this->end_date;
+
+        if ($start->year === $end->year) {
+            return $start->format('M d') . ' - ' . $end->format('M d');
+        }
+
+        return $start->format('M d, Y') . ' - ' . $end->format('M d, Y');
     }
 
     public function markDone(): void

@@ -14,7 +14,7 @@
             'done' => 'bg-success',
             'archived' => 'bg-dark',
         ];
-        $today = \Carbon\Carbon::now(config('app.timezone'))->toDateString();
+        $today = \Illuminate\Support\Carbon::now(config('app.timezone'))->toDateString();
     @endphp
 
     <div class="page-wrapper">
@@ -73,7 +73,9 @@
                             </div>
                             <div class="card-body">
                                 <div class="text-muted">Scheduled tasks</div>
-                                <div class="h4 mb-3">{{ $tasksByDay->flatten()->count() }}</div>
+                                <div class="h4 mb-3">{{ $scheduledTaskCount }}</div>
+                                <div class="text-muted">Scheduled items</div>
+                                <div class="h4 mb-3">{{ $scheduledItemCount }}</div>
                                 <div class="text-muted">Unscheduled tasks</div>
                                 <div class="h4">{{ $unscheduledTasks->count() }}</div>
                             </div>
@@ -93,6 +95,7 @@
                                         @php
                                             $dayKey = $day->toDateString();
                                             $dayTasks = $tasksByDay->get($dayKey, collect());
+                                            $dayItems = $itemsByDay->get($dayKey, collect());
                                         @endphp
                                         <div class="weekly-day">
                                             <div class="day-header">
@@ -100,71 +103,146 @@
                                                 <div class="text-muted small">{{ $day->format('M d') }}</div>
                                             </div>
                                             <div class="day-tasks">
-                                                @forelse ($dayTasks as $task)
-                                                    @php
-                                                        $taskClass = '';
-                                                        if ($task->status === 'done') {
-                                                            $taskClass = 'task-success';
-                                                        } elseif ($task->due_date) {
-                                                            $dueDate = $task->due_date->toDateString();
-                                                            if ($dueDate < $today) {
-                                                                $taskClass = 'task-danger';
-                                                            } elseif ($dueDate === $today) {
-                                                                $taskClass = 'task-warning';
-                                                            }
-                                                        }
-                                                    @endphp
-                                                    <div class="day-task {{ $taskClass }}">
-                                                        <div class="d-flex justify-content-between">
-                                                            <div>
-                                                                <div class="task-title">{{ $task->title }}</div>
-                                                                <div class="task-meta">
-                                                                    @if ($task->category)
-                                                                        <span class="badge"
-                                                                            style="background-color: {{ $task->category->badge_color }}; color: #fff;">
-                                                                            {{ $task->category->name }}
+                                                @if ($dayItems->isNotEmpty())
+                                                    <div class="text-muted small mb-1">Subtasks</div>
+                                                    @foreach ($dayItems as $item)
+                                                        @php
+                                                            $parent = $item->task;
+                                                            $itemClass = $item->status === 'done' ? 'task-success' : '';
+                                                        @endphp
+                                                        <div class="day-task {{ $itemClass }}">
+                                                            <div class="d-flex justify-content-between">
+                                                                <div>
+                                                                    <div class="task-title">{{ $item->title }}</div>
+                                                                    <div class="task-meta">
+                                                                        @if ($parent)
+                                                                            <span class="badge bg-light text-dark border">
+                                                                                {{ $parent->title }}
+                                                                            </span>
+                                                                        @endif
+                                                                        @if ($parent && $parent->category)
+                                                                            <span class="badge"
+                                                                                style="background-color: {{ $parent->category->badge_color }}; color: #fff;">
+                                                                                {{ $parent->category->name }}
+                                                                            </span>
+                                                                        @endif
+                                                                        @if ($parent)
+                                                                            <span class="badge {{ $quadrantBadges[$parent->quadrant] ?? 'bg-secondary' }}">
+                                                                                {{ $quadrantOptions[$parent->quadrant] ?? $parent->quadrant }}
+                                                                            </span>
+                                                                        @endif
+                                                                        <span class="badge {{ $statusBadges[$item->status] ?? 'bg-secondary' }}">
+                                                                            {{ ucfirst($item->status) }}
                                                                         </span>
+                                                                    </div>
+                                                                    @if ($parent)
+                                                                        <div class="task-stars">
+                                                                            @for ($i = 1; $i <= 5; $i++)
+                                                                                <i class="bi bi-star-fill {{ $i <= $parent->stars ? 'text-warning' : 'text-muted' }}"></i>
+                                                                            @endfor
+                                                                        </div>
                                                                     @endif
-                                                                    <span class="badge {{ $quadrantBadges[$task->quadrant] ?? 'bg-secondary' }}">
-                                                                        {{ $quadrantOptions[$task->quadrant] ?? $task->quadrant }}
-                                                                    </span>
-                                                                    <span class="badge {{ $statusBadges[$task->status] ?? 'bg-secondary' }}">
-                                                                        {{ ucfirst(str_replace('_', ' ', $task->status)) }}
-                                                                    </span>
                                                                 </div>
-                                                                <div class="task-stars">
-                                                                    @for ($i = 1; $i <= 5; $i++)
-                                                                        <i class="bi bi-star-fill {{ $i <= $task->stars ? 'text-warning' : 'text-muted' }}"></i>
-                                                                    @endfor
-                                                                </div>
+                                                                @if ($parent)
+                                                                    <form method="POST" action="{{ route('admin.personal.weekly-planner.unschedule-item', [$parent, $item]) }}">
+                                                                        @csrf
+                                                                        <button type="submit" class="btn btn-sm btn-light" title="Unschedule">
+                                                                            <i class="bi bi-x-lg"></i>
+                                                                        </button>
+                                                                    </form>
+                                                                @endif
                                                             </div>
-                                                            <form method="POST" action="{{ route('admin.personal.weekly-planner.unschedule') }}">
-                                                                @csrf
-                                                                <input type="hidden" name="todo_task_id" value="{{ $task->id }}">
-                                                                <button type="submit" class="btn btn-sm btn-light" title="Unschedule">
-                                                                    <i class="bi bi-x-lg"></i>
-                                                                </button>
-                                                            </form>
+                                                            <div class="task-actions mt-2">
+                                                                @if ($parent)
+                                                                    <a href="{{ route('admin.personal.todo-tasks.edit', $parent) }}"
+                                                                        class="btn btn-sm btn-outline-primary">Edit Task</a>
+                                                                    @if ($item->status === 'done')
+                                                                        <form method="POST" action="{{ route('admin.personal.todo-task-items.mark-open', [$parent, $item]) }}">
+                                                                            @csrf
+                                                                            <button type="submit" class="btn btn-sm btn-outline-secondary">Mark Open</button>
+                                                                        </form>
+                                                                    @else
+                                                                        <form method="POST" action="{{ route('admin.personal.todo-task-items.mark-done', [$parent, $item]) }}">
+                                                                            @csrf
+                                                                            <button type="submit" class="btn btn-sm btn-outline-success">Mark Done</button>
+                                                                        </form>
+                                                                    @endif
+                                                                @endif
+                                                            </div>
                                                         </div>
-                                                        <div class="task-actions mt-2">
-                                                            <a href="{{ route('admin.personal.todo-tasks.edit', $task) }}"
-                                                                class="btn btn-sm btn-outline-primary">Edit</a>
-                                                            @if ($task->status === 'done')
-                                                                <form method="POST" action="{{ route('admin.personal.todo-tasks.mark-open', $task) }}">
+                                                    @endforeach
+                                                @endif
+
+                                                @if ($dayTasks->isNotEmpty())
+                                                    <div class="text-muted small mb-1">Tasks</div>
+                                                    @foreach ($dayTasks as $task)
+                                                        @php
+                                                            $taskClass = '';
+                                                            if ($task->status === 'done') {
+                                                                $taskClass = 'task-success';
+                                                            } elseif ($task->due_date) {
+                                                                $dueDate = $task->due_date->toDateString();
+                                                                if ($dueDate < $today) {
+                                                                    $taskClass = 'task-danger';
+                                                                } elseif ($dueDate === $today) {
+                                                                    $taskClass = 'task-warning';
+                                                                }
+                                                            }
+                                                        @endphp
+                                                        <div class="day-task {{ $taskClass }}">
+                                                            <div class="d-flex justify-content-between">
+                                                                <div>
+                                                                    <div class="task-title">{{ $task->title }}</div>
+                                                                    <div class="task-meta">
+                                                                        @if ($task->category)
+                                                                            <span class="badge"
+                                                                                style="background-color: {{ $task->category->badge_color }}; color: #fff;">
+                                                                                {{ $task->category->name }}
+                                                                            </span>
+                                                                        @endif
+                                                                        <span class="badge {{ $quadrantBadges[$task->quadrant] ?? 'bg-secondary' }}">
+                                                                            {{ $quadrantOptions[$task->quadrant] ?? $task->quadrant }}
+                                                                        </span>
+                                                                        <span class="badge {{ $statusBadges[$task->status] ?? 'bg-secondary' }}">
+                                                                            {{ ucfirst(str_replace('_', ' ', $task->status)) }}
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="task-stars">
+                                                                        @for ($i = 1; $i <= 5; $i++)
+                                                                            <i class="bi bi-star-fill {{ $i <= $task->stars ? 'text-warning' : 'text-muted' }}"></i>
+                                                                        @endfor
+                                                                    </div>
+                                                                </div>
+                                                                <form method="POST" action="{{ route('admin.personal.weekly-planner.unschedule') }}">
                                                                     @csrf
-                                                                    <button type="submit" class="btn btn-sm btn-outline-secondary">Mark Open</button>
+                                                                    <input type="hidden" name="todo_task_id" value="{{ $task->id }}">
+                                                                    <button type="submit" class="btn btn-sm btn-light" title="Unschedule">
+                                                                        <i class="bi bi-x-lg"></i>
+                                                                    </button>
                                                                 </form>
-                                                            @else
-                                                                <form method="POST" action="{{ route('admin.personal.todo-tasks.mark-done', $task) }}">
-                                                                    @csrf
-                                                                    <button type="submit" class="btn btn-sm btn-outline-success">Mark Done</button>
-                                                                </form>
-                                                            @endif
+                                                            </div>
+                                                            <div class="task-actions mt-2">
+                                                                <a href="{{ route('admin.personal.todo-tasks.edit', $task) }}"
+                                                                    class="btn btn-sm btn-outline-primary">Edit</a>
+                                                                @if ($task->status === 'done')
+                                                                    <form method="POST" action="{{ route('admin.personal.todo-tasks.mark-open', $task) }}">
+                                                                        @csrf
+                                                                        <button type="submit" class="btn btn-sm btn-outline-secondary">Mark Open</button>
+                                                                    </form>
+                                                                @else
+                                                                    <form method="POST" action="{{ route('admin.personal.todo-tasks.mark-done', $task) }}">
+                                                                        @csrf
+                                                                        <button type="submit" class="btn btn-sm btn-outline-success">Mark Done</button>
+                                                                    </form>
+                                                                @endif
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                @empty
+                                                    @endforeach
+                                                @endif
+
+                                                @if ($dayItems->isEmpty() && $dayTasks->isEmpty())
                                                     <div class="text-muted small">No tasks yet.</div>
-                                                @endforelse
+                                                @endif
                                             </div>
                                             <form method="POST" action="{{ route('admin.personal.weekly-planner.schedule') }}" class="mt-2">
                                                 @csrf
@@ -207,6 +285,41 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">Active This Week (Range Tasks)</div>
+                            </div>
+                            <div class="card-body">
+                                @forelse ($activeRangeTasks as $task)
+                                    <div class="unscheduled-item">
+                                        <div class="fw-bold">{{ $task->title }}</div>
+                                        <div class="task-meta">
+                                            <span class="badge bg-light text-dark border">{{ $task->rangeLabel() }}</span>
+                                            <span class="badge {{ $quadrantBadges[$task->quadrant] ?? 'bg-secondary' }}">
+                                                {{ $quadrantOptions[$task->quadrant] ?? $task->quadrant }}
+                                            </span>
+                                        </div>
+                                        <form method="POST" action="{{ route('admin.personal.todo-tasks.split-items', $task) }}" class="mt-2">
+                                            @csrf
+                                            <input type="hidden" name="include_weekends" value="0">
+                                            <div class="d-flex flex-wrap gap-2 align-items-center">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="range-weekends-{{ $task->id }}"
+                                                        name="include_weekends" value="1" checked>
+                                                    <label class="form-check-label small" for="range-weekends-{{ $task->id }}">
+                                                        Include weekends
+                                                    </label>
+                                                </div>
+                                                <button class="btn btn-sm btn-outline-primary" type="submit">Split into daily items</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                @empty
+                                    <div class="text-muted">No range tasks active this week.</div>
+                                @endforelse
+                            </div>
+                        </div>
+
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-title">Unscheduled Tasks</div>
