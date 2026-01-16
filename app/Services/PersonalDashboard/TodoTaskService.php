@@ -87,7 +87,7 @@ class TodoTaskService
         $nextSort = (int) $task->items()->max('sort_order');
 
         while ($current->lte($endDate)) {
-            $isWeekend = in_array($current->dayOfWeek, [Carbon::SATURDAY, Carbon::SUNDAY], true);
+            $isWeekend = in_array($current->dayOfWeek, [Carbon::FRIDAY, Carbon::SATURDAY], true);
 
             if ($includeWeekends || ! $isWeekend) {
                 $dateKey = $current->toDateString();
