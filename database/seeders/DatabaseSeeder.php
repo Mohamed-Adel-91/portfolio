@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             // SettingsTableSeeder::class,
             // DebtAccountsSeeder::class,
+            CurrencyRatesSeeder::class,
             TodoCategoriesSeeder::class,
         ]);
     }

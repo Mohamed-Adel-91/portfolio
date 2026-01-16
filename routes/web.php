@@ -15,6 +15,10 @@ use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\PrayerCounterController;
 use App\Http\Controllers\Admin\PlannerInsightsController;
+use App\Http\Controllers\Admin\CurrencyRateController;
+use App\Http\Controllers\Admin\LifeGoalCategoryController;
+use App\Http\Controllers\Admin\LifeGoalItemController;
+use App\Http\Controllers\Admin\LifeGoalTransactionController;
 use App\Http\Controllers\Admin\TodoCategoryController;
 use App\Http\Controllers\Admin\TodoTaskController;
 use App\Http\Controllers\Admin\TodoTaskItemController;
@@ -100,6 +104,24 @@ Route::group(['as' => 'admin.', 'prefix' => 'dashboard', 'middleware' => 'AuthPe
             ->name('todo-task-items.unschedule');
         Route::post('todo-tasks/{todo_task}/items/reorder', [TodoTaskItemController::class, 'reorder'])
             ->name('todo-task-items.reorder');
+
+        Route::get('life-goals', [LifeGoalItemController::class, 'index'])
+            ->name('life-goals.index');
+        Route::resource('life-goal-items', LifeGoalItemController::class)->except(['index', 'show']);
+        Route::resource('life-goal-categories', LifeGoalCategoryController::class)->except(['show']);
+        Route::post('life-goal-items/{life_goal_item}/deposit', [LifeGoalTransactionController::class, 'deposit'])
+            ->name('life-goals.deposit');
+        Route::post('life-goal-items/{life_goal_item}/withdraw', [LifeGoalTransactionController::class, 'withdraw'])
+            ->name('life-goals.withdraw');
+        Route::get('life-goal-items/{life_goal_item}/transactions', [LifeGoalTransactionController::class, 'index'])
+            ->name('life-goals.transactions');
+        Route::delete('life-goal-items/{life_goal_item}/transactions/{transaction}', [LifeGoalTransactionController::class, 'destroy'])
+            ->name('life-goals.transactions.destroy');
+        Route::get('currency-rates', [CurrencyRateController::class, 'edit'])
+            ->name('currency-rates.edit');
+        Route::put('currency-rates', [CurrencyRateController::class, 'update'])
+            ->name('currency-rates.update');
+
         Route::get('weekly-planner/{weekStart?}', [WeeklyPlannerController::class, 'show'])
             ->name('weekly-planner.show');
         Route::post('weekly-planner/schedule', [WeeklyPlannerController::class, 'schedule'])

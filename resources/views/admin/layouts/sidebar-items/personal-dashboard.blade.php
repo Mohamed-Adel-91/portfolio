@@ -4,6 +4,10 @@
         'dashboard.debts.*',
         'admin.personal.todo-categories.*',
         'admin.personal.todo-tasks.*',
+        'admin.personal.life-goals.*',
+        'admin.personal.life-goal-items.*',
+        'admin.personal.life-goal-categories.*',
+        'admin.personal.currency-rates.*',
         'admin.personal.weekly-planner.*',
         'admin.personal.monthly-planner.*',
         'admin.personal.annual-planner.*',
@@ -48,6 +52,8 @@
             </li>
 
 
+
+
             <li class="{{ request()->routeIs('admin.personal.weekly-planner.*') ? 'active' : '' }}">
                 <a href="{{ route('admin.personal.weekly-planner.show') }}"
                     class="{{ request()->routeIs('admin.personal.weekly-planner.*') ? 'current-page' : '' }}">
@@ -73,6 +79,27 @@
                 <a href="{{ route('admin.personal.kpis.index') }}"
                     class="{{ request()->routeIs('admin.personal.kpis.*') ? 'current-page' : '' }}">
                     <i class="bi bi-graph-up"></i> KPIs & Analysis
+                </a>
+            </li>
+
+            <li class="{{ request()->routeIs('admin.personal.life-goals.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.personal.life-goals.index') }}"
+                    class="{{ request()->routeIs('admin.personal.life-goals.*') ? 'current-page' : '' }}">
+                    <i class="bi bi-trophy"></i> Life Goals
+                </a>
+            </li>
+
+            <li class="{{ request()->routeIs('admin.personal.life-goal-categories.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.personal.life-goal-categories.index') }}"
+                    class="{{ request()->routeIs('admin.personal.life-goal-categories.*') ? 'current-page' : '' }}">
+                    <i class="bi bi-collection"></i> Goal Categories
+                </a>
+            </li>
+
+            <li class="{{ request()->routeIs('admin.personal.currency-rates.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.personal.currency-rates.edit') }}"
+                    class="{{ request()->routeIs('admin.personal.currency-rates.*') ? 'current-page' : '' }}">
+                    <i class="bi bi-currency-exchange"></i> Exchange Rates
                 </a>
             </li>
 
