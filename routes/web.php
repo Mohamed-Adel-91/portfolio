@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\PrayerCounterController;
+use App\Http\Controllers\Admin\PlannerInsightsController;
 use App\Http\Controllers\Admin\TodoCategoryController;
 use App\Http\Controllers\Admin\TodoTaskController;
 use App\Http\Controllers\Admin\TodoTaskItemController;
@@ -111,6 +112,15 @@ Route::group(['as' => 'admin.', 'prefix' => 'dashboard', 'middleware' => 'AuthPe
             ->name('weekly-planner.unschedule-item');
         Route::post('weekly-planner/notes', [WeeklyPlannerController::class, 'saveNotes'])
             ->name('weekly-planner.notes');
+
+        Route::get('monthly-planner/{year?}/{month?}', [PlannerInsightsController::class, 'monthly'])
+            ->name('monthly-planner.show');
+        Route::get('annual-planner/{year?}', [PlannerInsightsController::class, 'annual'])
+            ->name('annual-planner.show');
+        Route::get('kpis/export', [PlannerInsightsController::class, 'exportCsv'])
+            ->name('kpis.export');
+        Route::get('kpis', [PlannerInsightsController::class, 'kpis'])
+            ->name('kpis.index');
     });
 
 });

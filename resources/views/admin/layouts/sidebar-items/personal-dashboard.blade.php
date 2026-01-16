@@ -5,6 +5,9 @@
         'admin.personal.todo-categories.*',
         'admin.personal.todo-tasks.*',
         'admin.personal.weekly-planner.*',
+        'admin.personal.monthly-planner.*',
+        'admin.personal.annual-planner.*',
+        'admin.personal.kpis.*',
     ]);
 @endphp
 
@@ -49,6 +52,27 @@
                 <a href="{{ route('admin.personal.weekly-planner.show') }}"
                     class="{{ request()->routeIs('admin.personal.weekly-planner.*') ? 'current-page' : '' }}">
                     <i class="bi bi-calendar-week"></i> Weekly Planner
+                </a>
+            </li>
+
+            <li class="{{ request()->routeIs('admin.personal.monthly-planner.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.personal.monthly-planner.show') }}"
+                    class="{{ request()->routeIs('admin.personal.monthly-planner.*') ? 'current-page' : '' }}">
+                    <i class="bi bi-calendar-month"></i> Monthly Planner
+                </a>
+            </li>
+
+            <li class="{{ request()->routeIs('admin.personal.annual-planner.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.personal.annual-planner.show') }}"
+                    class="{{ request()->routeIs('admin.personal.annual-planner.*') ? 'current-page' : '' }}">
+                    <i class="bi bi-calendar-event"></i> Annual Planner
+                </a>
+            </li>
+
+            <li class="{{ request()->routeIs('admin.personal.kpis.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.personal.kpis.index') }}"
+                    class="{{ request()->routeIs('admin.personal.kpis.*') ? 'current-page' : '' }}">
+                    <i class="bi bi-graph-up"></i> KPIs & Analysis
                 </a>
             </li>
 
