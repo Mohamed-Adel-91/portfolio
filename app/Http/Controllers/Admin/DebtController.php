@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\DebtAccount;
@@ -54,7 +54,7 @@ class DebtController extends Controller
             return $dueDate->isSameMonth($now);
         });
 
-        return view('dashboard.debts.index')->with([
+        return view('admin.debts.index')->with([
             'pageName' => 'Debt & Credit Progress',
             'accounts' => $accounts,
             'totalDebt' => $totalDebt,
@@ -87,7 +87,7 @@ class DebtController extends Controller
             $loanRemainingPrincipal = $service->computeLoanRemainingPrincipal($account);
         }
 
-        return view('dashboard.debts.show')->with([
+        return view('admin.debts.show')->with([
             'pageName' => $account->name,
             'account' => $account,
             'transactions' => $transactions,
