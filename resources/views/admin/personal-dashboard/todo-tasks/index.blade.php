@@ -187,128 +187,136 @@
                                         </div>
                                     </div>
 
-                                    <div class="table-responsive">
-                                        <table class="table custom-table m-0">
-                                            <thead>
-                                                <tr>
-                                                    <th>
-                                                        <input type="checkbox" id="selectAllTasks">
-                                                    </th>
-                                                    <th>Title</th>
-                                                    <th>Category</th>
-                                                    <th>4D</th>
-                                                    <th>Stars</th>
-                                                    <th>Status</th>
-                                                    <th>Due</th>
-                                                    <th>Scheduled</th>
-                                                    <th>Order</th>
-                                                    <th class="text-center">Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @forelse ($tasks as $task)
-                                                    @php
-                                                        $rowClass = '';
-                                                        if ($task->status === 'done') {
-                                                            $rowClass = 'table-success';
-                                                        } elseif ($task->due_date) {
-                                                            $dueDate = $task->due_date->toDateString();
-                                                            if ($dueDate < $today) {
-                                                                $rowClass = 'table-danger';
-                                                            } elseif ($dueDate === $today) {
-                                                                $rowClass = 'table-warning';
-                                                            }
-                                                        }
-                                                    @endphp
-                                                    <tr class="{{ $rowClass }}">
-                                                        <td>
-                                                            <input type="checkbox" name="task_ids[]" value="{{ $task->id }}">
-                                                        </td>
-                                                        <td>
-                                                            <div class="fw-bold">{{ $task->title }}</div>
-                                                            @if ($task->description)
-                                                                <div class="text-muted small">{{ Str::limit($task->description, 80) }}</div>
-                                                            @endif
-                                                            <div class="d-flex flex-wrap gap-1 mt-1">
-                                                                @if ($task->hasRange())
-                                                                    <span class="badge bg-light text-dark border">{{ $task->rangeLabel() }}</span>
-                                                                    @if ($task->isRangeActiveOn($todayDate))
-                                                                        <span class="badge bg-info">Active</span>
+                                    @foreach ($statusOptions as $statusKey => $label)
+                                        @php
+                                            $statusTasks = $tasksByStatus[$statusKey] ?? collect();
+                                        @endphp
+                                        <div class="todo-status-table {{ $loop->first ? '' : 'mt-4' }}">
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <h5 class="mb-0">{{ $label }} Tasks</h5>
+                                                <span class="text-muted small">{{ $statusTasks->count() }} tasks</span>
+                                            </div>
+                                            <div class="table-responsive">
+                                                <table class="table custom-table m-0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>
+                                                                <input type="checkbox" class="js-select-all-tasks"
+                                                                    aria-label="Select all {{ $label }} tasks">
+                                                            </th>
+                                                            <th>Title</th>
+                                                            <th>Category</th>
+                                                            <th>4D</th>
+                                                            <th>Stars</th>
+                                                            <th>Status</th>
+                                                            <th>Due</th>
+                                                            <th>Scheduled</th>
+                                                            <th>Order</th>
+                                                            <th class="text-center">Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @forelse ($statusTasks as $task)
+                                                            @php
+                                                                $rowClass = '';
+                                                                if ($task->status === 'done') {
+                                                                    $rowClass = 'table-success';
+                                                                } elseif ($task->due_date) {
+                                                                    $dueDate = $task->due_date->toDateString();
+                                                                    if ($dueDate < $today) {
+                                                                        $rowClass = 'table-danger';
+                                                                    } elseif ($dueDate === $today) {
+                                                                        $rowClass = 'table-warning';
+                                                                    }
+                                                                }
+                                                            @endphp
+                                                            <tr class="{{ $rowClass }}">
+                                                                <td>
+                                                                    <input type="checkbox" name="task_ids[]" value="{{ $task->id }}">
+                                                                </td>
+                                                                <td>
+                                                                    <div class="fw-bold">{{ $task->title }}</div>
+                                                                    @if ($task->description)
+                                                                        <div class="text-muted small">{{ Str::limit($task->description, 80) }}</div>
                                                                     @endif
-                                                                @endif
-                                                                @if ($task->items_count)
-                                                                    <span class="badge bg-primary">{{ $task->items_count }} items</span>
-                                                                @endif
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            @if ($task->category)
-                                                                <span class="badge"
-                                                                    style="background-color: {{ $task->category->badge_color }}; color: #fff;">
-                                                                    {{ $task->category->name }}
-                                                                </span>
-                                                            @else
-                                                                <span class="text-muted">-</span>
-                                                            @endif
-                                                        </td>
-                                                        <td>
-                                                            <span class="badge {{ $quadrantBadges[$task->quadrant] ?? 'bg-secondary' }}">
-                                                                {{ $quadrantOptions[$task->quadrant] ?? $task->quadrant }}
-                                                            </span>
-                                                        </td>
-                                                        <td>
-                                                            @for ($i = 1; $i <= 5; $i++)
-                                                                <i class="bi bi-star-fill {{ $i <= $task->stars ? 'text-warning' : 'text-muted' }}"></i>
-                                                            @endfor
-                                                        </td>
-                                                        <td>
-                                                            <span class="badge {{ $statusBadges[$task->status] ?? 'bg-secondary' }}">
-                                                                {{ $statusOptions[$task->status] ?? $task->status }}
-                                                            </span>
-                                                        </td>
-                                                        <td>{{ $task->due_date ? $task->due_date->toDateString() : '-' }}</td>
-                                                        <td>{{ $task->scheduled_date ? $task->scheduled_date->toDateString() : '-' }}</td>
-                                                        <td style="max-width: 90px;">
-                                                            <input type="number" class="form-control form-control-sm"
-                                                                name="order[{{ $task->id }}]" min="0" value="{{ $task->sort_order }}">
-                                                        </td>
-                                                        <td class="text-center">
-                                                            <div class="d-flex flex-wrap gap-1 justify-content-center">
-                                                                <a href="{{ route('admin.personal.todo-tasks.edit', $task) }}"
-                                                                    class="btn btn-sm btn-outline-primary">Edit</a>
-                                                                @if ($task->status === 'done')
-                                                                    <form method="POST" action="{{ route('admin.personal.todo-tasks.mark-open', $task) }}">
-                                                                        @csrf
-                                                                        <button type="submit" class="btn btn-sm btn-outline-secondary">Mark Open</button>
-                                                                    </form>
-                                                                @else
-                                                                    <form method="POST" action="{{ route('admin.personal.todo-tasks.mark-done', $task) }}">
-                                                                        @csrf
-                                                                        <button type="submit" class="btn btn-sm btn-outline-success">Mark Done</button>
-                                                                    </form>
-                                                                @endif
-                                                                <form method="POST" action="{{ route('admin.personal.todo-tasks.destroy', $task) }}"
-                                                                    class="js-task-delete" data-title="{{ $task->title }}">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
-                                                                </form>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                @empty
-                                                    <tr>
-                                                        <td colspan="10" class="text-center">No tasks found.</td>
-                                                    </tr>
-                                                @endforelse
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                                                    <div class="d-flex flex-wrap gap-1 mt-1">
+                                                                        @if ($task->hasRange())
+                                                                            <span class="badge bg-light text-dark border">{{ $task->rangeLabel() }}</span>
+                                                                            @if ($task->isRangeActiveOn($todayDate))
+                                                                                <span class="badge bg-info">Active</span>
+                                                                            @endif
+                                                                        @endif
+                                                                        @if ($task->items_count)
+                                                                            <span class="badge bg-primary">{{ $task->items_count }} items</span>
+                                                                        @endif
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    @if ($task->category)
+                                                                        <span class="badge"
+                                                                            style="background-color: {{ $task->category->badge_color }}; color: #fff;">
+                                                                            {{ $task->category->name }}
+                                                                        </span>
+                                                                    @else
+                                                                        <span class="text-muted">-</span>
+                                                                    @endif
+                                                                </td>
+                                                                <td>
+                                                                    <span class="badge {{ $quadrantBadges[$task->quadrant] ?? 'bg-secondary' }}">
+                                                                        {{ $quadrantOptions[$task->quadrant] ?? $task->quadrant }}
+                                                                    </span>
+                                                                </td>
+                                                                <td>
+                                                                    @for ($i = 1; $i <= 5; $i++)
+                                                                        <i class="bi bi-star-fill {{ $i <= $task->stars ? 'text-warning' : 'text-muted' }}"></i>
+                                                                    @endfor
+                                                                </td>
+                                                                <td>
+                                                                    <span class="badge {{ $statusBadges[$task->status] ?? 'bg-secondary' }}">
+                                                                        {{ $statusOptions[$task->status] ?? $task->status }}
+                                                                    </span>
+                                                                </td>
+                                                                <td>{{ $task->due_date ? $task->due_date->toDateString() : '-' }}</td>
+                                                                <td>{{ $task->scheduled_date ? $task->scheduled_date->toDateString() : '-' }}</td>
+                                                                <td style="max-width: 90px;">
+                                                                    <input type="number" class="form-control form-control-sm"
+                                                                        name="order[{{ $task->id }}]" min="0" value="{{ $task->sort_order }}">
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    <div class="d-flex flex-wrap gap-1 justify-content-center">
+                                                                        <a href="{{ route('admin.personal.todo-tasks.edit', $task) }}"
+                                                                            class="btn btn-sm btn-outline-primary">Edit</a>
+                                                                        @if ($task->status === 'done')
+                                                                            <form method="POST" action="{{ route('admin.personal.todo-tasks.mark-open', $task) }}">
+                                                                                @csrf
+                                                                                <button type="submit" class="btn btn-sm btn-outline-secondary">Mark Open</button>
+                                                                            </form>
+                                                                        @else
+                                                                            <form method="POST" action="{{ route('admin.personal.todo-tasks.mark-done', $task) }}">
+                                                                                @csrf
+                                                                                <button type="submit" class="btn btn-sm btn-outline-success">Mark Done</button>
+                                                                            </form>
+                                                                        @endif
+                                                                        <form method="POST" action="{{ route('admin.personal.todo-tasks.destroy', $task) }}"
+                                                                            class="js-task-delete" data-title="{{ $task->title }}">
+                                                                            @csrf
+                                                                            @method('DELETE')
+                                                                            <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                                                        </form>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        @empty
+                                                            <tr>
+                                                                <td colspan="10" class="text-center">No {{ strtolower($label) }} tasks found.</td>
+                                                            </tr>
+                                                        @endforelse
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    @endforeach
                                 </form>
-
-                                @if ($tasks->hasPages())
-                                    @include('admin.partials.pagination', ['data' => $tasks])
-                                @endif
                             </div>
                         </div>
                     </div>
@@ -399,17 +407,23 @@
 @push('custom-js-scripts')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const selectAll = document.getElementById('selectAllTasks');
-            const checkboxes = document.querySelectorAll('input[name="task_ids[]"]');
+            const selectAllCheckboxes = document.querySelectorAll('.js-select-all-tasks');
             const bulkAction = document.getElementById('bulk_action');
             const bulkQuadrantGroup = document.getElementById('bulkQuadrantGroup');
             const bulkCategoryGroup = document.getElementById('bulkCategoryGroup');
             const deleteForms = document.querySelectorAll('.js-task-delete');
 
-            if (selectAll) {
-                selectAll.addEventListener('change', function() {
-                    checkboxes.forEach((checkbox) => {
-                        checkbox.checked = selectAll.checked;
+            if (selectAllCheckboxes.length) {
+                selectAllCheckboxes.forEach((selectAll) => {
+                    selectAll.addEventListener('change', function() {
+                        const tableWrapper = selectAll.closest('.todo-status-table');
+                        if (!tableWrapper) {
+                            return;
+                        }
+                        const checkboxes = tableWrapper.querySelectorAll('input[name="task_ids[]"]');
+                        checkboxes.forEach((checkbox) => {
+                            checkbox.checked = selectAll.checked;
+                        });
                     });
                 });
             }

@@ -82,22 +82,44 @@ class TodoTaskController extends Controller
         }
 
         $sort = $request->input('sort', 'newest');
-        switch ($sort) {
-            case 'due_date':
-                $query->orderByRaw('due_date is null')->orderBy('due_date');
-                break;
-            case 'stars_desc':
-                $query->orderByDesc('stars')->orderByDesc('id');
-                break;
-            case 'sort_order':
-                $query->orderBy('sort_order')->orderBy('id');
-                break;
-            default:
-                $query->orderByDesc('id');
-                break;
-        }
+        $sort = in_array($sort, ['newest', 'due_date', 'stars_desc', 'sort_order'], true)
+            ? $sort
+            : 'newest';
 
-        $tasks = $query->paginate(20)->withQueryString();
+        $applyStatusOrdering = function ($builder) use ($sort): void {
+            $builder->orderByRaw('scheduled_date is null')
+                ->orderBy('scheduled_date')
+                ->orderByRaw('due_date is null')
+                ->orderBy('due_date');
+
+            switch ($sort) {
+                case 'stars_desc':
+                    $builder->orderByDesc('stars')->orderByDesc('id');
+                    break;
+                case 'sort_order':
+                    $builder->orderBy('sort_order')->orderBy('id');
+                    break;
+                default:
+                    $builder->orderByDesc('id');
+                    break;
+            }
+        };
+
+        $statuses = [
+            TodoTask::STATUS_OPEN,
+            TodoTask::STATUS_IN_PROGRESS,
+            TodoTask::STATUS_DONE,
+            TodoTask::STATUS_ARCHIVED,
+        ];
+
+        $tasksByStatus = [];
+
+        foreach ($statuses as $status) {
+            $statusQuery = clone $query;
+            $statusQuery->where('status', $status);
+            $applyStatusOrdering($statusQuery);
+            $tasksByStatus[$status] = $statusQuery->get();
+        }
 
         $categories = TodoCategory::query()
             ->where('is_active', true)
@@ -107,7 +129,7 @@ class TodoTaskController extends Controller
 
         return view('admin.personal-dashboard.todo-tasks.index', [
             'pageName' => 'Todo Tasks',
-            'tasks' => $tasks,
+            'tasksByStatus' => $tasksByStatus,
             'categories' => $categories,
             'statusOptions' => TodoTask::statusOptions(),
             'quadrantOptions' => TodoTask::quadrantOptions(),
